@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "text": "Когда было первое парное занятие в БачатаМании?",
+        "text": "Какой цвет получается при смешивании красного и синего?",
         "options": [
             {
                 "id": "A",
-                "text": "25.12.2023",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "26.12.2023",
+                "text": "Зелёный",
                 "isCorrect": false
             },
             {
+                "id": "B",
+                "text": "Фиолетовый",
+                "isCorrect": true
+            },
+            {
                 "id": "C",
-                "text": "27.12.2023",
+                "text": "Оранжевый",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "28.12.2023",
+                "text": "Коричневый",
                 "isCorrect": false
             }
         ],
@@ -29,26 +29,26 @@
     },
     {
         "id": 2,
-        "text": "Какая страна подарила миру Эйфелеву башню?",
+        "text": "Какая планета самая близкая к Солнцу?",
         "options": [
             {
                 "id": "A",
-                "text": "Италия",
+                "text": "Венера",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Германия",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Франция",
+                "text": "Меркурий",
                 "isCorrect": true
             },
             {
+                "id": "C",
+                "text": "Марс",
+                "isCorrect": false
+            },
+            {
                 "id": "D",
-                "text": "Англия",
+                "text": "Земля",
                 "isCorrect": false
             }
         ],
@@ -57,54 +57,54 @@
     },
     {
         "id": 3,
-        "text": "Какой музыкальный инструмент обычно используется в бачате для ритмической основы?",
+        "text": "Кто написал роман 'Преступление и наказание'?",
         "options": [
             {
                 "id": "A",
-                "text": "Саксофон",
+                "text": "Лев Толстой",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Барабаны",
+                "text": "Фёдор Достоевский",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Флейта",
+                "text": "Антон Чехов",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Скрипка",
+                "text": "Иван Тургенев",
                 "isCorrect": false
             }
         ],
-        "prize": 300,
-        "difficulty": 1
+        "prize": 500,
+        "difficulty": 2
     },
     {
         "id": 4,
-        "text": "В какой стране находится город Венеция?",
+        "text": "Сколько лет длилась Столетняя война?",
         "options": [
             {
                 "id": "A",
-                "text": "Франция",
+                "text": "100 лет",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Италия",
+                "text": "116 лет",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Испания",
+                "text": "89 лет",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Греция",
+                "text": "133 года",
                 "isCorrect": false
             }
         ],
@@ -113,26 +113,26 @@
     },
     {
         "id": 5,
-        "text": "Кто изобрёл электрическую лампочку накаливания?",
+        "text": "Какое химическое соединение имеет формулу H₂O?",
         "options": [
             {
                 "id": "A",
-                "text": "Никола Тесла",
+                "text": "Перекись водорода",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Томас Эдисон",
+                "text": "Вода",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Александр Белл",
+                "text": "Соляная кислота",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Альберт Эйнштейн",
+                "text": "Аммиак",
                 "isCorrect": false
             }
         ],
@@ -141,82 +141,82 @@
     },
     {
         "id": 6,
-        "text": "Сколько игроков в футбольной команде на поле?",
+        "text": "Кто открыл теорию относительности?",
         "options": [
             {
                 "id": "A",
-                "text": "10",
+                "text": "Исаак Ньютон",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "11",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "12",
+                "text": "Никола Тесла",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Альберт Эйнштейн",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "9",
+                "text": "Макс Планк",
                 "isCorrect": false
             }
         ],
         "prize": 4000,
-        "difficulty": 2
+        "difficulty": 3
     },
     {
         "id": 7,
-        "text": "Как называется столица Японии?",
+        "text": "Какая страна является родиной танго?",
         "options": [
             {
                 "id": "A",
-                "text": "Пекин",
+                "text": "Испания",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Сеул",
+                "text": "Бразилия",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Токио",
+                "text": "Аргентина",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Осака",
+                "text": "Португалия",
                 "isCorrect": false
             }
         ],
         "prize": 8000,
-        "difficulty": 2
+        "difficulty": 3
     },
     {
         "id": 8,
-        "text": "Какое животное является символом Австралии?",
+        "text": "Кто изобрёл книгопечатание?",
         "options": [
             {
                 "id": "A",
-                "text": "Коала",
+                "text": "Леонардо да Винчи",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Кенгуру",
+                "text": "Иоганн Гутенберг",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Утконос",
+                "text": "Микеланджело",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Ехидна",
+                "text": "Николай Коперник",
                 "isCorrect": false
             }
         ],
@@ -225,82 +225,82 @@
     },
     {
         "id": 9,
-        "text": "Кто написал музыку к балету 'Щелкунчик'?",
+        "text": "Какая река является самой длинной в Европе?",
         "options": [
             {
                 "id": "A",
-                "text": "Людвиг ван Бетховен",
+                "text": "Дунай",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Вольфганг Амадей Моцарт",
+                "text": "Рейн",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Пётр Чайковский",
+                "text": "Волга",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Иоганн Себастьян Бах",
+                "text": "Эльба",
                 "isCorrect": false
             }
         ],
         "prize": 32000,
-        "difficulty": 3
+        "difficulty": 4
     },
     {
         "id": 10,
-        "text": "Какой химический элемент обозначается символом 'O'?",
+        "text": "Кто написал оперу 'Кармен'?",
         "options": [
             {
                 "id": "A",
-                "text": "Золото",
+                "text": "Джузеппе Верди",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Серебро",
+                "text": "Вольфганг Моцарт",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Кислород",
+                "text": "Жорж Бизе",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Осмий",
+                "text": "Пётр Чайковский",
                 "isCorrect": false
             }
         ],
         "prize": 64000,
-        "difficulty": 3
+        "difficulty": 4
     },
     {
         "id": 11,
-        "text": "Кто был первым человеком, ступившим на Луну?",
+        "text": "Какая битва положила начало концу Наполеоновских войн?",
         "options": [
             {
                 "id": "A",
-                "text": "Юрий Гагарин",
+                "text": "Бородинское сражение",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Нил Армстронг",
+                "text": "Битва при Ватерлоо",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Базз Олдрин",
+                "text": "Битва при Аустерлице",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Алексей Леонов",
+                "text": "Лейпцигская битва",
                 "isCorrect": false
             }
         ],
@@ -309,26 +309,26 @@
     },
     {
         "id": 12,
-        "text": "Какая река является самой длинной в мире?",
+        "text": "Какой элемент имеет атомный номер 79?",
         "options": [
             {
                 "id": "A",
-                "text": "Амазонка",
+                "text": "Серебро",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Нил",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Янцзы",
+                "text": "Платина",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Золото",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Миссисипи",
+                "text": "Ртуть",
                 "isCorrect": false
             }
         ],
@@ -337,83 +337,83 @@
     },
     {
         "id": 13,
-        "text": "Кто написал картину 'Мона Лиза'?",
+        "text": "Какое животное изображено на гербе Австралии?",
         "options": [
             {
                 "id": "A",
-                "text": "Винсент Ван Гог",
-                "isCorrect": false
+                "text": "Кенгуру и страус эму",
+                "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Пабло Пикассо",
+                "text": "Лев и единорог",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Леонардо да Винчи",
-                "isCorrect": true
+                "text": "Орёл и змея",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Микеланджело",
+                "text": "Медведь и орёл",
                 "isCorrect": false
             }
         ],
         "prize": 500000,
-        "difficulty": 4
+        "difficulty": 5
     },
     {
         "id": 14,
-        "text": "В каком году началась Вторая мировая война?",
+        "text": "Кто написал знаменитый трактат 'Государь'?",
         "options": [
             {
                 "id": "A",
-                "text": "1914",
+                "text": "Томас Мор",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "1939",
+                "text": "Никколо Макиавелли",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "1941",
+                "text": "Джон Локк",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "1933",
+                "text": "Вольтер",
                 "isCorrect": false
             }
         ],
         "prize": 750000,
-        "difficulty": 4
+        "difficulty": 5
     },
     {
         "id": 15,
-        "text": "Как называется самый большой океан на Земле?",
+        "text": "Какая частица была открыта в ЦЕРН в 2012 году и подтвердила Стандартную модель?",
         "options": [
             {
                 "id": "A",
-                "text": "Атлантический",
+                "text": "Кварк",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Индийский",
-                "isCorrect": false
+                "text": "Бозон Хиггса",
+                "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Северный Ледовитый",
+                "text": "Нейтрино",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Тихий",
-                "isCorrect": true
+                "text": "Глюон",
+                "isCorrect": false
             }
         ],
         "prize": 1000000,
