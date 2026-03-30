@@ -4,7 +4,7 @@
     <!-- Изображение -->
     <div v-if="media.type === 'image'" class="media-image">
       <img
-        :src="media.url"
+        :src="getFullUrl(media.url)"
         :alt="media.caption || 'Изображение к вопросу'"
         @error="handleImageError"
         @click="openFullscreen"
@@ -14,7 +14,7 @@
 
     <!-- Аудио -->
     <div v-else-if="media.type === 'audio'" class="media-audio">
-      <audio controls :src="media.url" @error="handleAudioError" class="audio-player">
+      <audio controls :src="getFullUrl(media.url)" @error="handleAudioError" class="audio-player">
         Ваш браузер не поддерживает аудио
       </audio>
       <div v-if="media.caption" class="media-caption">{{ media.caption }}</div>
@@ -24,8 +24,8 @@
     <div v-else-if="media.type === 'video'" class="media-video">
       <video
         controls
-        :src="media.url"
-        :poster="media.poster"
+        :src="getFullUrl(media.url)"
+        :poster="media.poster ? getFullUrl(media.poster) : undefined"
         @error="handleVideoError"
         class="video-player"
       >
@@ -42,12 +42,24 @@
 <script setup lang="ts">
 import type { MediaContent } from '@/types/game'
 import { ref } from 'vue'
+import { BASE_URL } from '@/config'
 
 const props = defineProps<{
   media: MediaContent
 }>()
 
 const imageError = ref(false)
+
+// Функция для корректного формирования URL с учётом BASE_URL
+const getFullUrl = (url: string): string => {
+  // Если это уже полный URL (http, https), возвращаем как есть
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  // Убираем лишний слеш в начале, если есть
+  const cleanUrl = url.startsWith('/') ? url.slice(1) : url
+  return `${BASE_URL}${cleanUrl}`
+}
 
 const handleImageError = () => {
   imageError.value = true

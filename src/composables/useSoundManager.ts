@@ -1,5 +1,5 @@
-// src/composables/useSoundManager.ts
 import { ref, readonly } from 'vue'
+import { BASE_URL } from '@/config'
 
 // ✅ Глобальное состояние (singleton)
 const isMuted = ref(false)
@@ -47,16 +47,16 @@ export function useSoundManager() {
     let musicName = ''
 
     if (level === 15) {
-      musicUrl = '/sounds/music/final.mp3'
+      musicUrl = `${BASE_URL}sounds/music/final.mp3`
       musicName = 'final (15 вопрос)'
     } else if (level >= 11) {
-      musicUrl = '/sounds/music/level-3.mp3'
+      musicUrl = `${BASE_URL}sounds/music/level-3.mp3`
       musicName = 'level-3 (вопросы 11-14)'
     } else if (level >= 6) {
-      musicUrl = '/sounds/music/level-2.mp3'
+      musicUrl = `${BASE_URL}sounds/music/level-2.mp3`
       musicName = 'level-2 (вопросы 6-10)'
     } else {
-      musicUrl = '/sounds/music/level-1.mp3'
+      musicUrl = `${BASE_URL}sounds/music/level-1.mp3`
       musicName = 'level-1 (вопросы 1-5)'
     }
 
@@ -116,17 +116,17 @@ export function useSoundManager() {
 
     // Финальный вопрос (15)
     if (questionNumber === 15) {
-      musicUrl = '/sounds/effects/victory-final.mp3'
+      musicUrl = `${BASE_URL}sounds/effects/victory-final.mp3`
       musicName = 'victory-final'
     }
     // Несгораемые суммы (вопросы 5 и 10)
     else if (questionNumber === 5 || questionNumber === 10) {
-      musicUrl = '/sounds/effects/victory-milestone.mp3'
+      musicUrl = `${BASE_URL}sounds/effects/victory-milestone.mp3`
       musicName = 'victory-milestone'
     }
     // Все остальные вопросы
     else {
-      musicUrl = '/sounds/effects/victory.mp3'
+      musicUrl = `${BASE_URL}sounds/effects/victory.mp3`
       musicName = 'victory'
     }
 
@@ -160,7 +160,9 @@ export function useSoundManager() {
       return
     }
 
-    const musicUrl = isFinalQuestion ? '/sounds/effects/fail-final.mp3' : '/sounds/effects/fail.mp3'
+    const musicUrl = isFinalQuestion
+      ? `${BASE_URL}sounds/effects/fail-final.mp3`
+      : `${BASE_URL}sounds/effects/fail.mp3`
     const musicName = isFinalQuestion ? 'fail-final' : 'fail'
 
     const audio = new Audio(musicUrl)
@@ -192,7 +194,7 @@ export function useSoundManager() {
       return
     }
 
-    const audio = loadSound('/sounds/music/game-over.mp3')
+    const audio = loadSound(`${BASE_URL}sounds/music/game-over.mp3`)
     if (!audio) return
 
     audio.loop = false
@@ -217,12 +219,12 @@ export function useSoundManager() {
     }
 
     const effectUrls: Record<string, string> = {
-      correct: '/sounds/effects/correct.mp3',
-      wrong: '/sounds/effects/wrong.mp3',
-      optionSelect: '/sounds/effects/option-select.mp3',
-      fiftyFifty: '/sounds/hints/fifty-fifty.mp3',
-      call: '/sounds/hints/call.mp3',
-      audience: '/sounds/hints/audience.mp3',
+      correct: `${BASE_URL}sounds/effects/correct.mp3`,
+      wrong: `${BASE_URL}sounds/effects/wrong.mp3`,
+      optionSelect: `${BASE_URL}sounds/effects/option-select.mp3`,
+      fiftyFifty: `${BASE_URL}sounds/hints/fifty-fifty.mp3`,
+      call: `${BASE_URL}sounds/hints/call.mp3`,
+      audience: `${BASE_URL}sounds/hints/audience.mp3`,
     }
 
     const url = effectUrls[effectName]
