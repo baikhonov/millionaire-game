@@ -38,10 +38,13 @@
         <QuestionCard :question="currentQuestion" />
 
         <OptionsGrid
+          :key="currentQuestionIndex"
           :options="currentQuestion.options"
           :selected-option="selectedOption"
           :is-answered="isAnswered"
           :is-answer-revealed="isAnswerRevealed"
+          :is-revealing="isRevealingOptions"
+          :options-revealed="optionsRevealed"
           @select="selectAnswer"
         />
 
@@ -118,6 +121,8 @@ const {
   resetGame,
   selectAnswer: gameSelectAnswer,
   revealAnswer: gameRevealAnswer,
+  optionsRevealed,
+  isRevealingOptions,
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
@@ -367,55 +372,6 @@ body {
   margin-top: 120px;
   margin-right: 280px;
   padding: 20px;
-}
-
-.options-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.option-button {
-  background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
-  border: 2px solid #ffd700;
-  border-radius: 12px;
-  padding: 20px 25px;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  text-align: left;
-}
-
-.option-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #2a2f3e 0%, #1f2430 100%);
-}
-
-.option-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.option-letter {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  background: #ffd700;
-  color: #0a0f1e;
-  border-radius: 50%;
-  font-weight: bold;
-  margin-right: 15px;
-  flex-shrink: 0;
-}
-
-.option-text {
-  flex: 1;
 }
 
 .prize-ladder {

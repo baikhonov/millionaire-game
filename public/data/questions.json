@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "text": "Какая самая высокая гора в мире?",
+        "text": "Когда было первое парное занятие в БачатаМании?",
         "options": [
             {
                 "id": "A",
-                "text": "К2",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Эверест (Джомолунгма)",
+                "text": "25.12.2023",
                 "isCorrect": true
             },
             {
+                "id": "B",
+                "text": "26.12.2023",
+                "isCorrect": false
+            },
+            {
                 "id": "C",
-                "text": "Эльбрус",
+                "text": "27.12.2023",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Мак-Кинли",
+                "text": "28.12.2023",
                 "isCorrect": false
             }
         ],
@@ -33,7 +33,7 @@
         "media": {
             "type": "image",
             "url": "/images/eiffel-tower.webp",
-            "caption": "Знаменитая башня"
+            "caption": ""
         },
         "options": [
             {

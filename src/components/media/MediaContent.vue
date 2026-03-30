@@ -85,7 +85,7 @@ const openFullscreen = (event: MouseEvent) => {
 
 .media-image img {
   max-width: 100%;
-  max-height: 400px;
+  max-height: 300px;
   border-radius: 12px;
   cursor: pointer;
   transition:
