@@ -39,7 +39,8 @@ defineProps<{
 
 @media (max-width: 768px) {
   .question-card {
-    padding: 20px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
   }
 
   .question-text {

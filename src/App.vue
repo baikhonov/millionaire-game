@@ -501,6 +501,10 @@ body {
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+
+  @media (max-width: 768px) {
+    padding: 10px 15px;
+  }
 }
 
 .reveal-button:hover {
@@ -511,7 +515,8 @@ body {
 @media (max-width: 768px) {
   .question-section {
     margin-right: 0;
-    margin-top: 100px;
+    margin-top: 80px;
+    padding: 0;
   }
 
   .prize-ladder {

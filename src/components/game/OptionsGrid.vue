@@ -58,6 +58,13 @@ const handleSelect = (option: Option) => {
   gap: 20px;
   margin: 40px auto;
   max-width: 900px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    margin: 20px auto;
+  }
 }
 
 .option-button {
@@ -73,6 +80,11 @@ const handleSelect = (option: Option) => {
   min-height: 80px;
   font-size: 20px;
   line-height: 40px;
+
+  @media (max-width: 768px) {
+    min-height: 0;
+    padding: 10px 15px;
+  }
 }
 
 .option-letter {
