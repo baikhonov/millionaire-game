@@ -86,7 +86,7 @@ export function useSoundManager() {
       return
     }
 
-    audio.loop = true
+    audio.loop = false
     audio.volume = musicVolume.value
 
     audio.play().catch((e) => {

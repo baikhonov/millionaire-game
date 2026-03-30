@@ -1,116 +1,87 @@
 [
     {
         "id": 1,
-        "text": "Когда было первое парное занятие в БачатаМании?",
+        "text": "Какая самая высокая гора в мире?",
         "options": [
             {
                 "id": "A",
-                "text": "25.12.2023",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "27.12.2023",
+                "text": "К2",
                 "isCorrect": false
             },
             {
+                "id": "B",
+                "text": "Эверест (Джомолунгма)",
+                "isCorrect": true
+            },
+            {
                 "id": "C",
-                "text": "давно, уже не помню",
+                "text": "Эльбрус",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Хочу миллион",
+                "text": "Мак-Кинли",
                 "isCorrect": false
             }
         ],
         "prize": 100,
-        "difficulty": 1,
-        "hint": "Этот язык используется для веб-разработки"
+        "difficulty": 1
     },
     {
         "id": 2,
-        "text": "Что такое TypeScript?",
+        "text": "Как называется это сооружение?",
         "media": {
-            "type": "video",
-            "url": "/videos/typescript-intro.mp4",
-            "poster": "/images/typescript-poster.jpg"
+            "type": "image",
+            "url": "/images/eiffel-tower.webp",
+            "caption": "Знаменитая башня"
         },
         "options": [
             {
                 "id": "A",
-                "text": "Язык программирования",
+                "text": "Пизанская башня",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Типизированный надмножество JavaScript",
+                "text": "Эйфелева башня",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "База данных",
+                "text": "Тауэрский мост",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Фреймворк",
+                "text": "Статуя Свободы",
                 "isCorrect": false
             }
         ],
-        "prize": 200,
+        "prize": 100,
         "difficulty": 1
     },
     {
         "id": 3,
-        "text": "Какой хук используется в Composition API для реактивных данных?",
+        "text": "Какая планета самая близкая к Солнцу?",
         "options": [
             {
                 "id": "A",
-                "text": "reactiveData()",
+                "text": "Венера",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "useState()",
+                "text": "Земля",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "ref()",
+                "text": "Меркурий",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "data()",
-                "isCorrect": false
-            }
-        ],
-        "prize": 300,
-        "difficulty": 1
-    },
-    {
-        "id": 4,
-        "text": "Какой звук издают коты?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Гав-гав",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Мяу",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Му",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Хрю",
+                "text": "Марс",
                 "isCorrect": false
             }
         ],
@@ -118,31 +89,339 @@
         "difficulty": 1
     },
     {
-        "id": 5,
-        "text": "Какое число следует после 9?",
+        "id": 4,
+        "text": "В какой стране находится город Венеция?",
         "options": [
             {
                 "id": "A",
-                "text": "8",
+                "text": "Франция",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "9",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "10",
+                "text": "Италия",
                 "isCorrect": true
             },
             {
+                "id": "C",
+                "text": "Испания",
+                "isCorrect": false
+            },
+            {
                 "id": "D",
-                "text": "11",
+                "text": "Греция",
                 "isCorrect": false
             }
         ],
         "prize": 1000,
-        "difficulty": 1
+        "difficulty": 2
+    },
+    {
+        "id": 5,
+        "text": "Кто изобрёл электрическую лампочку накаливания?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Никола Тесла",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Томас Эдисон",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Александр Белл",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Альберт Эйнштейн",
+                "isCorrect": false
+            }
+        ],
+        "prize": 2000,
+        "difficulty": 2
+    },
+    {
+        "id": 6,
+        "text": "Сколько игроков в футбольной команде на поле?",
+        "options": [
+            {
+                "id": "A",
+                "text": "10",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "11",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "12",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "9",
+                "isCorrect": false
+            }
+        ],
+        "prize": 4000,
+        "difficulty": 2
+    },
+    {
+        "id": 7,
+        "text": "Как называется столица Японии?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Пекин",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Сеул",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Токио",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Осака",
+                "isCorrect": false
+            }
+        ],
+        "prize": 8000,
+        "difficulty": 2
+    },
+    {
+        "id": 8,
+        "text": "Какое животное является символом Австралии?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Коала",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Кенгуру",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Утконос",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Ехидна",
+                "isCorrect": false
+            }
+        ],
+        "prize": 16000,
+        "difficulty": 3
+    },
+    {
+        "id": 9,
+        "text": "Кто написал музыку к балету 'Щелкунчик'?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Людвиг ван Бетховен",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Вольфганг Амадей Моцарт",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Пётр Чайковский",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Иоганн Себастьян Бах",
+                "isCorrect": false
+            }
+        ],
+        "prize": 32000,
+        "difficulty": 3
+    },
+    {
+        "id": 10,
+        "text": "Какой химический элемент обозначается символом 'O'?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Золото",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Серебро",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Кислород",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Осмий",
+                "isCorrect": false
+            }
+        ],
+        "prize": 64000,
+        "difficulty": 3
+    },
+    {
+        "id": 11,
+        "text": "Кто был первым человеком, ступившим на Луну?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Юрий Гагарин",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Нил Армстронг",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Базз Олдрин",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Алексей Леонов",
+                "isCorrect": false
+            }
+        ],
+        "prize": 125000,
+        "difficulty": 4
+    },
+    {
+        "id": 12,
+        "text": "Какая река является самой длинной в мире?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Амазонка",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Нил",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Янцзы",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Миссисипи",
+                "isCorrect": false
+            }
+        ],
+        "prize": 250000,
+        "difficulty": 4
+    },
+    {
+        "id": 13,
+        "text": "Кто написал картину 'Мона Лиза'?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Винсент Ван Гог",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Пабло Пикассо",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Леонардо да Винчи",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Микеланджело",
+                "isCorrect": false
+            }
+        ],
+        "prize": 500000,
+        "difficulty": 4
+    },
+    {
+        "id": 14,
+        "text": "В каком году началась Вторая мировая война?",
+        "options": [
+            {
+                "id": "A",
+                "text": "1914",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "1939",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "1941",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "1933",
+                "isCorrect": false
+            }
+        ],
+        "prize": 750000,
+        "difficulty": 5
+    },
+    {
+        "id": 15,
+        "text": "Как называется самый большой океан на Земле?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Атлантический",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Индийский",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Северный Ледовитый",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Тихий",
+                "isCorrect": true
+            }
+        ],
+        "prize": 1000000,
+        "difficulty": 5
     }
 ]

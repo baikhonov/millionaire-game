@@ -4,15 +4,13 @@
     <!-- Фоновый слой -->
     <div class="game-background"></div>
 
-    <!-- ЭКРАН ДЛЯ ВКЛЮЧЕНИЯ ЗВУКА (пока звук не включён) -->
-    <div v-if="!isAudioEnabled" class="audio-enable-screen">
-      <div class="audio-enable-card">
-        <div class="audio-icon">🔊</div>
-        <h2>Для игры нужен звук</h2>
-        <p>Нажмите на любую область, чтобы начать</p>
-        <button class="enable-audio-btn" @click.stop="enableAudioAndStart">
-          Включить звук и начать
-        </button>
+    <!-- СТАРТОВАЯ МОДАЛКА (вместо звуковой) -->
+    <div v-if="!gameStarted" class="start-screen">
+      <div class="start-card">
+        <div class="game-icon">🎮</div>
+        <h1>Кто хочет стать миллионером?</h1>
+        <p>Проверьте свои знания и выиграйте 1 000 000 рублей!</p>
+        <button class="start-button" @click="startGame">Начать игру</button>
       </div>
     </div>
 
@@ -41,16 +39,7 @@
 
       <!-- Вопрос -->
       <div v-if="currentQuestion" class="question-section">
-        <div class="question-card">
-          <div class="question-text">
-            {{ currentQuestion.text }}
-          </div>
-
-          <!-- Медиа (пока заглушка) -->
-          <div v-if="currentQuestion.media" class="media-placeholder">
-            📷 {{ currentQuestion.media.type.toUpperCase() }} контент
-          </div>
-        </div>
+        <QuestionCard :question="currentQuestion" />
 
         <!-- Варианты ответов -->
         <OptionsGrid
@@ -99,7 +88,7 @@
     </div>
 
     <!-- Кнопка звука -->
-    <button v-if="isAudioEnabled" class="sound-button" @click.stop="toggleMute">
+    <button class="sound-button" @click.stop="toggleMute">
       {{ isMuted ? '🔇' : '🔊' }}
     </button>
   </div>
@@ -110,9 +99,13 @@ import { computed, onMounted, ref } from 'vue'
 import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
+import QuestionCard from './components/game/QuestionCard.vue'
 
 const game = useGameLogic()
 const sound = useSoundManager()
+
+// Флаг, что игра началась
+const gameStarted = ref(false)
 
 const {
   currentQuestionIndex,
@@ -133,44 +126,30 @@ const {
   resetGame,
   selectAnswer: gameSelectAnswer,
   revealAnswer: gameRevealAnswer,
-  takeMoney,
 } = game
 
-const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
-
-// Локальное состояние для звука
-const soundOn = ref(false)
+const { isMuted, enableAudio, toggleMute, playQuestionMusic } = sound
 
 const reversedPrizeLevels = computed(() => [...prizeLevels].reverse())
 const totalQuestions = computed(() => prizeLevels.length)
 
-// ОСНОВНАЯ ФУНКЦИЯ ДЛЯ КНОПКИ "Включить звук и начать"
-const enableAudioAndStart = async () => {
-  console.log('🎮 Нажата кнопка включения звука')
+// Запуск игры
+const startGame = async () => {
+  console.log('🎮 Начинаем игру')
 
-  // 1. Включаем звук
+  // Включаем звук
   await enableAudio()
-  soundOn.value = true
 
-  console.log('🎮 Звук включён, isAudioEnabled =', isAudioEnabled.value)
-
-  // 2. Загружаем игру
+  // Загружаем вопросы
   await initGame()
 
-  // 3. Запускаем музыку
-  if (isAudioEnabled.value && !isMuted.value) {
-    console.log('🎵 Запускаем музыку для первого вопроса')
+  // Запускаем музыку
+  if (!isMuted.value) {
     playQuestionMusic(1)
   }
 
-  console.log('🎮 Игра запущена')
-}
-
-// Обработчик клика по всей области (на случай, если нажали мимо кнопки)
-const handlePageClick = () => {
-  if (!isAudioEnabled.value) {
-    enableAudioAndStart()
-  }
+  // Показываем игру
+  gameStarted.value = true
 }
 
 const selectAnswer = (option: any) => {
@@ -183,19 +162,83 @@ const revealAnswer = () => {
 
 const restartGame = () => {
   resetGame()
-  if (soundOn.value && isAudioEnabled.value && !isMuted.value) {
-    playQuestionMusic(1)
-  }
+  gameStarted.value = false
+  // Через секунду показываем стартовую модалку
+  setTimeout(() => {
+    gameStarted.value = true
+    startGame()
+  }, 100)
 }
 
 onMounted(async () => {
-  // Загружаем вопросы, но не запускаем игру автоматически
+  // Только загружаем вопросы, не показываем игру
   await initGame()
-  console.log('✅ Игра загружена, ждём включения звука')
+  console.log('✅ Игра загружена, ждём нажатия "Начать игру"')
 })
 </script>
 
 <style>
+/* Добавляем стили для стартовой модалки */
+.start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0a0f1e 0%, #030617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.start-card {
+  background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
+  border: 2px solid #ffd700;
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+}
+
+.game-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: pulse 1.5s ease infinite;
+}
+
+.start-card h1 {
+  color: #ffd700;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.start-card p {
+  color: #ccc;
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.start-button {
+  padding: 15px 50px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #0a0f1e;
+  border: none;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.start-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+}
 /* Добавляем стили для кнопки */
 .reveal-button-container {
   display: flex;
