@@ -1,6 +1,7 @@
 // src/composables/useQuestions.ts
 import { ref, readonly } from 'vue'
 import type { Question } from '@/types/game'
+import { BASE_URL } from '@/config'
 
 export function useQuestions() {
   const questions = ref<Question[]>([])
@@ -14,7 +15,7 @@ export function useQuestions() {
     try {
       // Важно: файл должен быть в папке public, так как он загружается через fetch
       // Положите questions.json в public/data/questions.json
-      const response = await fetch('/data/questions.json')
+      const response = await fetch(`${BASE_URL}data/questions.json`)
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
