@@ -29,68 +29,58 @@
     },
     {
         "id": 2,
-        "text": "Как называется это сооружение?",
-        "media": {
-            "type": "image",
-            "url": "/images/eiffel-tower.webp",
-            "caption": ""
-        },
+        "text": "Какая страна подарила миру Эйфелеву башню?",
         "options": [
             {
                 "id": "A",
-                "text": "Пизанская башня",
+                "text": "Италия",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Эйфелева башня",
-                "isCorrect": true
+                "text": "Германия",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Тауэрский мост",
-                "isCorrect": false
+                "text": "Франция",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Статуя Свободы",
+                "text": "Англия",
                 "isCorrect": false
             }
         ],
-        "prize": 100,
+        "prize": 200,
         "difficulty": 1
     },
     {
         "id": 3,
-        "text": "Какой музыкальный инструмент звучит?",
-        "media": {
-            "type": "audio",
-            "url": "/sounds/questions/bass-guitar.mp3",
-            "caption": ""
-        },
+        "text": "Какой музыкальный инструмент обычно используется в бачате для ритмической основы?",
         "options": [
             {
                 "id": "A",
-                "text": "Бонго",
+                "text": "Саксофон",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Гуира",
-                "isCorrect": false
+                "text": "Барабаны",
+                "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Ритм Гитара",
+                "text": "Флейта",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Бас гитара",
-                "isCorrect": true
+                "text": "Скрипка",
+                "isCorrect": false
             }
         ],
-        "prize": 100,
+        "prize": 300,
         "difficulty": 1
     },
     {
@@ -399,7 +389,7 @@
             }
         ],
         "prize": 750000,
-        "difficulty": 5
+        "difficulty": 4
     },
     {
         "id": 15,

@@ -7,8 +7,8 @@
     <div v-if="!gameStarted" class="start-screen">
       <div class="start-card">
         <div class="logo">
-          <img src="/public/images/logo-bm.webp" width="250px" alt="Лого Бачатамания" />
-          <img src="/public/images/logo-game.webp" width="250px" alt="Лого игры" />
+          <img src="/images/logo-bm.webp" width="250px" alt="Лого Бачатамания" />
+          <img src="/images/logo-game.webp" width="250px" alt="Лого игры" />
         </div>
         <button class="start-button" @click="startGame">Начать игру</button>
       </div>
@@ -122,8 +122,9 @@ const {
   resetGame,
   selectAnswer: gameSelectAnswer,
   revealAnswer: gameRevealAnswer,
-  optionsRevealed,
-  isRevealingOptions,
+  startRevealOptions, // ✅ добавляем
+  optionsRevealed, // ✅ добавляем
+  isRevealingOptions, // ✅ добавляем
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
@@ -135,14 +136,11 @@ const startGame = async () => {
   console.log('🎮 Начинаем игру')
 
   enableAudio()
-  await new Promise((resolve) => setTimeout(resolve, 500))
-
-  console.log('🎮 После enableAudio, isAudioEnabled =', isAudioEnabled.value)
+  await new Promise((resolve) => setTimeout(resolve, 100))
 
   await initGame()
 
   if (isAudioEnabled.value && !isMuted.value) {
-    console.log('🎵 Запускаем музыку для первого вопроса')
     playQuestionMusic(1)
   }
 
@@ -157,12 +155,19 @@ const revealAnswer = () => {
   gameRevealAnswer()
 }
 
-const restartGame = () => {
+const restartGame = async () => {
+  console.log('🔄 Перезапуск игры')
+
+  // Сбрасываем состояние игры
   resetGame()
-  gameStarted.value = false
-  setTimeout(() => {
-    startGame()
-  }, 100)
+
+  // Загружаем вопросы и запускаем всё заново
+  await initGame()
+
+  // Включаем музыку, если звук включён
+  if (isAudioEnabled.value && !isMuted.value) {
+    playQuestionMusic(1)
+  }
 }
 </script>
 
@@ -268,8 +273,8 @@ body {
 .logo {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 25px;
+  margin-bottom: 50px;
 }
 
 .start-card h1 {

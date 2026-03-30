@@ -106,7 +106,6 @@ const handleSelect = (option: Option) => {
 .option-button.selected {
   background: #f68e00;
   border-color: #ffaa00;
-  transform: scale(1.02);
 }
 
 .option-button.selected .option-letter {

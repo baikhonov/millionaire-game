@@ -167,7 +167,12 @@ export function useGameLogic() {
 
   const selectAnswer = (option: Option): void => {
     if (isAnswered.value || isAnswerRevealed.value || gameEnded.value) return
-    if (isRevealingOptions.value) return // нельзя выбрать пока варианты появляются
+
+    // Разрешаем выбрать только те варианты, которые уже появились
+    if (!isOptionRevealed(option.id)) {
+      console.log(`⚠️ Вариант ${option.id} ещё не появился, нельзя выбрать`)
+      return
+    }
 
     selectedOption.value = option
     isAnswered.value = true
@@ -180,15 +185,24 @@ export function useGameLogic() {
   const revealAnswer = (): void => {
     if (!isWaitingForReveal.value || isAnswerRevealed.value) return
 
+    console.log(`🔍 revealAnswer вызван, isCorrect = ${selectedOption.value?.isCorrect}`)
+
     soundManager.stopAllEffects()
     isAnswerRevealed.value = true
 
     const isCorrect = selectedOption.value?.isCorrect || false
+    const isFinalQuestion = isLastQuestion(currentQuestionIndex.value)
+    const difficulty = currentQuestion.value?.difficulty || 1
+    const currentNumber = currentQuestionIndex.value + 1 // номер вопроса (1-15)
+
+    console.log(`🎮 isCorrect: ${isCorrect}, вопрос: ${currentNumber}, difficulty: ${difficulty}`)
 
     if (isCorrect) {
-      soundManager.playCorrect()
+      console.log(`🎮 Вызываем playVictoryMusic для вопроса ${currentNumber}`)
+      soundManager.playVictoryMusic(difficulty, currentNumber)
     } else {
-      soundManager.playWrong()
+      console.log(`🎮 Вызываем playFailMusic с isFinalQuestion = ${isFinalQuestion}`)
+      soundManager.playFailMusic(isFinalQuestion)
     }
 
     setTimeout(() => {
@@ -207,9 +221,11 @@ export function useGameLogic() {
       gameResult.value = 'ПОБЕДА! Вы стали миллионером!'
       finalWinnings.value = 1000000
       gameEnded.value = true
-      soundManager.playVictoryMusic()
+
+      // Передаём сложность текущего вопроса
+      // const difficulty = currentQuestion.value?.difficulty || 1
+      // soundManager.playVictoryMusic(difficulty)
     } else {
-      // Дополнительная задержка перед следующим вопросом
       setTimeout(() => {
         nextQuestion()
       }, DELAYS.NEXT_QUESTION)
@@ -346,6 +362,7 @@ export function useGameLogic() {
     isRevealingOptions: readonly(isRevealingOptions),
     allOptionsRevealed: readonly(allOptionsRevealed),
     isOptionRevealed,
+    startRevealOptions,
 
     // Вычисляемые
     currentQuestion,
