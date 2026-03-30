@@ -1,0 +1,148 @@
+[
+    {
+        "id": 1,
+        "text": "Когда было первое парное занятие в БачатаМании?",
+        "options": [
+            {
+                "id": "A",
+                "text": "25.12.2023",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "25.12.2023",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "давно, уже не помню",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Хочу миллион",
+                "isCorrect": false
+            }
+        ],
+        "prize": 100,
+        "difficulty": 1,
+        "hint": "Этот язык используется для веб-разработки"
+    },
+    {
+        "id": 2,
+        "text": "Что такое TypeScript?",
+        "media": {
+            "type": "video",
+            "url": "/videos/typescript-intro.mp4",
+            "poster": "/images/typescript-poster.jpg"
+        },
+        "options": [
+            {
+                "id": "A",
+                "text": "Язык программирования",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Типизированный надмножество JavaScript",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "База данных",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Фреймворк",
+                "isCorrect": false
+            }
+        ],
+        "prize": 200,
+        "difficulty": 1
+    },
+    {
+        "id": 3,
+        "text": "Какой хук используется в Composition API для реактивных данных?",
+        "options": [
+            {
+                "id": "A",
+                "text": "reactiveData()",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "useState()",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "ref()",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "data()",
+                "isCorrect": false
+            }
+        ],
+        "prize": 300,
+        "difficulty": 1
+    },
+    {
+        "id": 4,
+        "text": "Какой звук издают коты?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Гав-гав",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Мяу",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Му",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Хрю",
+                "isCorrect": false
+            }
+        ],
+        "prize": 500,
+        "difficulty": 1
+    },
+    {
+        "id": 5,
+        "text": "Какое число следует после 9?",
+        "options": [
+            {
+                "id": "A",
+                "text": "8",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "9",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "10",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "11",
+                "isCorrect": false
+            }
+        ],
+        "prize": 1000,
+        "difficulty": 1
+    }
+]
