@@ -1,0 +1,422 @@
+[
+    {
+        "id": 1,
+        "text": "Какой цвет получается при смешивании красного и синего?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Зелёный",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Фиолетовый",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Оранжевый",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Коричневый",
+                "isCorrect": false
+            }
+        ],
+        "prize": 100,
+        "difficulty": 1
+    },
+    {
+        "id": 2,
+        "text": "Какая планета самая близкая к Солнцу?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Венера",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Меркурий",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Марс",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Земля",
+                "isCorrect": false
+            }
+        ],
+        "prize": 200,
+        "difficulty": 1
+    },
+    {
+        "id": 3,
+        "text": "Кто написал роман 'Преступление и наказание'?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Лев Толстой",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Фёдор Достоевский",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Антон Чехов",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Иван Тургенев",
+                "isCorrect": false
+            }
+        ],
+        "prize": 500,
+        "difficulty": 2
+    },
+    {
+        "id": 4,
+        "text": "Сколько лет длилась Столетняя война?",
+        "options": [
+            {
+                "id": "A",
+                "text": "100 лет",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "116 лет",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "89 лет",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "133 года",
+                "isCorrect": false
+            }
+        ],
+        "prize": 1000,
+        "difficulty": 2
+    },
+    {
+        "id": 5,
+        "text": "Какое химическое соединение имеет формулу H₂O?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Перекись водорода",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Вода",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Соляная кислота",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Аммиак",
+                "isCorrect": false
+            }
+        ],
+        "prize": 2000,
+        "difficulty": 2
+    },
+    {
+        "id": 6,
+        "text": "Кто открыл теорию относительности?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Исаак Ньютон",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Никола Тесла",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Альберт Эйнштейн",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Макс Планк",
+                "isCorrect": false
+            }
+        ],
+        "prize": 4000,
+        "difficulty": 3
+    },
+    {
+        "id": 7,
+        "text": "Какая страна является родиной танго?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Испания",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Бразилия",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Аргентина",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Португалия",
+                "isCorrect": false
+            }
+        ],
+        "prize": 8000,
+        "difficulty": 3
+    },
+    {
+        "id": 8,
+        "text": "Кто изобрёл книгопечатание?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Леонардо да Винчи",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Иоганн Гутенберг",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Микеланджело",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Николай Коперник",
+                "isCorrect": false
+            }
+        ],
+        "prize": 16000,
+        "difficulty": 3
+    },
+    {
+        "id": 9,
+        "text": "Какая река является самой длинной в Европе?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Дунай",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Рейн",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Волга",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Эльба",
+                "isCorrect": false
+            }
+        ],
+        "prize": 32000,
+        "difficulty": 4
+    },
+    {
+        "id": 10,
+        "text": "Кто написал оперу 'Кармен'?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Джузеппе Верди",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Вольфганг Моцарт",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Жорж Бизе",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Пётр Чайковский",
+                "isCorrect": false
+            }
+        ],
+        "prize": 64000,
+        "difficulty": 4
+    },
+    {
+        "id": 11,
+        "text": "Какая битва положила начало концу Наполеоновских войн?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Бородинское сражение",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Битва при Ватерлоо",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Битва при Аустерлице",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Лейпцигская битва",
+                "isCorrect": false
+            }
+        ],
+        "prize": 125000,
+        "difficulty": 4
+    },
+    {
+        "id": 12,
+        "text": "Какой элемент имеет атомный номер 79?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Серебро",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Платина",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Золото",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Ртуть",
+                "isCorrect": false
+            }
+        ],
+        "prize": 250000,
+        "difficulty": 4
+    },
+    {
+        "id": 13,
+        "text": "Какое животное изображено на гербе Австралии?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кенгуру и страус эму",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "Лев и единорог",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Орёл и змея",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Медведь и орёл",
+                "isCorrect": false
+            }
+        ],
+        "prize": 500000,
+        "difficulty": 5
+    },
+    {
+        "id": 14,
+        "text": "Кто написал знаменитый трактат 'Государь'?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Томас Мор",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Никколо Макиавелли",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Джон Локк",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Вольтер",
+                "isCorrect": false
+            }
+        ],
+        "prize": 750000,
+        "difficulty": 5
+    },
+    {
+        "id": 15,
+        "text": "Какая частица была открыта в ЦЕРН в 2012 году и подтвердила Стандартную модель?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кварк",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Бозон Хиггса",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Нейтрино",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Глюон",
+                "isCorrect": false
+            }
+        ],
+        "prize": 1000000,
+        "difficulty": 5
+    }
+]
