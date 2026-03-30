@@ -53,20 +53,22 @@
         </div>
 
         <!-- Варианты ответов -->
-        <div class="options-grid">
+        <OptionsGrid
+          :options="currentQuestion.options"
+          :selected-option="selectedOption"
+          :is-answered="isAnswered"
+          :is-answer-revealed="isAnswerRevealed"
+          @select="selectAnswer"
+        />
+
+        <!-- Кнопка "Показать правильный ответ" -->
+        <div class="reveal-button-container">
           <button
-            v-for="option in currentQuestion.options"
-            :key="option.id"
-            class="option-button"
-            :class="{
-              correct: isAnswered && option.isCorrect,
-              wrong: isAnswered && selectedOption?.id === option.id && !option.isCorrect,
-            }"
-            :disabled="isAnswered"
-            @click="selectAnswer(option)"
+            v-if="isWaitingForReveal && !isAnswerRevealed"
+            class="reveal-button"
+            @click="revealAnswer"
           >
-            <span class="option-letter">{{ option.id }}</span>
-            <span class="option-text">{{ option.text }}</span>
+            🔍 Показать правильный ответ
           </button>
         </div>
       </div>
@@ -104,20 +106,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
+import OptionsGrid from './components/game/OptionsGrid.vue'
 
-// Получаем всё из композаблов
 const game = useGameLogic()
 const sound = useSoundManager()
 
-// Достаём нужные переменные и методы из game
 const {
   currentQuestionIndex,
   currentWinnings,
   selectedOption,
   isAnswered,
+  isAnswerRevealed,
+  isWaitingForReveal,
   gameEnded,
   gameResult,
   finalWinnings,
@@ -129,65 +132,116 @@ const {
   initGame,
   resetGame,
   selectAnswer: gameSelectAnswer,
+  revealAnswer: gameRevealAnswer,
+  takeMoney,
 } = game
 
-// Достаём из sound
-const {
-  isMuted,
-  isAudioEnabled,
-  enableAudio: soundEnableAudio,
-  toggleMute: soundToggleMute,
-  playQuestionMusic, // ← изменено с playBackgroundMusic
-  stopMusic, // ← добавили для остановки
-} = sound
+const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
 
-// Создаём computed для обратного порядка таблицы выигрышей
-const reversedPrizeLevels = computed(() => {
-  return [...prizeLevels].reverse()
-})
+// Локальное состояние для звука
+const soundOn = ref(false)
 
-// Количество вопросов
+const reversedPrizeLevels = computed(() => [...prizeLevels].reverse())
 const totalQuestions = computed(() => prizeLevels.length)
 
-// Обработчики
+// ОСНОВНАЯ ФУНКЦИЯ ДЛЯ КНОПКИ "Включить звук и начать"
 const enableAudioAndStart = async () => {
-  // Включаем звук
-  soundEnableAudio()
+  console.log('🎮 Нажата кнопка включения звука')
 
-  // Небольшая задержка для активации
-  await new Promise((resolve) => setTimeout(resolve, 100))
+  // 1. Включаем звук
+  await enableAudio()
+  soundOn.value = true
 
-  // Запускаем игру
+  console.log('🎮 Звук включён, isAudioEnabled =', isAudioEnabled.value)
+
+  // 2. Загружаем игру
   await initGame()
 
-  // Музыка запускается внутри initGame() через startQuestionMusic()
-  // Дополнительно ничего вызывать не нужно
-  console.log('🎮 Игра запущена, музыка играет')
+  // 3. Запускаем музыку
+  if (isAudioEnabled.value && !isMuted.value) {
+    console.log('🎵 Запускаем музыку для первого вопроса')
+    playQuestionMusic(1)
+  }
+
+  console.log('🎮 Игра запущена')
 }
 
+// Обработчик клика по всей области (на случай, если нажали мимо кнопки)
 const handlePageClick = () => {
-  // Если звук ещё не включён, но пользователь кликнул — включаем
   if (!isAudioEnabled.value) {
     enableAudioAndStart()
   }
 }
 
-const toggleMute = () => {
-  soundToggleMute()
+const selectAnswer = (option: any) => {
+  gameSelectAnswer(option)
 }
 
-const selectAnswer = async (option: any) => {
-  await gameSelectAnswer(option)
+const revealAnswer = () => {
+  gameRevealAnswer()
 }
 
 const restartGame = () => {
   resetGame()
-  // После сброса запускаем музыку для первого вопроса
-  playQuestionMusic(1)
+  if (soundOn.value && isAudioEnabled.value && !isMuted.value) {
+    playQuestionMusic(1)
+  }
 }
+
+onMounted(async () => {
+  // Загружаем вопросы, но не запускаем игру автоматически
+  await initGame()
+  console.log('✅ Игра загружена, ждём включения звука')
+})
 </script>
 
 <style>
+/* Добавляем стили для кнопки */
+.reveal-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.reveal-button {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #0a0f1e;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.reveal-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+.sound-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s;
+}
+
+.sound-button:hover {
+  transform: scale(1.1);
+  background: rgba(255, 215, 0, 0.2);
+}
 /* Все стили остаются без изменений */
 * {
   margin: 0;
