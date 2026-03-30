@@ -1,11 +1,23 @@
 <!-- src/App.vue -->
 <template>
-  <div class="millionaire-game" @click="enableAudio">
+  <div class="millionaire-game" @click="handlePageClick">
     <!-- Фоновый слой -->
     <div class="game-background"></div>
 
+    <!-- ЭКРАН ДЛЯ ВКЛЮЧЕНИЯ ЗВУКА (пока звук не включён) -->
+    <div v-if="!isAudioEnabled" class="audio-enable-screen">
+      <div class="audio-enable-card">
+        <div class="audio-icon">🔊</div>
+        <h2>Для игры нужен звук</h2>
+        <p>Нажмите на любую область, чтобы начать</p>
+        <button class="enable-audio-btn" @click.stop="enableAudioAndStart">
+          Включить звук и начать
+        </button>
+      </div>
+    </div>
+
     <!-- Загрузка -->
-    <div v-if="isLoading" class="loading-screen">
+    <div v-else-if="isLoading" class="loading-screen">
       <div class="loader"></div>
       <p>Загрузка игры...</p>
     </div>
@@ -85,7 +97,7 @@
     </div>
 
     <!-- Кнопка звука -->
-    <button class="sound-button" @click.stop="toggleMute">
+    <button v-if="isAudioEnabled" class="sound-button" @click.stop="toggleMute">
       {{ isMuted ? '🔇' : '🔊' }}
     </button>
   </div>
@@ -109,7 +121,6 @@ const {
   gameEnded,
   gameResult,
   finalWinnings,
-  usedHints,
   isLoading,
   currentQuestion,
   progress,
@@ -123,9 +134,11 @@ const {
 // Достаём из sound
 const {
   isMuted,
+  isAudioEnabled,
   enableAudio: soundEnableAudio,
   toggleMute: soundToggleMute,
-  playBackgroundMusic,
+  playQuestionMusic, // ← изменено с playBackgroundMusic
+  stopMusic, // ← добавили для остановки
 } = sound
 
 // Создаём computed для обратного порядка таблицы выигрышей
@@ -137,8 +150,26 @@ const reversedPrizeLevels = computed(() => {
 const totalQuestions = computed(() => prizeLevels.length)
 
 // Обработчики
-const enableAudio = () => {
+const enableAudioAndStart = async () => {
+  // Включаем звук
   soundEnableAudio()
+
+  // Небольшая задержка для активации
+  await new Promise((resolve) => setTimeout(resolve, 100))
+
+  // Запускаем игру
+  await initGame()
+
+  // Музыка запускается внутри initGame() через startQuestionMusic()
+  // Дополнительно ничего вызывать не нужно
+  console.log('🎮 Игра запущена, музыка играет')
+}
+
+const handlePageClick = () => {
+  // Если звук ещё не включён, но пользователь кликнул — включаем
+  if (!isAudioEnabled.value) {
+    enableAudioAndStart()
+  }
 }
 
 const toggleMute = () => {
@@ -151,17 +182,13 @@ const selectAnswer = async (option: any) => {
 
 const restartGame = () => {
   resetGame()
-  playBackgroundMusic('main')
+  // После сброса запускаем музыку для первого вопроса
+  playQuestionMusic(1)
 }
-
-// Запускаем игру
-onMounted(() => {
-  initGame()
-})
 </script>
 
 <style>
-/* Все стили остаются такими же */
+/* Все стили остаются без изменений */
 * {
   margin: 0;
   padding: 0;
@@ -224,6 +251,7 @@ body {
 .millionaire-game {
   min-height: 100vh;
   position: relative;
+  cursor: pointer;
 }
 
 .game-background {
@@ -234,6 +262,66 @@ body {
   bottom: 0;
   background: radial-gradient(circle at 50% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
   pointer-events: none;
+}
+
+/* Экран включения звука */
+.audio-enable-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0a0f1e 0%, #030617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.audio-enable-card {
+  background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
+  border: 2px solid #ffd700;
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+  max-width: 450px;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+}
+
+.audio-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: pulse 1.5s ease infinite;
+}
+
+.audio-enable-card h2 {
+  color: #ffd700;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.audio-enable-card p {
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.enable-audio-btn {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #0a0f1e;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.enable-audio-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 .loading-screen {

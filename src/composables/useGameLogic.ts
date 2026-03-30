@@ -1,4 +1,4 @@
-// src/composables/useGameLogic.ts (обновлённая версия с звуками)
+// src/composables/useGameLogic.ts
 import { ref, computed, readonly } from 'vue'
 import { useQuestions } from './useQuestions'
 import { useSoundManager } from './useSoundManager'
@@ -20,7 +20,7 @@ export function useGameLogic() {
   const isLoading = ref<boolean>(true)
   const isCheckingAnswer = ref<boolean>(false)
 
-  // Подсказки
+  // Использованные подсказки
   const usedHints = ref<UsedHints>({
     fiftyFifty: false,
     call: false,
@@ -36,20 +36,24 @@ export function useGameLogic() {
   // Текущий вопрос
   const currentQuestion = computed(() => getQuestion(currentQuestionIndex.value))
 
+  // Номер вопроса (1-15)
+  const questionNumber = computed(() => currentQuestionIndex.value + 1)
+
   // Прогресс
   const progress = computed(() => {
     if (totalQuestions() === 0) return 0
-    return ((currentQuestionIndex.value + 1) / totalQuestions()) * 100
-  })
-
-  // Проверка на сложный вопрос (напряжённая музыка)
-  const isDifficultQuestion = computed(() => {
-    return currentQuestionIndex.value >= 10 // после 10-го вопроса
+    return (questionNumber.value / totalQuestions()) * 100
   })
 
   // Форматирование денег
   const formatMoney = (amount: number): string => {
     return new Intl.NumberFormat('ru-RU').format(amount) + ' ₽'
+  }
+
+  // Запуск музыки для текущего вопроса
+  const startQuestionMusic = (): void => {
+    const level = questionNumber.value
+    soundManager.playQuestionMusic(level)
   }
 
   // Инициализация игры
@@ -59,9 +63,8 @@ export function useGameLogic() {
     resetGame()
     isLoading.value = false
 
-    // Запускаем музыку
-    soundManager.playBackgroundMusic('main')
-    soundManager.playEffect('questionStart')
+    // Запускаем музыку для первого вопроса
+    startQuestionMusic()
   }
 
   // Сброс игры
@@ -81,23 +84,6 @@ export function useGameLogic() {
     }
   }
 
-  // Переход к следующему вопросу
-  const nextQuestion = (): void => {
-    currentQuestionIndex.value++
-    isAnswered.value = false
-    selectedOption.value = null
-
-    // Меняем музыку в зависимости от сложности
-    if (isDifficultQuestion.value) {
-      soundManager.playBackgroundMusic('tension')
-    } else {
-      soundManager.playBackgroundMusic('main')
-    }
-
-    // Звук нового вопроса
-    soundManager.playEffect('questionStart')
-  }
-
   // Выбор ответа
   const selectAnswer = async (option: Option): Promise<void> => {
     if (isAnswered.value || isCheckingAnswer.value) return
@@ -105,15 +91,11 @@ export function useGameLogic() {
     isCheckingAnswer.value = true
     selectedOption.value = option
 
-    // Звук выбора варианта
-    soundManager.playOptionSelect(option.id)
+    // Звук выбора варианта (короткий щелчок, музыка продолжается)
+    soundManager.playOptionSelect()
 
-    // Пауза и звук финального ответа
+    // Пауза для эффекта
     await new Promise((resolve) => setTimeout(resolve, 500))
-    soundManager.playFinalAnswer()
-
-    // Драматическая пауза перед проверкой
-    await new Promise((resolve) => setTimeout(resolve, 1500))
 
     if (option.isCorrect) {
       await handleCorrectAnswer()
@@ -126,35 +108,37 @@ export function useGameLogic() {
 
   // Обработка правильного ответа
   const handleCorrectAnswer = async (): Promise<void> => {
-    // Звук правильного ответа
-    soundManager.playEffect('correct')
-
-    // Аплодисменты
-    setTimeout(() => {
-      soundManager.playEffect('applause')
-    }, 500)
+    // Фанфары правильного ответа
+    soundManager.playCorrect()
 
     currentWinnings.value = prizeLevels[currentQuestionIndex.value]
 
-    // Пауза для радости
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    // Пауза для эффекта
+    await new Promise((resolve) => setTimeout(resolve, 2000))
 
     if (isLastQuestion(currentQuestionIndex.value)) {
       // ПОБЕДА!
       gameResult.value = 'ПОБЕДА! Вы стали миллионером!'
       finalWinnings.value = 1000000
       gameEnded.value = true
-      soundManager.playVictorySequence()
+
+      // Останавливаем текущую музыку, играем победную
+      soundManager.playVictoryMusic()
     } else {
-      // Следующий вопрос
-      nextQuestion()
+      // Переход к следующему вопросу
+      currentQuestionIndex.value++
+      isAnswered.value = false
+      selectedOption.value = null
+
+      // Запускаем новую музыку для следующего вопроса
+      startQuestionMusic()
     }
   }
 
   // Обработка неправильного ответа
   const handleWrongAnswer = async (): Promise<void> => {
-    // Звук неправильного ответа
-    soundManager.playEffect('wrong')
+    // Звук неправильного ответа (buzzer)
+    soundManager.playWrong()
 
     // Определяем гарантированный выигрыш
     if (currentQuestionIndex.value >= 10) {
@@ -168,18 +152,19 @@ export function useGameLogic() {
     gameResult.value = 'К сожалению, вы ошиблись!'
     gameEnded.value = true
 
-    // Музыка поражения
-    soundManager.playFailSequence()
+    // Останавливаем музыку, играем грустную
+    soundManager.playFailMusic()
   }
 
   // Подсказка 50:50
   const useFiftyFifty = (): string[] => {
     if (usedHints.value.fiftyFifty || isAnswered.value) return []
 
-    soundManager.playEffect('fiftyFifty')
+    // Звук подсказки
+    soundManager.playFiftyFifty()
     usedHints.value.fiftyFifty = true
 
-    // Возвращаем варианты для скрытия
+    // Находим два неправильных варианта для удаления
     const incorrectOptions =
       currentQuestion.value?.options
         .filter((opt) => !opt.isCorrect)
@@ -193,13 +178,14 @@ export function useGameLogic() {
   const useCallHint = (): string => {
     if (usedHints.value.call || isAnswered.value) return ''
 
-    soundManager.playEffect('call')
+    // Звук звонка
+    soundManager.playCall()
     usedHints.value.call = true
 
-    // Генерируем совет друга
     const correctOption = currentQuestion.value?.options.find((opt) => opt.isCorrect)
     if (!correctOption) return ''
 
+    // Генерируем случайный ответ друга
     const probability = Math.random()
 
     let advice: string
@@ -220,24 +206,32 @@ export function useGameLogic() {
   const useAudienceHint = (): Array<{ id: string; text: string; percentage: number }> => {
     if (usedHints.value.audience || isAnswered.value) return []
 
-    soundManager.playEffect('audience')
+    // Звук помощи зала
+    soundManager.playAudience()
     usedHints.value.audience = true
 
-    // Генерируем проценты голосования
     const options = currentQuestion.value?.options || []
+
+    // Генерируем проценты голосования
     const results = options.map((opt) => ({
       id: opt.id,
       text: opt.text,
       percentage: opt.isCorrect
-        ? Math.floor(65 + Math.random() * 25)
-        : Math.floor(5 + Math.random() * 15),
+        ? Math.floor(65 + Math.random() * 25) // правильный ответ 65-90%
+        : Math.floor(5 + Math.random() * 15), // неправильные 5-20%
     }))
 
-    // Нормализуем проценты
+    // Нормализуем проценты (чтобы в сумме было 100)
     const total = results.reduce((sum, r) => sum + r.percentage, 0)
     results.forEach((r) => {
       r.percentage = Math.floor((r.percentage / total) * 100)
     })
+
+    // Корректируем округление, чтобы сумма была 100
+    const sum = results.reduce((s, r) => s + r.percentage, 0)
+    if (sum !== 100) {
+      results[0].percentage += 100 - sum
+    }
 
     return results
   }
@@ -247,11 +241,13 @@ export function useGameLogic() {
     finalWinnings.value = currentWinnings.value
     gameResult.value = 'Вы решили забрать деньги!'
     gameEnded.value = true
-    soundManager.playEffect('applause')
+
+    // Останавливаем музыку
+    soundManager.stopMusic()
   }
 
   return {
-    // Состояние
+    // Состояние (только для чтения)
     currentQuestionIndex: readonly(currentQuestionIndex),
     currentWinnings: readonly(currentWinnings),
     selectedOption: readonly(selectedOption),
@@ -262,12 +258,12 @@ export function useGameLogic() {
     usedHints: readonly(usedHints),
     isLoading: readonly(isLoading),
     isCheckingAnswer: readonly(isCheckingAnswer),
+    questionNumber: readonly(questionNumber),
 
-    // Вычисляемые
+    // Вычисляемые свойства
     currentQuestion,
     progress,
     prizeLevels,
-    isDifficultQuestion,
 
     // Методы
     formatMoney,

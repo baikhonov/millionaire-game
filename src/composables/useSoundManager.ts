@@ -17,7 +17,6 @@ export function useSoundManager() {
   const enableAudio = (): void => {
     if (isAudioEnabled.value) return
 
-    // Создаём тихий звук для разблокировки AudioContext в некоторых браузерах
     const silentAudio = new Audio()
     silentAudio.volume = 0
     silentAudio
@@ -34,19 +33,24 @@ export function useSoundManager() {
   }
 
   // Загрузка звука
-  const loadSound = (url: string): HTMLAudioElement => {
+  const loadSound = (url: string): HTMLAudioElement | null => {
     if (soundCache.has(url)) {
       return soundCache.get(url)!
     }
 
     const audio = new Audio(url)
     audio.preload = 'auto'
+
+    audio.addEventListener('error', (e) => {
+      console.warn(`⚠️ Не удалось загрузить звук: ${url}`, e)
+    })
+
     soundCache.set(url, audio)
     return audio
   }
 
-  // Воспроизведение фоновой музыки с петлёй
-  const playBackgroundMusic = (type: 'main' | 'tension' | 'victory' | 'fail' = 'main'): void => {
+  // Воспроизведение музыки для вопроса (с петлёй)
+  const playQuestionMusic = (level: number): void => {
     if (!isAudioEnabled.value || isMuted.value) {
       console.log(`🎵 Музыка не играет (звук выключен или не разрешён)`)
       return
@@ -58,31 +62,44 @@ export function useSoundManager() {
       currentMusic.value.currentTime = 0
     }
 
-    // Выбираем трек
-    const musicUrls = {
-      main: '/sounds/music/main-theme.mp3',
-      tension: '/sounds/music/tension.mp3',
-      victory: '/sounds/music/victory.mp3',
-      fail: '/sounds/music/fail.mp3',
+    // Выбираем музыку в зависимости от номера вопроса
+    let musicUrl = ''
+    let musicName = ''
+
+    if (level === 15) {
+      musicUrl = '/sounds/music/final.mp3'
+      musicName = 'final (15 вопрос)'
+    } else if (level >= 11) {
+      musicUrl = '/sounds/music/level-3.mp3'
+      musicName = 'level-3 (вопросы 11-14)'
+    } else if (level >= 6) {
+      musicUrl = '/sounds/music/level-2.mp3'
+      musicName = 'level-2 (вопросы 6-10)'
+    } else {
+      musicUrl = '/sounds/music/level-1.mp3'
+      musicName = 'level-1 (вопросы 1-5)'
     }
 
-    const url = musicUrls[type]
-    if (!url) return
+    const audio = loadSound(musicUrl)
+    if (!audio) {
+      console.log(`⚠️ Не найден файл музыки: ${musicUrl}`)
+      return
+    }
 
-    const audio = loadSound(url)
     audio.loop = true
     audio.volume = musicVolume.value
+
     audio.play().catch((e) => {
-      console.log(`Не удалось воспроизвести музыку: ${e}`)
+      console.log(`⚠️ Не удалось воспроизвести музыку:`, e.message)
     })
 
     currentMusic.value = audio
     isMusicPlaying.value = true
-    console.log(`🎵 Воспроизведение музыки: ${type}`)
+    console.log(`🎵 Музыка для ${musicName}`)
   }
 
-  // Остановка фоновой музыки
-  const stopBackgroundMusic = (): void => {
+  // Остановка музыки
+  const stopMusic = (): void => {
     if (currentMusic.value) {
       currentMusic.value.pause()
       currentMusic.value.currentTime = 0
@@ -92,43 +109,48 @@ export function useSoundManager() {
     }
   }
 
-  // Пауза музыки
-  const pauseBackgroundMusic = (): void => {
-    if (currentMusic.value && isMusicPlaying.value) {
-      currentMusic.value.pause()
-      isMusicPlaying.value = false
-      console.log('⏸️ Музыка на паузе')
-    }
+  // Победная музыка
+  const playVictoryMusic = (): void => {
+    stopMusic()
+
+    if (!isAudioEnabled.value || isMuted.value) return
+
+    const audio = loadSound('/sounds/music/victory.mp3')
+    if (!audio) return
+
+    audio.loop = false
+    audio.volume = musicVolume.value
+    audio.play().catch((e) => console.log('Ошибка:', e))
+
+    currentMusic.value = audio
+    console.log('🎵 Победная музыка')
   }
 
-  // Продолжить музыку
-  const resumeBackgroundMusic = (): void => {
-    if (currentMusic.value && !isMusicPlaying.value && !isMuted.value && isAudioEnabled.value) {
-      currentMusic.value.play().catch((e) => console.log('Ошибка воспроизведения:', e))
-      isMusicPlaying.value = true
-      console.log('▶️ Музыка продолжена')
-    }
+  // Музыка поражения
+  const playFailMusic = (): void => {
+    stopMusic()
+
+    if (!isAudioEnabled.value || isMuted.value) return
+
+    const audio = loadSound('/sounds/music/fail.mp3')
+    if (!audio) return
+
+    audio.loop = false
+    audio.volume = musicVolume.value
+    audio.play().catch((e) => console.log('Ошибка:', e))
+
+    currentMusic.value = audio
+    console.log('🎵 Музыка поражения')
   }
 
   // Воспроизведение звукового эффекта
-  const playEffect = (
-    effectName: string,
-    options: { volume?: number; fadeOut?: number } = {},
-  ): void => {
+  const playEffect = (effectName: string, options: { volume?: number } = {}): void => {
     if (!isAudioEnabled.value || isMuted.value) return
 
-    // Карта эффектов
     const effectUrls: Record<string, string> = {
-      // Основные эффекты
-      questionStart: '/sounds/effects/question-start.mp3',
       correct: '/sounds/effects/correct.mp3',
       wrong: '/sounds/effects/wrong.mp3',
-      applause: '/sounds/effects/applause.mp3',
-      dramaticPause: '/sounds/effects/dramatic-pause.mp3',
       optionSelect: '/sounds/effects/option-select.mp3',
-      finalAnswer: '/sounds/effects/final-answer.mp3',
-
-      // Подсказки
       fiftyFifty: '/sounds/hints/fifty-fifty.mp3',
       call: '/sounds/hints/call.mp3',
       audience: '/sounds/hints/audience.mp3',
@@ -136,19 +158,17 @@ export function useSoundManager() {
 
     const url = effectUrls[effectName]
     if (!url) {
-      console.log(`⚠️ Эффект не найден: ${effectName}`)
+      console.log(`⚠️ Неизвестный эффект: ${effectName}`)
       return
     }
 
-    // Создаём новый Audio для эффекта (чтобы можно было играть несколько одновременно)
     const audio = new Audio(url)
     audio.volume = options.volume ?? sfxVolume.value
 
     audio.play().catch((e) => {
-      console.log(`Не удалось воспроизвести эффект ${effectName}:`, e)
+      console.warn(`⚠️ Не удалось воспроизвести эффект ${effectName}: ${e.message}`)
     })
 
-    // Авто-удаление после воспроизведения
     audio.onended = () => {
       audio.remove()
     }
@@ -156,48 +176,29 @@ export function useSoundManager() {
     console.log(`🔊 Эффект: ${effectName}`)
   }
 
-  // Специальные последовательности
-
-  // Драматический момент (пауза в музыке + эффект)
-  const playDramaticMoment = (): void => {
-    pauseBackgroundMusic()
-    playEffect('dramaticPause', { fadeOut: 2000 })
-
-    setTimeout(() => {
-      resumeBackgroundMusic()
-    }, 2500)
-  }
-
-  // Победная последовательность
-  const playVictorySequence = (): void => {
-    stopBackgroundMusic()
-    playEffect('correct')
-    playEffect('applause')
-
-    setTimeout(() => {
-      playBackgroundMusic('victory')
-    }, 2000)
-  }
-
-  // Последовательность поражения
-  const playFailSequence = (): void => {
-    stopBackgroundMusic()
-    playEffect('wrong')
-
-    setTimeout(() => {
-      playBackgroundMusic('fail')
-    }, 1500)
-  }
-
-  // Звук при выборе ответа (с разными вариациями)
-  const playOptionSelect = (optionId: string): void => {
+  // Удобные обёртки для эффектов
+  const playOptionSelect = (): void => {
     playEffect('optionSelect')
   }
 
-  // Звук финального ответа (перед проверкой)
-  const playFinalAnswer = (): void => {
-    playEffect('finalAnswer')
-    playDramaticMoment()
+  const playCorrect = (): void => {
+    playEffect('correct')
+  }
+
+  const playWrong = (): void => {
+    playEffect('wrong')
+  }
+
+  const playFiftyFifty = (): void => {
+    playEffect('fiftyFifty')
+  }
+
+  const playCall = (): void => {
+    playEffect('call')
+  }
+
+  const playAudience = (): void => {
+    playEffect('audience')
   }
 
   // Управление громкостью
@@ -217,10 +218,14 @@ export function useSoundManager() {
     isMuted.value = !isMuted.value
 
     if (isMuted.value) {
-      pauseBackgroundMusic()
+      if (currentMusic.value) {
+        currentMusic.value.volume = 0
+      }
       console.log('🔇 Звук выключен')
     } else {
-      resumeBackgroundMusic()
+      if (currentMusic.value) {
+        currentMusic.value.volume = musicVolume.value
+      }
       console.log('🔊 Звук включён')
     }
 
@@ -229,34 +234,28 @@ export function useSoundManager() {
 
   // Очистка
   const cleanup = (): void => {
-    stopBackgroundMusic()
+    stopMusic()
     soundCache.clear()
   }
 
   return {
-    // Состояние
     isMuted: readonly(isMuted),
     musicVolume: readonly(musicVolume),
     sfxVolume: readonly(sfxVolume),
     isAudioEnabled: readonly(isAudioEnabled),
     isMusicPlaying: readonly(isMusicPlaying),
 
-    // Основные методы
     enableAudio,
-    playBackgroundMusic,
-    stopBackgroundMusic,
-    pauseBackgroundMusic,
-    resumeBackgroundMusic,
-    playEffect,
-
-    // Специальные последовательности
-    playDramaticMoment,
-    playVictorySequence,
-    playFailSequence,
+    playQuestionMusic,
+    stopMusic,
+    playVictoryMusic,
+    playFailMusic,
     playOptionSelect,
-    playFinalAnswer,
-
-    // Управление
+    playCorrect,
+    playWrong,
+    playFiftyFifty,
+    playCall,
+    playAudience,
     setMusicVolume,
     setSFXVolume,
     toggleMute,
