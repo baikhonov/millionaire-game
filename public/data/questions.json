@@ -62,30 +62,35 @@
     },
     {
         "id": 3,
-        "text": "Какая планета самая близкая к Солнцу?",
+        "text": "Какой музыкальный инструмент звучит?",
+        "media": {
+            "type": "audio",
+            "url": "/sounds/questions/bass-guitar.mp3",
+            "caption": ""
+        },
         "options": [
             {
                 "id": "A",
-                "text": "Венера",
+                "text": "Бонго",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Земля",
+                "text": "Гуира",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Меркурий",
-                "isCorrect": true
+                "text": "Ритм Гитара",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Марс",
-                "isCorrect": false
+                "text": "Бас гитара",
+                "isCorrect": true
             }
         ],
-        "prize": 500,
+        "prize": 100,
         "difficulty": 1
     },
     {

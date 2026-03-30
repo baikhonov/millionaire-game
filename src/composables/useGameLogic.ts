@@ -4,6 +4,14 @@ import { useQuestions } from './useQuestions'
 import { useSoundManager } from './useSoundManager'
 import type { Option, UsedHints } from '@/types/game'
 
+// Настройки задержек (в миллисекундах)
+const DELAYS = {
+  REVEAL_ANSWER: 1500, // пауза после нажатия "Показать правильный ответ"
+  NEXT_QUESTION: 1500, // пауза перед переходом к следующему вопросу (после подсветки)
+  FIRST_OPTION: 800, // пауза перед появлением первого варианта
+  OPTION_INTERVAL: 1000, // интервал между появлением вариантов
+}
+
 export function useGameLogic() {
   const { questions, loadQuestions, getQuestion, totalQuestions, isLastQuestion } = useQuestions()
   const soundManager = useSoundManager()
@@ -59,6 +67,14 @@ export function useGameLogic() {
 
   // ========== Музыка ==========
   const startQuestionMusic = (): void => {
+    // Если у текущего вопроса есть аудио или видео, музыку не включаем
+    if (
+      currentQuestion.value?.media?.type === 'audio' ||
+      currentQuestion.value?.media?.type === 'video'
+    ) {
+      console.log('🎵 Музыка отключена из-за медиа-контента')
+      return
+    }
     soundManager.playQuestionMusic(questionNumber.value)
   }
 
@@ -79,7 +95,7 @@ export function useGameLogic() {
     if (currentRevealIndex < revealOrder.value.length) {
       revealTimer = window.setTimeout(() => {
         revealNextOption()
-      }, 1200) // интервал между вариантами 1 сек
+      }, DELAYS.OPTION_INTERVAL)
     } else {
       // Последний вариант показан, завершаем анимацию
       setTimeout(() => {
@@ -98,7 +114,7 @@ export function useGameLogic() {
     // Небольшая задержка перед первым вариантом
     revealTimer = window.setTimeout(() => {
       revealNextOption()
-    }, 800)
+    }, DELAYS.FIRST_OPTION)
   }
 
   const resetOptionsReveal = (): void => {
@@ -181,7 +197,7 @@ export function useGameLogic() {
       } else {
         handleWrongAnswer()
       }
-    }, 1500)
+    }, DELAYS.REVEAL_ANSWER)
   }
 
   const handleCorrectAnswer = (): void => {
@@ -193,7 +209,10 @@ export function useGameLogic() {
       gameEnded.value = true
       soundManager.playVictoryMusic()
     } else {
-      nextQuestion()
+      // Дополнительная задержка перед следующим вопросом
+      setTimeout(() => {
+        nextQuestion()
+      }, DELAYS.NEXT_QUESTION)
     }
   }
 
@@ -222,14 +241,17 @@ export function useGameLogic() {
       finalWinnings.value = 0
     }
 
-    gameResult.value = `К сожалению, вы ошиблись!\nВаш выигрыш: ${formatMoney(finalWinnings.value)}`
-    gameEnded.value = true
-    soundManager.playFailMusic()
+    // Задержка перед завершением игры
+    setTimeout(() => {
+      gameResult.value = `К сожалению, вы ошиблись!`
+      gameEnded.value = true
+      soundManager.playGameOverMusic()
+    }, DELAYS.NEXT_QUESTION)
   }
 
   const takeMoney = (): void => {
     finalWinnings.value = currentWinnings.value
-    gameResult.value = `Вы решили забрать деньги!\nВаш выигрыш: ${formatMoney(finalWinnings.value)}`
+    gameResult.value = `Вы решили забрать деньги!`
     gameEnded.value = true
     soundManager.stopMusic()
     soundManager.stopAllEffects()

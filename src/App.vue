@@ -6,9 +6,10 @@
     <!-- Стартовая модалка -->
     <div v-if="!gameStarted" class="start-screen">
       <div class="start-card">
-        <div class="game-icon">🎮</div>
-        <h1>Кто хочет стать миллионером?</h1>
-        <p>Проверьте свои знания и выиграйте 1 000 000 рублей!</p>
+        <div class="logo">
+          <img src="/public/images/logo-bm.webp" width="250px" alt="Лого Бачатамания" />
+          <img src="/public/images/logo-game.webp" width="250px" alt="Лого игры" />
+        </div>
         <button class="start-button" @click="startGame">Начать игру</button>
       </div>
     </div>
@@ -134,7 +135,7 @@ const startGame = async () => {
   console.log('🎮 Начинаем игру')
 
   enableAudio()
-  await new Promise((resolve) => setTimeout(resolve, 100))
+  await new Promise((resolve) => setTimeout(resolve, 500))
 
   console.log('🎮 После enableAudio, isAudioEnabled =', isAudioEnabled.value)
 
@@ -264,10 +265,11 @@ body {
   box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
 }
 
-.game-icon {
-  font-size: 80px;
+.logo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   margin-bottom: 20px;
-  animation: pulse 1.5s ease infinite;
 }
 
 .start-card h1 {

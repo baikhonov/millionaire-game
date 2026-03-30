@@ -116,6 +116,20 @@ export function useSoundManager() {
     currentMusic.value = audio
   }
 
+  const playGameOverMusic = (): void => {
+    stopMusic()
+    stopAllEffects()
+    if (!isAudioEnabled.value || isMuted.value) return
+
+    const audio = loadSound('/sounds/music/game-over.mp3')
+    if (!audio) return
+
+    audio.loop = false
+    audio.volume = musicVolume.value
+    audio.play().catch(() => {})
+    currentMusic.value = audio
+  }
+
   const playEffect = (effectName: string): void => {
     if (!isAudioEnabled.value || isMuted.value) return
 
@@ -195,6 +209,7 @@ export function useSoundManager() {
     stopAllEffects,
     playVictoryMusic,
     playFailMusic,
+    playGameOverMusic,
     playOptionSelect,
     playCorrect,
     playWrong,

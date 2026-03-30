@@ -85,7 +85,7 @@ const openFullscreen = (event: MouseEvent) => {
 
 .media-image img {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   border-radius: 12px;
   cursor: pointer;
   transition:
@@ -110,16 +110,45 @@ const openFullscreen = (event: MouseEvent) => {
   border-radius: 12px;
 }
 
+/* Стили для аудиоплеера — светлые */
 .audio-player {
   width: 100%;
   max-width: 500px;
-  background: #1a1f2e;
   border-radius: 8px;
   outline: none;
 }
 
+/* Для WebKit (Chrome, Safari) — делаем ползунки яркими */
 .audio-player::-webkit-media-controls-panel {
-  background: #1a1f2e;
+  background-color: #2c2c2c;
+}
+
+.audio-player::-webkit-media-controls-play-button,
+.audio-player::-webkit-media-controls-mute-button {
+  background-color: #ffd700;
+  border-radius: 50%;
+  color: #000;
+}
+
+.audio-player::-webkit-media-controls-current-time-display,
+.audio-player::-webkit-media-controls-time-remaining-display {
+  color: #ffd700;
+  text-shadow: none;
+}
+
+.audio-player::-webkit-media-controls-timeline {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.audio-player::-webkit-media-controls-volume-slider {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* Для Firefox */
+.audio-player::-moz-range-track {
+  background-color: #ffd700;
 }
 
 .media-video {
