@@ -21,7 +21,7 @@ export function useGameLogic() {
   const isLoading = ref<boolean>(true)
   const isCheckingAnswer = ref<boolean>(false)
 
-  // Использованные подсказки
+  // Подсказки
   const usedHints = ref<UsedHints>({
     fiftyFifty: false,
     call: false,
@@ -34,9 +34,9 @@ export function useGameLogic() {
     1000000,
   ]
 
-  // Текущий вопрос
   const currentQuestion = computed(() => getQuestion(currentQuestionIndex.value))
   const questionNumber = computed(() => currentQuestionIndex.value + 1)
+
   const progress = computed(() => {
     if (totalQuestions() === 0) return 0
     return (questionNumber.value / totalQuestions()) * 100
@@ -46,22 +46,17 @@ export function useGameLogic() {
     return new Intl.NumberFormat('ru-RU').format(amount) + ' ₽'
   }
 
-  // Запуск музыки для текущего вопроса
   const startQuestionMusic = (): void => {
-    const level = questionNumber.value
-    soundManager.playQuestionMusic(level)
+    soundManager.playQuestionMusic(questionNumber.value)
   }
 
-  // Инициализация игры
   const initGame = async (): Promise<void> => {
     isLoading.value = true
     await loadQuestions()
     resetGame()
     isLoading.value = false
-    console.log('✅ Игра инициализирована, вопросы загружены')
   }
 
-  // Сброс игры
   const resetGame = (): void => {
     currentQuestionIndex.value = 0
     currentWinnings.value = 0
@@ -73,6 +68,7 @@ export function useGameLogic() {
     gameResult.value = null
     finalWinnings.value = 0
     isCheckingAnswer.value = false
+
     usedHints.value = {
       fiftyFifty: false,
       call: false,
@@ -80,27 +76,27 @@ export function useGameLogic() {
     }
   }
 
-  // Выбор ответа
+  // ✅ ВЫБОР ОТВЕТА
   const selectAnswer = (option: Option): void => {
     if (isAnswered.value || isAnswerRevealed.value || gameEnded.value) return
-
-    console.log(`🎮 selectAnswer: выбран ${option.id}`)
 
     selectedOption.value = option
     isAnswered.value = true
     isWaitingForReveal.value = true
 
-    // 1. СНАЧАЛА останавливаем музыку
+    // Остановить музыку вопроса
     soundManager.stopMusic()
 
-    // 2. ЗВУК ВЫБОРА (играет сразу после остановки)
+    // Запустить звук выбора
     soundManager.playOptionSelect()
-
-    console.log(`✅ Выбран ответ: ${option.id}`)
   }
-  // Показать правильный ответ
+
+  // ✅ ПОКАЗ ОТВЕТА
   const revealAnswer = (): void => {
     if (!isWaitingForReveal.value || isAnswerRevealed.value) return
+
+    // ❗ ОСТАНАВЛИВАЕМ ВСЕ ЭФФЕКТЫ (включая option-select)
+    soundManager.stopAllEffects()
 
     isAnswerRevealed.value = true
 
@@ -108,10 +104,8 @@ export function useGameLogic() {
 
     if (isCorrect) {
       soundManager.playCorrect()
-      console.log('🎉 Правильный ответ!')
     } else {
       soundManager.playWrong()
-      console.log('❌ Неправильный ответ!')
     }
 
     setTimeout(() => {
@@ -123,12 +117,10 @@ export function useGameLogic() {
     }, 1500)
   }
 
-  // Обработка правильного ответа
   const handleCorrectAnswer = (): void => {
     currentWinnings.value = prizeLevels[currentQuestionIndex.value]
 
     if (isLastQuestion(currentQuestionIndex.value)) {
-      // ПОБЕДА!
       gameResult.value = 'ПОБЕДА! Вы стали миллионером!'
       finalWinnings.value = 1000000
       gameEnded.value = true
@@ -138,35 +130,33 @@ export function useGameLogic() {
     }
   }
 
-  // Переход к следующему вопросу
   const nextQuestion = (): void => {
     currentQuestionIndex.value++
+
     selectedOption.value = null
     isAnswered.value = false
     isAnswerRevealed.value = false
     isWaitingForReveal.value = false
 
-    // Запускаем музыку для следующего вопроса
     startQuestionMusic()
   }
 
-  // Обработка неправильного ответа
   const handleWrongAnswer = (): void => {
-    // Определяем гарантированный выигрыш
     if (currentQuestionIndex.value >= 10) {
-      finalWinnings.value = prizeLevels[9] // 32000
+      finalWinnings.value = prizeLevels[9]
     } else if (currentQuestionIndex.value >= 5) {
-      finalWinnings.value = prizeLevels[4] // 1000
+      finalWinnings.value = prizeLevels[4]
     } else {
       finalWinnings.value = 0
     }
 
     gameResult.value = `К сожалению, вы ошиблись!\nВаш выигрыш: ${formatMoney(finalWinnings.value)}`
     gameEnded.value = true
+
     soundManager.playFailMusic()
   }
 
-  // Подсказка 50:50
+  // Подсказки
   const useFiftyFifty = (): string[] => {
     if (usedHints.value.fiftyFifty || isAnswered.value) return []
 
@@ -182,7 +172,6 @@ export function useGameLogic() {
     return incorrectOptions
   }
 
-  // Подсказка "Звонок другу"
   const useCallHint = (): string => {
     if (usedHints.value.call || isAnswered.value) return ''
 
@@ -194,21 +183,17 @@ export function useGameLogic() {
 
     const probability = Math.random()
 
-    let advice: string
     if (probability > 0.8) {
-      advice = `Я уверен на 100%, правильный ответ - ${correctOption.id}`
+      return `Я уверен на 100%, правильный ответ - ${correctOption.id}`
     } else if (probability > 0.5) {
-      advice = `Мне кажется, это ${correctOption.id}, но я не совсем уверен`
+      return `Мне кажется, это ${correctOption.id}, но я не совсем уверен`
     } else {
       const wrongOptions = currentQuestion.value?.options.filter((opt) => !opt.isCorrect) || []
       const randomWrong = wrongOptions[Math.floor(Math.random() * wrongOptions.length)]
-      advice = `Сложный вопрос... Я думаю, это ${randomWrong?.id}, но лучше проверь`
+      return `Сложный вопрос... Я думаю, это ${randomWrong?.id}, но лучше проверь`
     }
-
-    return advice
   }
 
-  // Подсказка "Помощь зала"
   const useAudienceHint = (): Array<{ id: string; text: string; percentage: number }> => {
     if (usedHints.value.audience || isAnswered.value) return []
 
@@ -226,6 +211,7 @@ export function useGameLogic() {
     }))
 
     const total = results.reduce((sum, r) => sum + r.percentage, 0)
+
     results.forEach((r) => {
       r.percentage = Math.floor((r.percentage / total) * 100)
     })
@@ -238,16 +224,16 @@ export function useGameLogic() {
     return results
   }
 
-  // Забрать деньги
   const takeMoney = (): void => {
     finalWinnings.value = currentWinnings.value
     gameResult.value = `Вы решили забрать деньги!\nВаш выигрыш: ${formatMoney(finalWinnings.value)}`
     gameEnded.value = true
+
     soundManager.stopMusic()
+    soundManager.stopAllEffects()
   }
 
   return {
-    // Состояние
     currentQuestionIndex: readonly(currentQuestionIndex),
     currentWinnings: readonly(currentWinnings),
     selectedOption: readonly(selectedOption),
@@ -262,12 +248,10 @@ export function useGameLogic() {
     isCheckingAnswer: readonly(isCheckingAnswer),
     questionNumber: readonly(questionNumber),
 
-    // Вычисляемые
     currentQuestion,
     progress,
     prizeLevels,
 
-    // Методы
     formatMoney,
     initGame,
     resetGame,
