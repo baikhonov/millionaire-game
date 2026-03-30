@@ -1,10 +1,9 @@
 <!-- src/App.vue -->
 <template>
-  <div class="millionaire-game" @click="handlePageClick">
-    <!-- Фоновый слой -->
+  <div class="millionaire-game">
     <div class="game-background"></div>
 
-    <!-- СТАРТОВАЯ МОДАЛКА (вместо звуковой) -->
+    <!-- Стартовая модалка -->
     <div v-if="!gameStarted" class="start-screen">
       <div class="start-card">
         <div class="game-icon">🎮</div>
@@ -22,7 +21,6 @@
 
     <!-- Игра -->
     <div v-else-if="!gameEnded" class="game-container">
-      <!-- Верхняя панель -->
       <div class="top-bar">
         <div class="current-winnings">
           {{ formatMoney(currentWinnings) }}
@@ -32,16 +30,13 @@
         </div>
       </div>
 
-      <!-- Прогресс-бар -->
       <div class="progress-bar">
         <div class="progress-fill" :style="{ width: progress + '%' }"></div>
       </div>
 
-      <!-- Вопрос -->
       <div v-if="currentQuestion" class="question-section">
         <QuestionCard :question="currentQuestion" />
 
-        <!-- Варианты ответов -->
         <OptionsGrid
           :options="currentQuestion.options"
           :selected-option="selectedOption"
@@ -50,7 +45,6 @@
           @select="selectAnswer"
         />
 
-        <!-- Кнопка "Показать правильный ответ" -->
         <div class="reveal-button-container">
           <button
             v-if="isWaitingForReveal && !isAnswerRevealed"
@@ -62,7 +56,6 @@
         </div>
       </div>
 
-      <!-- Таблица выигрышей (боковая панель) -->
       <div class="prize-ladder">
         <div
           v-for="(prize, index) in reversedPrizeLevels"
@@ -88,14 +81,14 @@
     </div>
 
     <!-- Кнопка звука -->
-    <button class="sound-button" @click.stop="toggleMute">
+    <button v-if="gameStarted && !gameEnded" class="sound-button" @click.stop="toggleMute">
       {{ isMuted ? '🔇' : '🔊' }}
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
@@ -104,7 +97,6 @@ import QuestionCard from './components/game/QuestionCard.vue'
 const game = useGameLogic()
 const sound = useSoundManager()
 
-// Флаг, что игра началась
 const gameStarted = ref(false)
 
 const {
@@ -128,27 +120,26 @@ const {
   revealAnswer: gameRevealAnswer,
 } = game
 
-const { isMuted, enableAudio, toggleMute, playQuestionMusic } = sound
+const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
 
 const reversedPrizeLevels = computed(() => [...prizeLevels].reverse())
 const totalQuestions = computed(() => prizeLevels.length)
 
-// Запуск игры
 const startGame = async () => {
   console.log('🎮 Начинаем игру')
 
-  // Включаем звук
-  await enableAudio()
+  enableAudio()
+  await new Promise((resolve) => setTimeout(resolve, 100))
 
-  // Загружаем вопросы
+  console.log('🎮 После enableAudio, isAudioEnabled =', isAudioEnabled.value)
+
   await initGame()
 
-  // Запускаем музыку
-  if (!isMuted.value) {
+  if (isAudioEnabled.value && !isMuted.value) {
+    console.log('🎵 Запускаем музыку для первого вопроса')
     playQuestionMusic(1)
   }
 
-  // Показываем игру
   gameStarted.value = true
 }
 
@@ -163,22 +154,87 @@ const revealAnswer = () => {
 const restartGame = () => {
   resetGame()
   gameStarted.value = false
-  // Через секунду показываем стартовую модалку
   setTimeout(() => {
-    gameStarted.value = true
     startGame()
   }, 100)
 }
-
-onMounted(async () => {
-  // Только загружаем вопросы, не показываем игру
-  await initGame()
-  console.log('✅ Игра загружена, ждём нажатия "Начать игру"')
-})
 </script>
 
 <style>
-/* Добавляем стили для стартовой модалки */
+/* Все стили остаются без изменений */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  background: linear-gradient(135deg, #0a0f1e 0%, #030617 100%);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.millionaire-game {
+  min-height: 100vh;
+  position: relative;
+}
+
+.game-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
 .start-screen {
   position: fixed;
   top: 0;
@@ -238,187 +294,6 @@ onMounted(async () => {
 .start-button:hover {
   transform: scale(1.05);
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-}
-/* Добавляем стили для кнопки */
-.reveal-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.reveal-button {
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #0a0f1e;
-  border: none;
-  border-radius: 12px;
-  padding: 15px 40px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.reveal-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-}
-
-.sound-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid #ffd700;
-  color: #ffd700;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s;
-}
-
-.sound-button:hover {
-  transform: scale(1.1);
-  background: rgba(255, 215, 0, 0.2);
-}
-/* Все стили остаются без изменений */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Arial', 'Helvetica', sans-serif;
-  background: linear-gradient(135deg, #0a0f1e 0%, #030617 100%);
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
-  }
-  70% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
-  }
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  75% {
-    transform: translateX(5px);
-  }
-}
-
-.millionaire-game {
-  min-height: 100vh;
-  position: relative;
-  cursor: pointer;
-}
-
-.game-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* Экран включения звука */
-.audio-enable-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #0a0f1e 0%, #030617 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.5s ease;
-}
-
-.audio-enable-card {
-  background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
-  border: 2px solid #ffd700;
-  border-radius: 20px;
-  padding: 50px;
-  text-align: center;
-  max-width: 450px;
-  box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
-}
-
-.audio-icon {
-  font-size: 80px;
-  margin-bottom: 20px;
-  animation: pulse 1.5s ease infinite;
-}
-
-.audio-enable-card h2 {
-  color: #ffd700;
-  font-size: 28px;
-  margin-bottom: 15px;
-}
-
-.audio-enable-card p {
-  color: #ccc;
-  font-size: 16px;
-  margin-bottom: 30px;
-}
-
-.enable-audio-btn {
-  padding: 12px 30px;
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #0a0f1e;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.enable-audio-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 .loading-screen {
@@ -494,32 +369,6 @@ body {
   padding: 20px;
 }
 
-.question-card {
-  background: linear-gradient(135deg, rgba(10, 15, 30, 0.9) 0%, rgba(5, 8, 20, 0.95) 100%);
-  border: 2px solid #ffd700;
-  border-radius: 20px;
-  padding: 30px;
-  margin-bottom: 40px;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-}
-
-.question-text {
-  font-size: 28px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.media-placeholder {
-  margin-top: 20px;
-  padding: 40px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-  font-size: 18px;
-  color: #ffd700;
-}
-
 .options-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -549,18 +398,6 @@ body {
 .option-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
-}
-
-.option-button.correct {
-  background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-  border-color: #4caf50;
-  animation: pulse 0.5s ease;
-}
-
-.option-button.wrong {
-  background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
-  border-color: #f44336;
-  animation: shake 0.5s ease;
 }
 
 .option-letter {
@@ -684,6 +521,30 @@ body {
   background: rgba(255, 215, 0, 0.2);
 }
 
+.reveal-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.reveal-button {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #0a0f1e;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.reveal-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+}
+
 @media (max-width: 768px) {
   .question-section {
     margin-right: 0;
@@ -708,6 +569,20 @@ body {
 
   .current-winnings {
     font-size: 20px;
+  }
+
+  .start-card {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+
+  .start-card h1 {
+    font-size: 24px;
+  }
+
+  .start-button {
+    font-size: 18px;
+    padding: 12px 30px;
   }
 }
 </style>
