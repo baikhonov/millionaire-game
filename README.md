@@ -46,3 +46,40 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Example of question
+
+```js
+{
+"id": 1,
+"text": "Что это за сооружение'?",
+"media": {
+"type": "image",
+"url": "/images/eiffel-tower.webp"
+},
+"options": [
+{
+"id": "A",
+"text": "Пизанская башня",
+"isCorrect": false
+},
+{
+"id": "B",
+"text": "Эйфелева башня",
+"isCorrect": true
+},
+{
+"id": "C",
+"text": "Башня Белен",
+"isCorrect": false
+},
+{
+"id": "D",
+"text": "Венсенская башня",
+"isCorrect": false
+}
+],
+"difficulty": 1
+},
+npm run lint
+```

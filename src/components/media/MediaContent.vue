@@ -3,13 +3,7 @@
   <div class="media-content">
     <!-- Изображение -->
     <div v-if="media.type === 'image'" class="media-image">
-      <img
-        :src="getFullUrl(media.url)"
-        :alt="media.caption || 'Изображение к вопросу'"
-        @error="handleImageError"
-        @click="openFullscreen"
-      />
-      <div v-if="media.caption" class="media-caption">{{ media.caption }}</div>
+      <img :src="getFullUrl(media.url)" @error="handleImageError" @click="openFullscreen" />
     </div>
 
     <!-- Аудио -->
@@ -17,21 +11,13 @@
       <audio controls :src="getFullUrl(media.url)" @error="handleAudioError" class="audio-player">
         Ваш браузер не поддерживает аудио
       </audio>
-      <div v-if="media.caption" class="media-caption">{{ media.caption }}</div>
     </div>
 
     <!-- Видео -->
     <div v-else-if="media.type === 'video'" class="media-video">
-      <video
-        controls
-        :src="getFullUrl(media.url)"
-        :poster="media.poster ? getFullUrl(media.poster) : undefined"
-        @error="handleVideoError"
-        class="video-player"
-      >
+      <video controls :src="getFullUrl(media.url)" @error="handleVideoError" class="video-player">
         Ваш браузер не поддерживает видео
       </video>
-      <div v-if="media.caption" class="media-caption">{{ media.caption }}</div>
     </div>
 
     <!-- Если тип не поддерживается -->

@@ -4,8 +4,7 @@
         "text": "Что это за сооружение'?",
         "media": {
             "type": "image",
-            "url": "/images/eiffel-tower.webp",
-            "caption": ""
+            "url": "/images/eiffel-tower.webp"
         },
         "options": [
             {
