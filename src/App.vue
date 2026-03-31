@@ -60,19 +60,11 @@
         </div>
       </div>
 
-      <div class="prize-ladder">
-        <div
-          v-for="(prize, index) in reversedPrizeLevels"
-          :key="index"
-          class="prize-step"
-          :class="{
-            current: prizeLevels.length - 1 - index === currentQuestionIndex,
-            passed: prizeLevels.length - 1 - index < currentQuestionIndex,
-          }"
-        >
-          {{ formatMoney(prize) }}
-        </div>
-      </div>
+      <PrizeLadder
+        :prize-levels="prizeLevels"
+        :current-index="currentQuestionIndex"
+        :format-money="formatMoney"
+      />
     </div>
 
     <!-- Экран окончания игры -->
@@ -97,6 +89,7 @@ import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
 import QuestionCard from './components/game/QuestionCard.vue'
+import PrizeLadder from './components/game/PrizeLadder.vue'
 
 const game = useGameLogic()
 const sound = useSoundManager()
