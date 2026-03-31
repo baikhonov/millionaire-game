@@ -1,9 +1,19 @@
-<!-- src/components/media/MediaContent.vue -->
 <template>
   <div class="media-content">
     <!-- Изображение -->
     <div v-if="media.type === 'image'" class="media-image">
-      <img :src="getFullUrl(media.url)" @error="handleImageError" @click="openFullscreen" />
+      <img
+        :src="getFullUrl(media.url)"
+        @error="handleImageError"
+        @click="showLightbox = true"
+        style="cursor: pointer"
+      />
+      <!-- Lightbox для изображений -->
+      <VueEasyLightbox
+        :visible="showLightbox"
+        :imgs="getFullUrl(media.url)"
+        @hide="showLightbox = false"
+      />
     </div>
 
     <!-- Аудио -->
@@ -29,12 +39,13 @@
 import type { MediaContent } from '@/types/game'
 import { ref } from 'vue'
 import { BASE_URL } from '@/config'
+import VueEasyLightbox from 'vue-easy-lightbox'
 
 const props = defineProps<{
   media: MediaContent
 }>()
 
-const imageError = ref(false)
+const showLightbox = ref(false)
 
 // Функция для корректного формирования URL с учётом BASE_URL
 const getFullUrl = (url: string): string => {
@@ -48,7 +59,6 @@ const getFullUrl = (url: string): string => {
 }
 
 const handleImageError = () => {
-  imageError.value = true
   console.error(`Не удалось загрузить изображение: ${props.media.url}`)
 }
 
@@ -58,13 +68,6 @@ const handleAudioError = () => {
 
 const handleVideoError = () => {
   console.error(`Не удалось загрузить видео: ${props.media.url}`)
-}
-
-const openFullscreen = (event: MouseEvent) => {
-  const img = event.target as HTMLImageElement
-  if (img.requestFullscreen) {
-    img.requestFullscreen()
-  }
 }
 </script>
 
