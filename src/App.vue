@@ -105,13 +105,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
 import QuestionCard from './components/game/QuestionCard.vue'
 import PrizeLadder from './components/game/PrizeLadder.vue'
 import HintsPanel from './components/game/HintsPanel.vue'
+import confetti from 'canvas-confetti'
 
 const game = useGameLogic()
 const sound = useSoundManager()
@@ -216,6 +217,74 @@ const resetProgress = () => {
   resetAllProgress()
 
   alert('Прогресс вопросов сброшен! Для новой игры нажмите "Начать игру".')
+}
+
+watch([gameEnded, gameResult], ([ended, result]) => {
+  if (ended && result === 'ПОБЕДА! Вы стали миллионером!') {
+    launchConfetti()
+  }
+})
+
+// Функция запуска конфетти
+const launchConfetti = () => {
+  // Основной взрыв
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 },
+    startVelocity: 25,
+    colors: ['#ffd700', '#ffed4e', '#ffaa00', '#ff6b6b', '#4caf50'],
+  })
+
+  // Дополнительные волны
+  setTimeout(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.5, x: 0.2 },
+      startVelocity: 20,
+    })
+  }, 200)
+
+  setTimeout(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.5, x: 0.8 },
+      startVelocity: 20,
+    })
+  }, 400)
+
+  setTimeout(() => {
+    confetti({
+      particleCount: 300,
+      spread: 120,
+      origin: { y: 0.4 },
+      startVelocity: 30,
+    })
+  }, 800)
+
+  // Долгий финальный салют
+  setTimeout(() => {
+    const duration = 2000
+    const animationEnd = Date.now() + duration
+    const defaults = { startVelocity: 15, spread: 60, ticks: 60, zIndex: 0 }
+
+    const interval: any = setInterval(() => {
+      const timeLeft = animationEnd - Date.now()
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval)
+      }
+
+      const particleCount = 50 * (timeLeft / duration)
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: Math.random(), y: Math.random() - 0.2 },
+      })
+    }, 250)
+  }, 1500)
 }
 </script>
 
