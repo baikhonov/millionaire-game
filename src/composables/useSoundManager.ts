@@ -102,6 +102,68 @@ export function useSoundManager() {
     console.log('⏹️ Все эффекты остановлены')
   }
 
+  const preloadMusic = (level: number): Promise<void> => {
+    return new Promise((resolve) => {
+      let musicUrl = ''
+
+      if (level === 15) {
+        musicUrl = `${BASE_URL}sounds/music/final.mp3`
+      } else if (level >= 11) {
+        musicUrl = `${BASE_URL}sounds/music/level-3.mp3`
+      } else if (level >= 6) {
+        musicUrl = `${BASE_URL}sounds/music/level-2.mp3`
+      } else {
+        musicUrl = `${BASE_URL}sounds/music/level-1.mp3`
+      }
+
+      const audio = loadSound(musicUrl)
+      if (!audio) {
+        resolve()
+        return
+      }
+
+      // Если уже загружено
+      if (audio.readyState >= 2) {
+        resolve()
+        return
+      }
+
+      // Ждём загрузки
+      audio.addEventListener(
+        'canplaythrough',
+        () => {
+          resolve()
+        },
+        { once: true },
+      )
+
+      audio.addEventListener(
+        'error',
+        () => {
+          resolve()
+        },
+        { once: true },
+      )
+
+      // Таймаут на случай долгой загрузки
+      setTimeout(() => {
+        resolve()
+      }, 3000)
+    })
+  }
+
+  const playQuestionMusicWithPreload = async (level: number): Promise<void> => {
+    console.log(`🎵 Предзагружаем музыку для вопроса ${level}...`)
+
+    // Предзагружаем
+    await preloadMusic(level)
+
+    console.log(`🎵 Музыка загружена, начинаем воспроизведение`)
+
+    // Воспроизводим
+    playQuestionMusic(level)
+  }
+
   // Метод для получения длительности звука
   const getAudioDuration = (url: string): Promise<number> => {
     return new Promise((resolve) => {
@@ -348,5 +410,7 @@ export function useSoundManager() {
     toggleMute,
     cleanup,
     getAudioDuration,
+    preloadMusic,
+    playQuestionMusicWithPreload,
   }
 }

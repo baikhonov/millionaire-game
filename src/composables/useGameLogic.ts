@@ -69,7 +69,7 @@ export function useGameLogic() {
   }
 
   // ========== Музыка ==========
-  const startQuestionMusic = (): void => {
+  const startQuestionMusic = async (): Promise<void> => {
     // Если у текущего вопроса есть аудио или видео, музыку не включаем
     if (
       currentQuestion.value?.media?.type === 'audio' ||
@@ -78,7 +78,8 @@ export function useGameLogic() {
       console.log('🎵 Музыка отключена из-за медиа-контента')
       return
     }
-    soundManager.playQuestionMusic(questionNumber.value)
+    const level = questionNumber.value
+    await soundManager.playQuestionMusicWithPreload(level)
   }
 
   // ========== Управление появлением вариантов ==========
@@ -141,7 +142,10 @@ export function useGameLogic() {
     resetGame()
     isLoading.value = false
 
-    // После загрузки вопроса – запускаем появление вариантов
+    // Загружаем и ждём музыку для первого вопроса
+    await startQuestionMusic()
+
+    // После загрузки музыки запускаем появление вариантов
     setTimeout(() => {
       startRevealOptions()
     }, 500)
@@ -208,11 +212,11 @@ export function useGameLogic() {
       soundManager.playFailMusic(isFinalQuestion)
     }
 
-    setTimeout(() => {
+    setTimeout(async () => {
       if (isCorrect) {
-        handleCorrectAnswer().catch((e) => console.error('Ошибка в handleCorrectAnswer:', e))
+        await handleCorrectAnswer()
       } else {
-        handleWrongAnswer().catch((e) => console.error('Ошибка в handleWrongAnswer:', e))
+        await handleWrongAnswer()
       }
     }, DELAYS.REVEAL_ANSWER)
   }
@@ -238,18 +242,18 @@ export function useGameLogic() {
 
         console.log(`🎵 Milestone: ждём ${extraDelay}мс перед следующим вопросом`)
 
-        setTimeout(() => {
-          nextQuestion()
+        setTimeout(async () => {
+          await nextQuestion()
         }, extraDelay)
       } else {
-        setTimeout(() => {
-          nextQuestion()
+        setTimeout(async () => {
+          await nextQuestion()
         }, DELAYS.NEXT_QUESTION)
       }
     }
   }
 
-  const nextQuestion = (): void => {
+  const nextQuestion = async (): Promise<void> => {
     currentQuestionIndex.value++
     selectedOption.value = null
     isAnswered.value = false
@@ -257,7 +261,9 @@ export function useGameLogic() {
     isWaitingForReveal.value = false
 
     resetOptionsReveal()
-    startQuestionMusic()
+
+    // Ждём загрузки музыки для следующего вопроса
+    await startQuestionMusic()
 
     // Запускаем появление вариантов для нового вопроса
     setTimeout(() => {
