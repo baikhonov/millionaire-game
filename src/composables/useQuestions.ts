@@ -80,15 +80,44 @@ export function useQuestions() {
 
     for (let i = 0; i < difficultyMap.length; i++) {
       const difficulty = difficultyMap[i]
-      const question = getRandomQuestionByDifficulty(difficulty, usedInCurrentGame)
+
+      // Пытаемся найти новый вопрос
+      let question = getRandomQuestionByDifficulty(difficulty, usedInCurrentGame)
+
+      // Если нет новых вопросов этой сложности, ищем среди всех (включая использованные)
       if (!question) {
-        console.error(`❌ Не удалось найти новый вопрос для позиции ${i + 1}`)
-        return [] // генерация не удалась
+        console.warn(`⚠️ Нет новых вопросов сложности ${difficulty}, ищем среди всех`)
+        const allWithDifficulty = questionPool.value.filter(
+          (q) => q.difficulty === difficulty && !usedInCurrentGame.includes(q.id),
+        )
+        if (allWithDifficulty.length > 0) {
+          const randomIndex = Math.floor(Math.random() * allWithDifficulty.length)
+          question = allWithDifficulty[randomIndex]
+        }
+      }
+
+      // Если всё равно нет вопросов этой сложности, берём любой доступный вопрос
+      if (!question) {
+        console.warn(`⚠️ Нет вопросов сложности ${difficulty}, берём любой доступный`)
+        const anyAvailable = questionPool.value.filter((q) => !usedInCurrentGame.includes(q.id))
+        if (anyAvailable.length > 0) {
+          const randomIndex = Math.floor(Math.random() * anyAvailable.length)
+          question = anyAvailable[randomIndex]
+          console.log(`📌 Взяли вопрос сложности ${question.difficulty} вместо ${difficulty}`)
+        }
+      }
+
+      // Если совсем нет вопросов, выходим с тем, что есть
+      if (!question) {
+        console.error(
+          `❌ Нет доступных вопросов для позиции ${i + 1}, формируем из ${gameQuestions.length} вопросов`,
+        )
+        break
       }
 
       usedInCurrentGame.push(question.id)
 
-      // ✅ Перемешиваем варианты ответов перед добавлением вопроса
+      // Перемешиваем варианты ответов
       const shuffledOptions = shuffleOptions(question.options)
 
       gameQuestions.push({
@@ -98,9 +127,14 @@ export function useQuestions() {
       })
     }
 
-    // добавляем в глобальную историю
-    usedGlobally.value.push(...usedInCurrentGame)
-    localStorage.setItem('usedQuestions', JSON.stringify(usedGlobally.value))
+    // Если получилось меньше 15 вопросов, выводим предупреждение
+    if (gameQuestions.length < 15) {
+      console.warn(`⚠️ Сгенерировано только ${gameQuestions.length} вопросов из 15`)
+    } else {
+      // добавляем в глобальную историю только если получили полный набор
+      usedGlobally.value.push(...usedInCurrentGame)
+      localStorage.setItem('usedQuestions', JSON.stringify(usedGlobally.value))
+    }
 
     return gameQuestions
   }
