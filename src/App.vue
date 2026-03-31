@@ -35,36 +35,51 @@
         <div class="progress-fill" :style="{ width: progress + '%' }"></div>
       </div>
 
-      <div v-if="currentQuestion" class="question-section">
-        <QuestionCard :question="currentQuestion" />
+      <div class="game-layout">
+        <div class="game-main">
+          <div v-if="currentQuestion" class="question-section">
+            <QuestionCard :question="currentQuestion" />
 
-        <OptionsGrid
-          :key="currentQuestionIndex"
-          :options="currentQuestion.options"
-          :selected-option="selectedOption"
-          :is-answered="isAnswered"
-          :is-answer-revealed="isAnswerRevealed"
-          :is-revealing="isRevealingOptions"
-          :options-revealed="optionsRevealed"
-          @select="selectAnswer"
-        />
+            <OptionsGrid
+              :key="currentQuestionIndex"
+              :options="currentQuestion.options"
+              :selected-option="selectedOption"
+              :is-answered="isAnswered"
+              :is-answer-revealed="isAnswerRevealed"
+              :is-revealing="isRevealingOptions"
+              :options-revealed="optionsRevealed"
+              :hidden-options="hiddenOptions"
+              @select="selectAnswer"
+            />
 
-        <div class="reveal-button-container">
-          <button
-            v-if="isWaitingForReveal && !isAnswerRevealed"
-            class="reveal-button"
-            @click="revealAnswer"
-          >
-            🔍 Показать правильный ответ
-          </button>
+            <div class="reveal-button-container">
+              <button
+                v-if="isWaitingForReveal && !isAnswerRevealed"
+                class="reveal-button"
+                @click="revealAnswer"
+              >
+                🔍 Показать правильный ответ
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="game-sidebar">
+          <!-- Подсказки -->
+          <HintsPanel
+            :used-hints="usedHints"
+            :disabled="isAnswered || isAnswerRevealed"
+            @fifty-fifty="useFiftyFifty"
+            @call="useCallHint"
+            @audience="useAudienceHint"
+          />
+
+          <PrizeLadder
+            :prize-levels="prizeLevels"
+            :current-index="currentQuestionIndex"
+            :format-money="formatMoney"
+          />
         </div>
       </div>
-
-      <PrizeLadder
-        :prize-levels="prizeLevels"
-        :current-index="currentQuestionIndex"
-        :format-money="formatMoney"
-      />
     </div>
 
     <!-- Экран окончания игры -->
@@ -90,6 +105,7 @@ import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
 import QuestionCard from './components/game/QuestionCard.vue'
 import PrizeLadder from './components/game/PrizeLadder.vue'
+import HintsPanel from './components/game/HintsPanel.vue'
 
 const game = useGameLogic()
 const sound = useSoundManager()
@@ -115,9 +131,13 @@ const {
   resetGame,
   selectAnswer: gameSelectAnswer,
   revealAnswer: gameRevealAnswer,
-  startRevealOptions, // ✅ добавляем
-  optionsRevealed, // ✅ добавляем
-  isRevealingOptions, // ✅ добавляем
+  optionsRevealed,
+  isRevealingOptions,
+  usedHints,
+  hiddenOptions,
+  useFiftyFifty,
+  useCallHint,
+  useAudienceHint,
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
@@ -165,7 +185,6 @@ const restartGame = async () => {
 </script>
 
 <style>
-/* Все стили остаются без изменений */
 * {
   margin: 0;
   padding: 0;
@@ -179,6 +198,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Анимации */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -239,6 +259,7 @@ body {
   pointer-events: none;
 }
 
+/* Стартовый экран */
 .start-screen {
   position: fixed;
   top: 0;
@@ -301,6 +322,7 @@ body {
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
 }
 
+/* Загрузка */
 .loading-screen {
   display: flex;
   flex-direction: column;
@@ -319,11 +341,12 @@ body {
   animation: spin 1s linear infinite;
 }
 
+/* Верхняя панель */
 .game-container {
   position: relative;
   z-index: 1;
   padding: 20px;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -334,7 +357,8 @@ body {
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  align-items: center;
+  padding: 15px 40px;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   z-index: 10;
@@ -354,7 +378,7 @@ body {
 
 .progress-bar {
   position: fixed;
-  top: 80px;
+  top: 62px;
   left: 0;
   right: 0;
   height: 3px;
@@ -368,46 +392,62 @@ body {
   transition: width 0.3s ease;
 }
 
+/* Компоновка */
+.game-layout {
+  display: flex;
+  gap: 30px;
+  margin-top: 80px;
+  padding: 0 20px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.game-sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .question-section {
-  margin-top: 120px;
-  margin-right: 280px;
-  padding: 20px;
+  margin-top: 0;
+  margin-right: 0;
+  padding: 0;
 }
 
-.prize-ladder {
-  position: fixed;
-  right: 20px;
-  top: 120px;
-  width: 240px;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
+/* Кнопка показа ответа */
+.reveal-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.reveal-button {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #0a0f1e;
+  border: none;
   border-radius: 12px;
-  padding: 15px;
-  border: 1px solid #ffd700;
-  max-height: calc(100vh - 140px);
-  overflow-y: auto;
-}
-
-.prize-step {
-  padding: 10px 15px;
-  text-align: center;
-  font-size: 16px;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.prize-step.current {
-  background: rgba(255, 215, 0, 0.3);
+  padding: 15px 40px;
+  font-size: 20px;
   font-weight: bold;
-  font-size: 18px;
-  color: #ffd700;
-  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
-.prize-step.passed {
-  color: #4caf50;
+.reveal-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
 }
 
+/* Экран окончания игры */
 .game-over-screen {
   display: flex;
   align-items: center;
@@ -455,6 +495,7 @@ body {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
+/* Кнопка звука */
 .sound-button {
   position: fixed;
   bottom: 20px;
@@ -477,51 +518,24 @@ body {
   background: rgba(255, 215, 0, 0.2);
 }
 
-.reveal-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.reveal-button {
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #0a0f1e;
-  border: none;
-  border-radius: 12px;
-  padding: 15px 40px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-
-  @media (max-width: 768px) {
-    padding: 10px 15px;
+/* Адаптивность */
+@media (max-width: 900px) {
+  .game-layout {
+    flex-direction: column;
+    gap: 20px;
   }
-}
 
-.reveal-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+  .game-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
-  .question-section {
-    margin-right: 0;
-    margin-top: 80px;
-    padding: 0;
-  }
-
-  .prize-ladder {
-    display: none;
-  }
-
-  .options-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .question-text {
-    font-size: 20px;
+  .game-layout {
+    margin-top: 100px;
   }
 
   .top-bar {
@@ -530,6 +544,15 @@ body {
 
   .current-winnings {
     font-size: 20px;
+  }
+
+  .question-counter {
+    font-size: 14px;
+  }
+
+  .reveal-button {
+    padding: 10px 15px;
+    font-size: 16px;
   }
 
   .start-card {
@@ -544,6 +567,21 @@ body {
   .start-button {
     font-size: 18px;
     padding: 12px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-layout {
+    margin-top: 80px;
+    padding: 0 12px;
+  }
+
+  .question-text {
+    font-size: 20px;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

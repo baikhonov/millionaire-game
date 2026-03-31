@@ -16,7 +16,7 @@ const DELAYS = {
 }
 
 export function useGameLogic() {
-  const { questions, loadQuestions, getQuestion, totalQuestions, isLastQuestion } = useQuestions()
+  const { loadQuestions, getQuestion, totalQuestions, isLastQuestion } = useQuestions()
   const soundManager = useSoundManager()
 
   // ========== Состояние игры ==========
@@ -38,6 +38,60 @@ export function useGameLogic() {
     call: false,
     audience: false,
   })
+
+  // Для 50:50 — храним скрытые варианты для ТЕКУЩЕГО вопроса
+  const hiddenOptions = ref<string[]>([])
+
+  // Подсказка 50:50 — убираем 2 неверных варианта
+  const useFiftyFifty = (): void => {
+    // Проверяем: можно использовать только 1 раз за игру и пока ответ не выбран
+    if (usedHints.value.fiftyFifty || isAnswered.value || isAnswerRevealed.value) {
+      return
+    }
+
+    usedHints.value.fiftyFifty = true // навсегда блокируем кнопку
+    soundManager.stopMusic()
+    soundManager.playFiftyFifty()
+
+    // Находим два неправильных варианта для скрытия
+    const allOptions = currentQuestion.value?.options || []
+    const incorrectOptions = allOptions.filter((opt) => !opt.isCorrect)
+    const toHide = incorrectOptions.slice(0, 2).map((opt) => opt.id)
+
+    hiddenOptions.value = toHide
+    console.log('🔍 50:50 — скрыты варианты:', toHide)
+    console.log('🔍 hiddenOptions.value:', hiddenOptions.value)
+  }
+
+  // Подсказка "Звонок другу"
+  const useCallHint = (): void => {
+    if (usedHints.value.call || isAnswered.value || isAnswerRevealed.value) {
+      return
+    }
+
+    usedHints.value.call = true // навсегда блокируем кнопку
+    soundManager.stopMusic()
+    soundManager.playCall()
+    console.log(`📞 Звонок другу — игрок звонит оффлайн`)
+  }
+
+  // Подсказка "Помощь зала"
+  const useAudienceHint = (): void => {
+    if (usedHints.value.audience || isAnswered.value || isAnswerRevealed.value) {
+      return
+    }
+
+    usedHints.value.audience = true // навсегда блокируем кнопку
+    soundManager.stopMusic()
+    soundManager.playAudience()
+    console.log(`👥 Помощь зала — игрок спрашивает зал оффлайн`)
+  }
+
+  // Сброс для нового вопроса (только скрытых вариантов)
+  const resetHintsForNewQuestion = (): void => {
+    // НЕ сбрасываем usedHints — они на всю игру!
+    hiddenOptions.value = [] // очищаем скрытые варианты для нового вопроса
+  }
 
   // ========== Появление вариантов ==========
   const optionsRevealed = ref<string[]>([]) // уже показанные варианты (A,B,C,D)
@@ -169,6 +223,8 @@ export function useGameLogic() {
       audience: false,
     }
 
+    hiddenOptions.value = []
+
     resetOptionsReveal()
   }
 
@@ -186,6 +242,7 @@ export function useGameLogic() {
     isWaitingForReveal.value = true
 
     soundManager.stopMusic()
+    soundManager.stopAllEffects()
     soundManager.playOptionSelect()
   }
 
@@ -262,6 +319,8 @@ export function useGameLogic() {
 
     resetOptionsReveal()
 
+    hiddenOptions.value = []
+
     // Ждём загрузки музыки для следующего вопроса
     await startQuestionMusic()
 
@@ -317,73 +376,6 @@ export function useGameLogic() {
     soundManager.stopAllEffects()
   }
 
-  // ========== Подсказки ==========
-  const useFiftyFifty = (): string[] => {
-    if (usedHints.value.fiftyFifty || isAnswered.value) return []
-
-    soundManager.playFiftyFifty()
-    usedHints.value.fiftyFifty = true
-
-    const incorrectOptions =
-      currentQuestion.value?.options
-        .filter((opt) => !opt.isCorrect)
-        .slice(0, 2)
-        .map((opt) => opt.id) || []
-
-    return incorrectOptions
-  }
-
-  const useCallHint = (): string => {
-    if (usedHints.value.call || isAnswered.value) return ''
-
-    soundManager.playCall()
-    usedHints.value.call = true
-
-    const correctOption = currentQuestion.value?.options.find((opt) => opt.isCorrect)
-    if (!correctOption) return ''
-
-    const probability = Math.random()
-
-    if (probability > 0.8) {
-      return `Я уверен на 100%, правильный ответ - ${correctOption.id}`
-    } else if (probability > 0.5) {
-      return `Мне кажется, это ${correctOption.id}, но я не совсем уверен`
-    } else {
-      const wrongOptions = currentQuestion.value?.options.filter((opt) => !opt.isCorrect) || []
-      const randomWrong = wrongOptions[Math.floor(Math.random() * wrongOptions.length)]
-      return `Сложный вопрос... Я думаю, это ${randomWrong?.id}, но лучше проверь`
-    }
-  }
-
-  const useAudienceHint = (): Array<{ id: string; text: string; percentage: number }> => {
-    if (usedHints.value.audience || isAnswered.value) return []
-
-    soundManager.playAudience()
-    usedHints.value.audience = true
-
-    const options = currentQuestion.value?.options || []
-
-    const results = options.map((opt) => ({
-      id: opt.id,
-      text: opt.text,
-      percentage: opt.isCorrect
-        ? Math.floor(65 + Math.random() * 25)
-        : Math.floor(5 + Math.random() * 15),
-    }))
-
-    const total = results.reduce((sum, r) => sum + r.percentage, 0)
-    results.forEach((r) => {
-      r.percentage = Math.floor((r.percentage / total) * 100)
-    })
-
-    const sum = results.reduce((s, r) => s + r.percentage, 0)
-    if (sum !== 100) {
-      results[0].percentage += 100 - sum
-    }
-
-    return results
-  }
-
   // ========== Возвращаемое API ==========
   return {
     // Состояние
@@ -397,6 +389,7 @@ export function useGameLogic() {
     gameResult: readonly(gameResult),
     finalWinnings: readonly(finalWinnings),
     usedHints: readonly(usedHints),
+    hiddenOptions: readonly(hiddenOptions),
     isLoading: readonly(isLoading),
     isCheckingAnswer: readonly(isCheckingAnswer),
     questionNumber: readonly(questionNumber),

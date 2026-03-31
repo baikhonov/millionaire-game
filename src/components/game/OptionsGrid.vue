@@ -1,4 +1,3 @@
-<!-- src/components/game/OptionsGrid.vue -->
 <template>
   <div class="options-grid">
     <button
@@ -9,15 +8,24 @@
         selected: selectedOption?.id === option.id,
         'correct-revealed': isAnswerRevealed && option.isCorrect,
         'wrong-revealed': isAnswerRevealed && selectedOption?.id === option.id && !option.isCorrect,
+        'fifty-fifty-removed': isFiftyFiftyRemoved(option.id),
       }"
-      :disabled="isAnswered || isAnswerRevealed || (isRevealing && !isOptionRevealed(option.id))"
+      :disabled="
+        isAnswered ||
+        isAnswerRevealed ||
+        !isOptionRevealed(option.id) ||
+        isFiftyFiftyRemoved(option.id)
+      "
       @click="handleSelect(option)"
     >
       <span class="option-letter" :class="{ revealed: isOptionRevealed(option.id) }">
-        {{ option.id }}:
+        {{ option.id }}
       </span>
-      <span class="option-text" :class="{ revealed: isOptionRevealed(option.id) }">
-        {{ option.text }}
+      <span
+        class="option-text"
+        :class="{ revealed: isOptionRevealed(option.id) && !isFiftyFiftyRemoved(option.id) }"
+      >
+        {{ isFiftyFiftyRemoved(option.id) ? '—' : option.text }}
       </span>
     </button>
   </div>
@@ -33,6 +41,7 @@ const props = defineProps<{
   isAnswerRevealed: boolean
   isRevealing?: boolean
   optionsRevealed?: string[]
+  hiddenOptions?: string[]
 }>()
 
 const emit = defineEmits<{
@@ -44,8 +53,18 @@ const isOptionRevealed = (optionId: string): boolean => {
   return props.optionsRevealed.includes(optionId)
 }
 
+// Проверка, убран ли вариант по 50:50
+const isFiftyFiftyRemoved = (optionId: string): boolean => {
+  return props.hiddenOptions?.includes(optionId) || false
+}
+
 const handleSelect = (option: Option) => {
-  if (!props.isAnswered && !props.isAnswerRevealed && isOptionRevealed(option.id)) {
+  if (
+    !props.isAnswered &&
+    !props.isAnswerRevealed &&
+    isOptionRevealed(option.id) &&
+    !isFiftyFiftyRemoved(option.id)
+  ) {
     emit('select', option)
   }
 }
@@ -57,7 +76,6 @@ const handleSelect = (option: Option) => {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin: 40px auto;
-  max-width: 900px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -182,5 +200,22 @@ const handleSelect = (option: Option) => {
   75% {
     transform: translateX(5px);
   }
+}
+
+.option-button.fifty-fifty-removed {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.option-button.fifty-fifty-removed .option-text {
+  color: #666;
+  font-style: italic;
+}
+
+/* Переопределяем hover для убранных вариантов */
+.option-button.fifty-fifty-removed:hover:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+  background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
 }
 </style>

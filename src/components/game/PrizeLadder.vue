@@ -44,10 +44,6 @@ const reversedPrizeLevels = computed(() => {
 
 <style scoped>
 .prize-ladder {
-  position: fixed;
-  right: 20px;
-  top: 120px;
-  width: 260px;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   border-radius: 16px;
@@ -57,7 +53,6 @@ const reversedPrizeLevels = computed(() => {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #ffd700 #1a1f2e;
-  z-index: 5;
 }
 
 .prize-ladder::-webkit-scrollbar {
@@ -114,7 +109,6 @@ const reversedPrizeLevels = computed(() => {
 .prize-step.milestone {
   color: #ffffff;
   font-weight: bold;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
 }
 
 .prize-star {
@@ -132,18 +126,6 @@ const reversedPrizeLevels = computed(() => {
 @media (max-width: 1024px) {
   .prize-ladder {
     width: 220px;
-    right: 10px;
-    top: 100px;
-    padding: 10px 8px;
-  }
-
-  .prize-step {
-    padding: 8px 10px;
-    font-size: 14px;
-  }
-
-  .prize-step.current {
-    font-size: 16px;
   }
 }
 
