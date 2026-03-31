@@ -20,7 +20,7 @@
       @click="handleSelect(option)"
     >
       <span class="option-letter" :class="{ revealed: isOptionRevealed(option.id) }">
-        {{ option.id }}
+        {{ option.id }}:
       </span>
       <span class="option-text" :class="{ revealed: isOptionRevealed(option.id) }">
         {{ hiddenOptions?.includes(option.id) ? '—' : option.text }}
@@ -112,6 +112,11 @@ const handleSelect = (option: Option) => {
   flex-shrink: 0;
   transition: opacity 0.4s ease-out;
   opacity: 0;
+
+  @media (max-width: 768px) {
+    width: auto;
+    margin-right: 10px;
+  }
 }
 
 .option-letter.revealed {

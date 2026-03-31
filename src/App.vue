@@ -481,7 +481,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 15px;
 }
 
 .game-over-card {
