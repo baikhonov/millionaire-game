@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "text": "Сколько ног у осьминога?",
+        "text": "Что обычно делают с компьютерной мышью?",
         "options": [
             {
                 "id": "A",
-                "text": "6",
+                "text": "Едят",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "8",
+                "text": "Кликнут",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "10",
+                "text": "Спят с ней",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Иногда пересчитывает",
+                "text": "Поливают",
                 "isCorrect": false
             }
         ],
@@ -28,26 +28,26 @@
     },
     {
         "id": 2,
-        "text": "Какого цвета трава летом?",
+        "text": "Какое животное называют «кораблём пустыни»?",
         "options": [
             {
                 "id": "A",
-                "text": "Синяя",
+                "text": "Кенгуру",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Зелёная",
+                "text": "Верблюд",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Красная",
+                "text": "Песчаная черепаха",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Зависит от фильтра в Instagram",
+                "text": "Таксист на Lada",
                 "isCorrect": false
             }
         ],
@@ -55,6 +55,87 @@
     },
     {
         "id": 3,
+        "text": "Что из перечисленного является фруктом?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Огурец",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Помидор",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Яблоко",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Картошка фри",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 4,
+        "text": "Кто написал «Войну и мир»?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Достоевский",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Толстой",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Чехов",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Ваш сосед, он всё врёт",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 5,
+        "text": "Какого цвета трава в ясный солнечный день?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Красного",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Зелёного",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Синего",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Цвета хмурого бухгалтера",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 6,
         "text": "Сколько дней в неделе?",
         "options": [
             {
@@ -74,412 +155,331 @@
             },
             {
                 "id": "D",
-                "text": "Недостаточно",
+                "text": "Когда как",
                 "isCorrect": false
             }
         ],
         "difficulty": 1
-    },
-    {
-        "id": 4,
-        "text": "Сколько глаз у человека?",
-        "options": [
-            {
-                "id": "A",
-                "text": "1",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "2",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "3",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "После бессонной ночи кажется больше",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 5,
-        "text": "Что мы обычно пьём, чтобы утолить жажду?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Песок",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Воду",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Краску",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Кофе литрами (не рекомендуется)",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 6,
-        "text": "Столица Франции?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Лион",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Марсель",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Париж",
-                "isCorrect": true
-            },
-            {
-                "id": "D",
-                "text": "Ницца",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
     },
     {
         "id": 7,
-        "text": "Сколько сторон у треугольника?",
+        "text": "Что ищут с собакой на таможне?",
         "options": [
             {
                 "id": "A",
-                "text": "2",
+                "text": "Косточку",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "3",
+                "text": "Наркотики",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "4",
+                "text": "Хозяина",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "5",
+                "text": "Смысл жизни",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 8,
-        "text": "Кто написал «Евгений Онегин»?",
+        "text": "Какой инструмент используют для забивания гвоздей?",
         "options": [
             {
                 "id": "A",
-                "text": "Лермонтов",
+                "text": "Микроскоп",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Пушкин",
+                "text": "Молоток",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Гоголь",
+                "text": "Отвёртка",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Толстой",
+                "text": "Лоб",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 1
     },
     {
         "id": 9,
-        "text": "Какая планета ближе всего к Солнцу?",
+        "text": "Какая страна известна как страна восходящего солнца?",
         "options": [
             {
                 "id": "A",
-                "text": "Венера",
+                "text": "Китай",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Земля",
+                "text": "Корея",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Меркурий",
+                "text": "Япония",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Марс",
+                "text": "Бали (если долго не спать)",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 1
     },
     {
         "id": 10,
-        "text": "Сколько градусов в прямом угле?",
+        "text": "Кто пил кровь графа Дракулы?",
         "options": [
             {
                 "id": "A",
-                "text": "45",
+                "text": "Человек-паук",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "90",
+                "text": "Вампиры",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "180",
+                "text": "Зомби",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "360",
+                "text": "Комары (но не графа)",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 1
     },
     {
         "id": 11,
-        "text": "Как называется самая длинная река в мире?",
+        "text": "Кто нарисовал «Мону Лизу»?",
         "options": [
             {
                 "id": "A",
-                "text": "Нил",
+                "text": "Ван Гог",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Амазонка",
+                "text": "Дали",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Леонардо да Винчи",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Микеланджело",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 12,
+        "text": "Какая планета самая большая в Солнечной системе?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Сатурн",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Юпитер",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Янцзы",
+                "text": "Нептун",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Миссисипи",
+                "text": "Земля",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 13,
+        "text": "Символом какой валюты является знак €?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Доллар",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Фунт",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Евро",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Иена",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 14,
+        "text": "Кто является автором теории относительности?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Ньютон",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Эйнштейн",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Тесла",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Бор",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 15,
+        "text": "Какой химический элемент обозначается буквой O?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Золото",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Кислород",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Осмий",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Олово",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 16,
+        "text": "Какой из этих городов находится не в Европе?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Рим",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Прага",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Каир",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Вена",
                 "isCorrect": false
             }
         ],
         "difficulty": 3
     },
     {
-        "id": 12,
-        "text": "Кто открыл закон всемирного тяготения?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Галилей",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Ньютон",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Эйнштейн",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Тесла",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 13,
-        "text": "Какой химический элемент обозначается символом Na?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Натрий",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Азот",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Никель",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Неон",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 14,
-        "text": "Столица Японии?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Осака",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Токио",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Киото",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Нагоя",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 15,
-        "text": "Кто сформулировал теорию относительности?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Ньютон",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Эйнштейн",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Бор",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Планк",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 5
-    },
-    {
-        "id": 16,
-        "text": "Сколько месяцев в году?",
-        "options": [
-            {
-                "id": "A",
-                "text": "10",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "12",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "14",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "13",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
         "id": 17,
-        "text": "Столица Великобритании?",
+        "text": "Как называется боязнь высоты?",
         "options": [
             {
                 "id": "A",
-                "text": "Манчестер",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Лондон",
+                "text": "Акрофобия",
                 "isCorrect": true
             },
             {
+                "id": "B",
+                "text": "Клаустрофобия",
+                "isCorrect": false
+            },
+            {
                 "id": "C",
-                "text": "Ливерпуль",
+                "text": "Агорафобия",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Бирмингем",
+                "text": "Арахнофобия",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 3
     },
     {
         "id": 18,
-        "text": "Как называется ближайшая к Земле звезда?",
+        "text": "Кто из этих людей был основателем Microsoft?",
         "options": [
             {
                 "id": "A",
-                "text": "Сириус",
+                "text": "Стив Джобс",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Солнце",
+                "text": "Билл Гейтс",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Альфа Центавра",
+                "text": "Марк Цукерберг",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Полярная",
+                "text": "Ларри Пейдж",
                 "isCorrect": false
             }
         ],
@@ -487,26 +487,26 @@
     },
     {
         "id": 19,
-        "text": "Сколько хромосом у человека?",
+        "text": "Какое море не имеет берегов?",
         "options": [
             {
                 "id": "A",
-                "text": "44",
+                "text": "Мёртвое море",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "46",
+                "text": "Саргассово море",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "48",
+                "text": "Красное море",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "23",
+                "text": "Чёрное море",
                 "isCorrect": false
             }
         ],
@@ -514,655 +514,34 @@
     },
     {
         "id": 20,
-        "text": "Как называется столица Канады?",
+        "text": "Кто написал музыку к балету «Щелкунчик»?",
         "options": [
             {
                 "id": "A",
-                "text": "Торонто",
+                "text": "Бетховен",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Оттава",
-                "isCorrect": true
+                "text": "Моцарт",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Ванкувер",
-                "isCorrect": false
+                "text": "Чайковский",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Монреаль",
+                "text": "Шопен",
                 "isCorrect": false
             }
         ],
-        "difficulty": 4
+        "difficulty": 3
     },
     {
         "id": 21,
-        "text": "Какой элемент обозначается символом Fe?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Фтор",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Железо",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Фосфор",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Франций",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 22,
-        "text": "Как называется самая высокая гора в мире?",
-        "options": [
-            {
-                "id": "A",
-                "text": "К2",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Эверест",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Монблан",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Килиманджаро",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 23,
-        "text": "Какой океан самый большой?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Атлантический",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Тихий",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Индийский",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Северный Ледовитый",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 24,
-        "text": "Сколько сторон у квадрата?",
-        "options": [
-            {
-                "id": "A",
-                "text": "3",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "4",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "5",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "6",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 25,
-        "text": "Кто написал «Войну и мир»?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Достоевский",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Толстой",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Пушкин",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Чехов",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 26,
-        "text": "Сколько минут в одном часе?",
-        "options": [
-            {
-                "id": "A",
-                "text": "30",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "60",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "90",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Иногда кажется, что 5",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 27,
-        "text": "Какой день идёт после понедельника?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Среда",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Вторник",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Пятница",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Выходной хотелось бы",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 28,
-        "text": "Сколько пальцев на одной руке у человека?",
-        "options": [
-            {
-                "id": "A",
-                "text": "4",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "5",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "6",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Зависит от настроения",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 29,
-        "text": "Какого цвета небо в ясный день?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Зелёное",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Синее",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Чёрное",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Как на обоях рабочего стола",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 30,
-        "text": "Сколько колес у стандартного автомобиля?",
-        "options": [
-            {
-                "id": "A",
-                "text": "2",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "4",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "6",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Если запаска — то уже спорный вопрос",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 31,
-        "text": "Столица Германии?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Мюнхен",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Берлин",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Гамбург",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Франкфурт",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 32,
-        "text": "Сколько сторон у пятиугольника?",
-        "options": [
-            {
-                "id": "A",
-                "text": "4",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "5",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "6",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "7",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 33,
-        "text": "Кто написал «Преступление и наказание»?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Толстой",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Достоевский",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Чехов",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Гоголь",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 34,
-        "text": "Какой газ преобладает в атмосфере Земли?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Кислород",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Азот",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Углекислый газ",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Водород",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 35,
-        "text": "Сколько континентов на Земле?",
-        "options": [
-            {
-                "id": "A",
-                "text": "5",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "6",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "7",
-                "isCorrect": true
-            },
-            {
-                "id": "D",
-                "text": "8",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 36,
-        "text": "Как называется процесс превращения воды в пар?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Конденсация",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Испарение",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Замерзание",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Сублимация",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 37,
-        "text": "Кто изобрёл лампу накаливания?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Тесла",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Эдисон",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Белл",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Фарадей",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 38,
-        "text": "Какой орган отвечает за перекачивание крови?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Лёгкие",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Сердце",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Печень",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Почки",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 39,
-        "text": "Как называется денежная единица Японии?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Юань",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Йена",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Вон",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Доллар",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 40,
-        "text": "Какой учёный разработал законы движения?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Эйнштейн",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Ньютон",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Галилей",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Кеплер",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 5
-    },
-    {
-        "id": 41,
-        "text": "Сколько часов в сутках?",
-        "options": [
-            {
-                "id": "A",
-                "text": "12",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "24",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "48",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Всегда не хватает",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 42,
-        "text": "Какой месяц идёт после января?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Март",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Февраль",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Апрель",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Какой получится",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 43,
-        "text": "Сколько букв в русском алфавите?",
-        "options": [
-            {
-                "id": "A",
-                "text": "30",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "33",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "35",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Зависит от настроения филолога",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 44,
-        "text": "Как называется самая большая пустыня в мире?",
+        "text": "Какая пустыня является самой большой в мире по площади?",
         "options": [
             {
                 "id": "A",
@@ -1181,69 +560,15 @@
             },
             {
                 "id": "D",
-                "text": "Калахари",
+                "text": "Атакама",
                 "isCorrect": false
             }
         ],
         "difficulty": 4
     },
     {
-        "id": 45,
-        "text": "Как называется единица силы в системе СИ?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Джоуль",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Ньютон",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Паскаль",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Ватт",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 46,
-        "text": "Как называется спутник Земли?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Марс",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Луна",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Венера",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Юпитер",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 47,
-        "text": "Какой металл жидкий при комнатной температуре?",
+        "id": 22,
+        "text": "Какой химический элемент был открыт первым в истории человечества?",
         "options": [
             {
                 "id": "A",
@@ -1252,565 +577,160 @@
             },
             {
                 "id": "B",
-                "text": "Ртуть",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Алюминий",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Медь",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 48,
-        "text": "Какой язык программирования создал Брендан Эйх?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Python",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "JavaScript",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Java",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "C++",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 49,
-        "text": "Как называется наука о живых организмах?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Физика",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Биология",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Химия",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Астрономия",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 50,
-        "text": "Кто написал «Гарри Поттер»?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Толкин",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Роулинг",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Мартин",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Льюис",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 51,
-        "text": "Сколько секунд в минуте?",
-        "options": [
-            {
-                "id": "A",
-                "text": "30",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "60",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "90",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Когда ждёшь — все 300",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 52,
-        "text": "Какой сейчас век для 2026 года?",
-        "options": [
-            {
-                "id": "A",
-                "text": "XX",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "XXI",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "XXII",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Почти киберпанк",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 53,
-        "text": "Сколько сторон у круга?",
-        "options": [
-            {
-                "id": "A",
-                "text": "0",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "1",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "2",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Смотря как считать",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 54,
-        "text": "Сколько у человека ушей?",
-        "options": [
-            {
-                "id": "A",
-                "text": "1",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "2",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "3",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Когда слушает начальника — не хватает",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 55,
-        "text": "Как называется наша планета?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Марс",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Земля",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Венера",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Пока держится",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 56,
-        "text": "Столица Италии?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Милан",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Рим",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Неаполь",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Турин",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 57,
-        "text": "Сколько сторон у шестиугольника?",
-        "options": [
-            {
-                "id": "A",
-                "text": "5",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "6",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "7",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "8",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 58,
-        "text": "Кто написал «Мастер и Маргарита»?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Булгаков",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Пушкин",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Толстой",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Гоголь",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 59,
-        "text": "Какая планета известна своими кольцами?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Марс",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Сатурн",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Венера",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Меркурий",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 60,
-        "text": "Сколько градусов в развернутом угле?",
-        "options": [
-            {
-                "id": "A",
-                "text": "90",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "180",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "270",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "360",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 61,
-        "text": "Как называется процесс фотосинтеза?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Дыхание",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Преобразование света в энергию",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Испарение",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Окисление",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 62,
-        "text": "Кто открыл Америку?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Колумб",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Магеллан",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Кук",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Веспуччи",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 63,
-        "text": "Какой химический элемент обозначается O?",
-        "options": [
-            {
-                "id": "A",
                 "text": "Золото",
                 "isCorrect": false
             },
             {
-                "id": "B",
-                "text": "Кислород",
+                "id": "C",
+                "text": "Медь",
                 "isCorrect": true
             },
             {
-                "id": "C",
-                "text": "Олово",
-                "isCorrect": false
-            },
-            {
                 "id": "D",
-                "text": "Осмий",
+                "text": "Сера",
                 "isCorrect": false
             }
         ],
         "difficulty": 4
     },
     {
-        "id": 64,
-        "text": "Как называется столица Австралии?",
+        "id": 23,
+        "text": "Кто был первым человеком, ступившим на Луну?",
         "options": [
             {
                 "id": "A",
-                "text": "Сидней",
+                "text": "Базз Олдрин",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Канберра",
+                "text": "Нил Армстронг",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Мельбурн",
+                "text": "Юрий Гагарин",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Перт",
+                "text": "Майкл Коллинз",
                 "isCorrect": false
             }
         ],
         "difficulty": 4
     },
     {
-        "id": 65,
-        "text": "Как называется самая маленькая частица вещества?",
+        "id": 24,
+        "text": "Сколько сердец у осьминога?",
         "options": [
             {
                 "id": "A",
-                "text": "Молекула",
+                "text": "1",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Атом",
+                "text": "2",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "3",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "4",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 25,
+        "text": "Какой город был столицей Российской империи до Петра I?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Киев",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Москва",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Клетка",
+                "text": "Новгород",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Ион",
+                "text": "Владимир",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 26,
+        "text": "Кто был единственным американским президентом, который служил дольше двух сроков?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Теодор Рузвельт",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Франклин Рузвельт",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Томас Джефферсон",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Авраам Линкольн",
                 "isCorrect": false
             }
         ],
         "difficulty": 5
     },
     {
-        "id": 66,
-        "text": "Сколько дней в году (обычный год)?",
+        "id": 27,
+        "text": "Какое озеро является самым глубоким в мире?",
         "options": [
             {
                 "id": "A",
-                "text": "364",
+                "text": "Виктория",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "365",
-                "isCorrect": true
+                "text": "Танганьика",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "366",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Как повезёт",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 67,
-        "text": "Какой месяц последний в году?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Ноябрь",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Декабрь",
+                "text": "Байкал",
                 "isCorrect": true
             },
             {
-                "id": "C",
-                "text": "Октябрь",
-                "isCorrect": false
-            },
-            {
                 "id": "D",
-                "text": "Когда зарплата закончилась",
+                "text": "Мичиган",
                 "isCorrect": false
             }
         ],
-        "difficulty": 1
+        "difficulty": 5
     },
     {
-        "id": 68,
-        "text": "Сколько букв в слове «кот»?",
+        "id": 28,
+        "text": "Сколько существует основных цветов в модели RGB (для экрана)?",
         "options": [
             {
                 "id": "A",
@@ -1829,528 +749,366 @@
             },
             {
                 "id": "D",
-                "text": "Смотря как растянуть",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 69,
-        "text": "Как называется самая большая планета Солнечной системы?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Сатурн",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Юпитер",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Земля",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Нептун",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 70,
-        "text": "Как называется прибор для измерения температуры?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Барометр",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Термометр",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Гигрометр",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Манометр",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 71,
-        "text": "Какой океан омывает Европу с запада?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Тихий",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Атлантический",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Индийский",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Северный Ледовитый",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 72,
-        "text": "Как называется процесс превращения газа в жидкость?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Испарение",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Конденсация",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Плавление",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Кристаллизация",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 73,
-        "text": "Какой орган человека отвечает за мышление?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Сердце",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Мозг",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Печень",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Желудок",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 74,
-        "text": "Как называется самая глубокая точка мирового океана?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Марианская впадина",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Гренландская впадина",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Тихоокеанская яма",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Атлантический разлом",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 75,
-        "text": "Как называется закон сохранения энергии?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Энергия исчезает",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Энергия не возникает и не исчезает",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Энергия всегда растёт",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Энергия зависит от настроения",
+                "text": "6",
                 "isCorrect": false
             }
         ],
         "difficulty": 5
     },
     {
-        "id": 76,
-        "text": "Сколько месяцев в году?",
+        "id": 29,
+        "text": "Кто написал «Преступление и наказание»?",
         "options": [
             {
                 "id": "A",
-                "text": "10",
+                "text": "Тургенев",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "12",
+                "text": "Достоевский",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "11",
+                "text": "Гоголь",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Когда отпуск — мало",
+                "text": "Булгаков",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 5
+    },
+    {
+        "id": 30,
+        "text": "Какое животное имеет самое высокое кровяное давление?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кит",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Жираф",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Слон",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Орёл",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 5
+    },
+    {
+        "id": 31,
+        "text": "Что обычно пьют из чашки?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Суп",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Чай",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Кашу",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Жидкий стыд",
                 "isCorrect": false
             }
         ],
         "difficulty": 1
     },
     {
-        "id": 77,
-        "text": "Какой цвет получается при смешении синего и жёлтого?",
+        "id": 32,
+        "text": "Где живёт президент США?",
         "options": [
             {
                 "id": "A",
-                "text": "Зелёный",
-                "isCorrect": true
+                "text": "В Кремле",
+                "isCorrect": false
             },
             {
                 "id": "B",
+                "text": "В Белом доме",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "В Букингемском дворце",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "На даче у тёщи",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 33,
+        "text": "Какой прибор показывает время?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Термометр",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Спидометр",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Часы",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Манометр (настроения)",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 34,
+        "text": "Что из этого — транспортное средство?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Шкаф",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Велосипед",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Холодильник",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Табуретка-самокат",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 35,
+        "text": "Что делают с ножом?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Играют в теннис",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Режут",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Моют посуду",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Расчёсывают кота",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 36,
+        "text": "Кто лает?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кошка",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Собака",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Корова",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Начальник в понедельник",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 37,
+        "text": "Какой праздник отмечают 31 декабря в России?",
+        "options": [
+            {
+                "id": "A",
+                "text": "День космонавтики",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Новый год",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "День Победы",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "День перегара",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 38,
+        "text": "Что из этого пишут ручкой?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Пол",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Текст",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Суп",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Штрихкод на лбу",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 39,
+        "text": "Какой цвет у подсолнуха?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Синий",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Жёлтый",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
                 "text": "Фиолетовый",
                 "isCorrect": false
             },
             {
-                "id": "C",
-                "text": "Оранжевый",
-                "isCorrect": false
-            },
-            {
                 "id": "D",
-                "text": "Как повезёт",
+                "text": "Цвет усталости",
                 "isCorrect": false
             }
         ],
         "difficulty": 1
     },
     {
-        "id": 78,
-        "text": "Сколько часов в сутках?",
+        "id": 40,
+        "text": "Что надевают на ноги?",
         "options": [
             {
                 "id": "A",
-                "text": "12",
+                "text": "Шляпу",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "24",
+                "text": "Носки",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "48",
+                "text": "Перчатки",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Всегда не хватает",
+                "text": "Антигравитационные боты",
                 "isCorrect": false
             }
         ],
         "difficulty": 1
     },
     {
-        "id": 79,
-        "text": "Как называется детёныш кошки?",
+        "id": 41,
+        "text": "Сколько музыкантов в классическом квартете?",
         "options": [
             {
                 "id": "A",
-                "text": "Щенок",
+                "text": "2",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Котёнок",
-                "isCorrect": true
+                "text": "3",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Телёнок",
-                "isCorrect": false
+                "text": "4",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Мини-тигр",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 80,
-        "text": "Сколько дней в неделе?",
-        "options": [
-            {
-                "id": "A",
                 "text": "5",
                 "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "7",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "6",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Иногда слишком много",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 81,
-        "text": "Столица Испании?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Барселона",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Мадрид",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Валенсия",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Севилья",
-                "isCorrect": false
             }
         ],
         "difficulty": 2
     },
     {
-        "id": 82,
-        "text": "Сколько градусов в прямом угле?",
-        "options": [
-            {
-                "id": "A",
-                "text": "45",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "90",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "180",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "360",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 2
-    },
-    {
-        "id": 83,
-        "text": "Кто написал «Войну и мир»?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Достоевский",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Толстой",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Пушкин",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Чехов",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 84,
-        "text": "Какой металл является самым лёгким?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Железо",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Литий",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Алюминий",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Медь",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 85,
-        "text": "Как называется самая длинная река в мире?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Амазонка",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Нил",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Янцзы",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Миссисипи",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 86,
-        "text": "Как называется процесс деления клетки?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Митоз",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Фотосинтез",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Осмос",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Диффузия",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 87,
-        "text": "Кто сформулировал теорию относительности?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Ньютон",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Эйнштейн",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Тесла",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Галилей",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 88,
-        "text": "Какой газ составляет большую часть атмосферы Земли?",
+        "id": 42,
+        "text": "Какой газ используется в воздушных шарах для подъёма?",
         "options": [
             {
                 "id": "A",
@@ -2359,7 +1117,7 @@
             },
             {
                 "id": "B",
-                "text": "Азот",
+                "text": "Гелий",
                 "isCorrect": true
             },
             {
@@ -2369,230 +1127,41 @@
             },
             {
                 "id": "D",
-                "text": "Водород",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 89,
-        "text": "Как называется столица Канады?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Торонто",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Оттава",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Ванкувер",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Монреаль",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
-        "id": 90,
-        "text": "Как называется единица измерения силы?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Джоуль",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Ньютон",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Ватт",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Паскаль",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 5
-    },
-    {
-        "id": 91,
-        "text": "Сколько букв в русском алфавите?",
-        "options": [
-            {
-                "id": "A",
-                "text": "32",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "33",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "34",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Иногда больше после ошибок",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 92,
-        "text": "Какой день идёт после пятницы?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Четверг",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Суббота",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Воскресенье",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Лучший день",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 93,
-        "text": "Сколько глаз у паука?",
-        "options": [
-            {
-                "id": "A",
-                "text": "2",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "8",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "6",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Слишком много",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 94,
-        "text": "Как называется крупнейший материк?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Африка",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Евразия",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Америка",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Антарктида",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 95,
-        "text": "Как называется прибор для измерения давления?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Термометр",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Барометр",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Амперметр",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Вольтметр",
+                "text": "Азот",
                 "isCorrect": false
             }
         ],
         "difficulty": 2
     },
     {
-        "id": 96,
-        "text": "Кто написал «Преступление и наказание»?",
+        "id": 43,
+        "text": "Кто написал «Евгения Онегина»?",
         "options": [
             {
                 "id": "A",
-                "text": "Толстой",
+                "text": "Лермонтов",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Достоевский",
+                "text": "Пушкин",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Пушкин",
+                "text": "Грибоедов",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Гоголь",
+                "text": "Некрасов",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
-        "id": 97,
+        "id": 44,
         "text": "Как называется самая высокая гора в мире?",
         "options": [
             {
@@ -2616,84 +1185,840 @@
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
-        "id": 98,
-        "text": "Как называется скорость света в вакууме?",
+        "id": 45,
+        "text": "Какой материк омывают все четыре океана?",
         "options": [
             {
                 "id": "A",
-                "text": "≈300 000 км/с",
-                "isCorrect": true
+                "text": "Африка",
+                "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "≈150 000 км/с",
+                "text": "Австралия",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "≈1 000 000 км/с",
+                "text": "Евразия",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Антарктида",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 46,
+        "text": "Кто изображён на картине «Крик» Эдварда Мунка?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Человек, держащийся за голову",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "Женщина с жемчужной серёжкой",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Расстрел повстанцев",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Зависит от Wi-Fi",
+                "text": "Автопортрет с перегаром",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 47,
+        "text": "Какая страна подарила США статую Свободы?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Англия",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Германия",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Франция",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Италия",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 48,
+        "text": "Что измеряет вольтметр?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Силу тока",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Напряжение",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Сопротивление",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Мощность",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 49,
+        "text": "Кто из этих учёных открыл закон всемирного тяготения?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Галилей",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Ньютон",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Коперник",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Паскаль",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 50,
+        "text": "Какой орган у человека отвечает за перекачку крови?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Лёгкие",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Печень",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Сердце",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Мозг",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 51,
+        "text": "Кто из этих писателей получил Нобелевскую премию по литературе?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Лев Толстой",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Иван Бунин",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Фёдор Достоевский",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Антон Чехов",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 52,
+        "text": "Какой химический элемент имеет символ Fe?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Золото",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Серебро",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Железо",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Фосфор",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 53,
+        "text": "В каком году началась Вторая мировая война?",
+        "options": [
+            {
+                "id": "A",
+                "text": "1937",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "1939",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "1941",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "1938",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 54,
+        "text": "Какая страна является родиной футбола?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Бразилия",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Италия",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Англия",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Германия",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 55,
+        "text": "Как называется ближайшая к Земле звезда (кроме Солнца)?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Сириус",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Проксима Центавра",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Альфа Центавра",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Бетельгейзе",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 56,
+        "text": "Кто написал оперу «Кармен»?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Верди",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Моцарт",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Бизе",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Пуччини",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 57,
+        "text": "Сколько углов у правильного шестиугольника?",
+        "options": [
+            {
+                "id": "A",
+                "text": "4",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "5",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "6",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "8",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 58,
+        "text": "Какой из этих городов был столицей Византийской империи?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Рим",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Афины",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Константинополь",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Иерусалим",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 59,
+        "text": "Какой вид спорта называют «королевой спорта»?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Футбол",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Шахматы",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Лёгкая атлетика",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Плавание",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 60,
+        "text": "Что означает приставка «кило-» в системе СИ?",
+        "options": [
+            {
+                "id": "A",
+                "text": "100",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "1000",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "10",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "1 000 000",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 61,
+        "text": "Какой химический элемент был назван в честь Кипра?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кюрий",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Медь",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Цинк",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Хром",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 62,
+        "text": "Кто из этих правителей основал Санкт-Петербург?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Иван Грозный",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Пётр I",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Екатерина II",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Александр I",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 63,
+        "text": "Сколько рёбер у человека в норме?",
+        "options": [
+            {
+                "id": "A",
+                "text": "20",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "22",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "24",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "26",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 64,
+        "text": "Какая битва считается поворотным моментом Второй мировой войны на Восточном фронте?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Курская битва",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Сталинградская битва",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Битва за Москву",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Битва на Курской дуге",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 65,
+        "text": "Кто был первым человеком, совершившим кругосветное путешествие (экспедиция)?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Христофор Колумб",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Васко да Гама",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Фернан Магеллан",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Джеймс Кук",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 66,
+        "text": "Какой элемент составляет большую часть атмосферы Земли?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кислород",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Азот",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Аргон",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Углекислый газ",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 67,
+        "text": "Кто написал «Божественную комедию»?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Петрарка",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Боккаччо",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Данте Алигьери",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Ариосто",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 68,
+        "text": "Какой океан самый мелкий?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Северный Ледовитый",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "Индийский",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Атлантический",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Тихий",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 69,
+        "text": "В какой стране находится древний город Мачу-Пикчу?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Мексика",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Перу",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Чили",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Бразилия",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 70,
+        "text": "Как называется самая длинная река в мире?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Амазонка",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "Нил",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Янцзы",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Миссисипи",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 4
+    },
+    {
+        "id": 71,
+        "text": "Сколько костей у взрослого человека?",
+        "options": [
+            {
+                "id": "A",
+                "text": "204",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "206",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "208",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "210",
                 "isCorrect": false
             }
         ],
         "difficulty": 5
     },
     {
-        "id": 99,
-        "text": "Как называется процесс превращения твёрдого вещества в жидкость?",
+        "id": 72,
+        "text": "Кто изобрёл радио?",
         "options": [
             {
                 "id": "A",
-                "text": "Испарение",
+                "text": "Маркони",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Плавление",
+                "text": "Попов",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Конденсация",
+                "text": "Тесла",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Замерзание",
+                "text": "Эдисон",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 5
     },
     {
-        "id": 100,
-        "text": "Как называется фундаментальная частица света?",
+        "id": 73,
+        "text": "Какой металл является самым лёгким?",
         "options": [
             {
                 "id": "A",
-                "text": "Электрон",
+                "text": "Алюминий",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фотон",
+                "text": "Магний",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Литий",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Натрий",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 5
+    },
+    {
+        "id": 74,
+        "text": "В каком году был запущен первый искусственный спутник Земли?",
+        "options": [
+            {
+                "id": "A",
+                "text": "1955",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "1957",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Протон",
+                "text": "1959",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Нейтрон",
+                "text": "1961",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 5
+    },
+    {
+        "id": 75,
+        "text": "Кто написал картину «Чёрный квадрат»?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Кандинский",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Малевич",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
+                "text": "Родченко",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Таблин",
                 "isCorrect": false
             }
         ],

@@ -10,6 +10,11 @@
           <img src="/images/logo-game.webp" width="250px" alt="Лого игры" />
         </div>
         <button class="start-button" @click="startGame">Начать игру</button>
+
+        <!-- Кнопка сброса прогресса -->
+        <button class="reset-progress-button" @click="resetProgress">
+          🔄 Сбросить прогресс вопросов
+        </button>
       </div>
     </div>
 
@@ -139,6 +144,7 @@ const {
   useAudienceHint,
   startNewGame, // ✅ добавляем
   returnUnusedQuestions, // ✅ добавляем
+  resetAllProgress,
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
@@ -195,6 +201,15 @@ onMounted(async () => {
   await startNewGame()
   console.log('✅ Вопросы готовы, ждём нажатия "Начать игру"')
 })
+
+const resetProgress = () => {
+  if (confirm('Вы уверены, что хотите сбросить прогресс? Все вопросы снова станут доступны.')) {
+    resetAllProgress() // ✅ теперь должно работать
+    alert('Прогресс сброшен! Начните новую игру.')
+    // Перезагружаем страницу, чтобы применить изменения
+    window.location.reload()
+  }
+}
 </script>
 
 <style>
@@ -288,6 +303,8 @@ body {
 }
 
 .start-card {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
   border: 2px solid #ffd700;
   border-radius: 20px;
@@ -596,5 +613,21 @@ body {
   .options-grid {
     grid-template-columns: 1fr;
   }
+}
+.reset-progress-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #666, #444);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.reset-progress-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #888, #666);
 }
 </style>

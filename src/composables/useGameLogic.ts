@@ -16,13 +16,13 @@ const DELAYS = {
 
 export function useGameLogic() {
   const {
-    questions,
     getQuestion,
     totalQuestions,
     isLastQuestion,
-    startNewGame, // ✅ вместо loadQuestions
+    startNewGame,
     returnUnusedQuestions,
     getQuestionsStats,
+    resetAllProgress,
   } = useQuestions()
 
   const soundManager = useSoundManager()
@@ -366,5 +366,6 @@ export function useGameLogic() {
     startNewGame,
     returnUnusedQuestions,
     getQuestionsStats,
+    resetAllProgress,
   }
 }
