@@ -34,6 +34,26 @@ export function useQuestions() {
     }
   }
 
+  // Функция для случайного перемешивания массива (алгоритм Фишера-Йетса)
+  const shuffleArray = <T>(array: T[]): T[] => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
+
+  // Функция для перемешивания вариантов ответа с сохранением правильного
+  const shuffleOptions = (options: Option[]): Option[] => {
+    const shuffled = shuffleArray(options)
+    const newIds: ('A' | 'B' | 'C' | 'D')[] = ['A', 'B', 'C', 'D']
+    return shuffled.map((opt, index) => ({
+      ...opt,
+      id: newIds[index],
+    }))
+  }
+
   // ========== Получение случайного вопроса нужной сложности ==========
   const getRandomQuestionByDifficulty = (
     difficulty: number,
@@ -67,7 +87,15 @@ export function useQuestions() {
       }
 
       usedInCurrentGame.push(question.id)
-      gameQuestions.push({ ...question, displayId: i + 1 })
+
+      // ✅ Перемешиваем варианты ответов перед добавлением вопроса
+      const shuffledOptions = shuffleOptions(question.options)
+
+      gameQuestions.push({
+        ...question,
+        options: shuffledOptions,
+        displayId: i + 1,
+      })
     }
 
     // добавляем в глобальную историю

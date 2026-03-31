@@ -19,11 +19,15 @@
       "
       @click="handleSelect(option)"
     >
-      <span class="option-letter" :class="{ revealed: isOptionRevealed(option.id) }">
+      <span
+        v-if="!hiddenOptions?.includes(option.id)"
+        class="option-letter"
+        :class="{ revealed: isOptionRevealed(option.id) }"
+      >
         {{ option.id }}:
       </span>
       <span class="option-text" :class="{ revealed: isOptionRevealed(option.id) }">
-        {{ hiddenOptions?.includes(option.id) ? '—' : option.text }}
+        {{ hiddenOptions?.includes(option.id) ? '' : option.text }}
       </span>
     </button>
   </div>
@@ -83,6 +87,7 @@ const handleSelect = (option: Option) => {
   background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
   border: 2px solid #ffd700;
   border-radius: 12px;
+  min-height: 68px;
   padding: 20px 25px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -92,6 +97,7 @@ const handleSelect = (option: Option) => {
   font-size: 20px;
 
   @media (max-width: 768px) {
+    min-height: 48px;
     padding: 10px 15px;
   }
 }

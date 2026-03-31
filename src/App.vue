@@ -575,7 +575,7 @@ body {
   }
 
   .current-winnings {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .question-counter {
