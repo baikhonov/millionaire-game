@@ -1,26 +1,31 @@
 [
     {
         "id": 1,
-        "text": "Что обычно делают с компьютерной мышью?",
+        "text": "Что это за сооружение'?",
+        "media": {
+            "type": "image",
+            "url": "/images/eiffel-tower.webp",
+            "caption": ""
+        },
         "options": [
             {
                 "id": "A",
-                "text": "Едят",
+                "text": "Пизанская башня",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Кликают",
+                "text": "Эйфелева башня",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Спят с ней",
+                "text": "Башня Белен",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Поливают",
+                "text": "Венсенская башня",
                 "isCorrect": false
             }
         ],
@@ -263,7 +268,7 @@
             },
             {
                 "id": "D",
-                "text": "Комары (но не графа)",
+                "text": "Комары",
                 "isCorrect": false
             }
         ],

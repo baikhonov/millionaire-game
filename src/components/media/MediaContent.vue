@@ -84,7 +84,7 @@ const openFullscreen = (event: MouseEvent) => {
 
 <style scoped>
 .media-content {
-  margin: 20px 0;
+  margin: 20px 0 0;
   text-align: center;
   animation: fadeIn 0.3s ease;
 }

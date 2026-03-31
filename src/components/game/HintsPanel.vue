@@ -104,7 +104,9 @@ defineEmits<{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 15px;
+
+    padding: 15px 20px;
   }
 
   .hint-btn {

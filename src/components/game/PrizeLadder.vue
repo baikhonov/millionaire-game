@@ -47,7 +47,7 @@ const reversedPrizeLevels = computed(() => {
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 15px 10px;
+  padding: 10px 0;
   border: 1px solid #ffd700;
   max-height: calc(100vh - 140px);
   overflow-y: auto;
@@ -93,10 +93,6 @@ const reversedPrizeLevels = computed(() => {
   font-weight: bold;
   font-size: 18px;
   color: #ffd700;
-  border-radius: 8px;
-  border-left: 3px solid #ffd700;
-  border-right: 3px solid #ffd700;
-  transform: scale(1.02);
 }
 
 /* Пройденные вопросы */

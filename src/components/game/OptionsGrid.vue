@@ -71,13 +71,11 @@ const handleSelect = (option: Option) => {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin: 40px auto;
+  margin: 20px auto;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 10px;
-
-    margin: 20px auto;
   }
 }
 
@@ -91,24 +89,19 @@ const handleSelect = (option: Option) => {
   display: flex;
   align-items: center;
   text-align: left;
-  min-height: 80px;
   font-size: 20px;
-  line-height: 40px;
 
   @media (max-width: 768px) {
-    min-height: 0;
     padding: 10px 15px;
   }
 }
 
 .option-letter {
   display: inline-block;
-  width: 40px;
-  height: 40px;
   text-align: center;
   color: #ffd700;
   font-weight: bold;
-  margin-right: 5px;
+  margin-right: 15px;
   flex-shrink: 0;
   transition: opacity 0.4s ease-out;
   opacity: 0;

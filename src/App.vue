@@ -604,11 +604,11 @@ body {
 
 @media (max-width: 480px) {
   .game-container {
-    padding: 0 15px;
+    padding: 15px;
   }
 
   .game-layout {
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 0;
   }
 
@@ -618,6 +618,10 @@ body {
 
   .options-grid {
     grid-template-columns: 1fr;
+  }
+
+  .reveal-button-container {
+    margin-top: 0;
   }
 }
 .reset-progress-button {

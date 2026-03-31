@@ -24,8 +24,8 @@ defineProps<{
   background: linear-gradient(135deg, rgba(10, 15, 30, 0.9) 0%, rgba(5, 8, 20, 0.95) 100%);
   border: 2px solid #ffd700;
   border-radius: 20px;
-  padding: 30px;
-  margin-bottom: 40px;
+  padding: 20px;
+  margin-bottom: 30px;
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
