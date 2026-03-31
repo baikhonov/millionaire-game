@@ -74,8 +74,8 @@ export function useGameLogic() {
 
   const allOptionsRevealed = computed(() => optionsRevealed.value.length === 4)
 
-  const formatMoney = (amount: number): string => {
-    return new Intl.NumberFormat('ru-RU').format(amount) + ' ₽'
+  const formatMoney = (amount: number, currency = '₽'): string => {
+    return new Intl.NumberFormat('ru-RU').format(amount) + ' ' + currency
   }
 
   // ========== Музыка ==========
@@ -178,7 +178,6 @@ export function useGameLogic() {
     if (isAnswered.value || isAnswerRevealed.value || gameEnded.value) return
 
     selectedOption.value = option
-    isAnswered.value = true
     isWaitingForReveal.value = true
 
     soundManager.stopMusic()

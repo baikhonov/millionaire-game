@@ -162,7 +162,7 @@ const handleSelect = (option: Option) => {
   color: white;
 }
 
-.option-button:hover:not(:disabled) {
+.option-button:hover:not(:disabled):not(.selected) {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   background: linear-gradient(135deg, #2a2f3e 0%, #1f2430 100%);

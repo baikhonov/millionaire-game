@@ -90,7 +90,7 @@
     <div v-else-if="gameEnded" class="game-over-screen">
       <div class="game-over-card">
         <h1>{{ gameResult }}</h1>
-        <p class="winnings">Ваш выигрыш: {{ formatMoney(finalWinnings) }}</p>
+        <p class="winnings">Ваш выигрыш: {{ formatMoney(finalWinnings, 'бачатакоинов') }}</p>
         <button class="restart-button" @click="restartGame">Играть снова</button>
       </div>
     </div>
