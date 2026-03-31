@@ -568,6 +568,10 @@ body {
     margin-top: 100px;
   }
 
+  .game-over-card {
+    padding: 30px 10px;
+  }
+
   .top-bar {
     padding: 15px 20px;
   }
