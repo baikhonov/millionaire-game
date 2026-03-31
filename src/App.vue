@@ -25,7 +25,7 @@
     </div>
 
     <!-- Игра -->
-    <div v-else-if="!gameEnded" class="game-container">
+    <div v-else-if="!gameEnded">
       <div class="top-bar">
         <div class="current-winnings">
           {{ formatMoney(currentWinnings) }}
@@ -39,49 +39,51 @@
         <div class="progress-fill" :style="{ width: progress + '%' }"></div>
       </div>
 
-      <div class="game-layout">
-        <div class="game-main">
-          <div v-if="currentQuestion" class="question-section">
-            <QuestionCard :question="currentQuestion" />
+      <div class="game-container">
+        <div class="game-layout">
+          <div class="game-main">
+            <div v-if="currentQuestion" class="question-section">
+              <QuestionCard :question="currentQuestion" />
 
-            <OptionsGrid
-              :key="currentQuestionIndex"
-              :options="currentQuestion.options"
-              :selected-option="selectedOption"
-              :is-answered="isAnswered"
-              :is-answer-revealed="isAnswerRevealed"
-              :is-revealing="isRevealingOptions"
-              :options-revealed="optionsRevealed"
-              :hidden-options="hiddenOptions"
-              @select="selectAnswer"
-            />
+              <OptionsGrid
+                :key="currentQuestionIndex"
+                :options="currentQuestion.options"
+                :selected-option="selectedOption"
+                :is-answered="isAnswered"
+                :is-answer-revealed="isAnswerRevealed"
+                :is-revealing="isRevealingOptions"
+                :options-revealed="optionsRevealed"
+                :hidden-options="hiddenOptions"
+                @select="selectAnswer"
+              />
 
-            <div class="reveal-button-container">
-              <button
-                v-if="isWaitingForReveal && !isAnswerRevealed"
-                class="reveal-button"
-                @click="revealAnswer"
-              >
-                🔍 Показать правильный ответ
-              </button>
+              <div class="reveal-button-container">
+                <button
+                  v-if="isWaitingForReveal && !isAnswerRevealed"
+                  class="reveal-button"
+                  @click="revealAnswer"
+                >
+                  🔍 Показать правильный ответ
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="game-sidebar">
-          <!-- Подсказки -->
-          <HintsPanel
-            :used-hints="usedHints"
-            :disabled="isAnswered || isAnswerRevealed"
-            @fifty-fifty="useFiftyFifty"
-            @call="useCallHint"
-            @audience="useAudienceHint"
-          />
+          <div class="game-sidebar">
+            <!-- Подсказки -->
+            <HintsPanel
+              :used-hints="usedHints"
+              :disabled="isAnswered || isAnswerRevealed"
+              @fifty-fifty="useFiftyFifty"
+              @call="useCallHint"
+              @audience="useAudienceHint"
+            />
 
-          <PrizeLadder
-            :prize-levels="prizeLevels"
-            :current-index="currentQuestionIndex"
-            :format-money="formatMoney"
-          />
+            <PrizeLadder
+              :prize-levels="prizeLevels"
+              :current-index="currentQuestionIndex"
+              :format-money="formatMoney"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -374,17 +376,12 @@ body {
 /* Верхняя панель */
 .game-container {
   position: relative;
-  z-index: 1;
-  padding: 20px;
   max-width: 1440px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -407,10 +404,6 @@ body {
 }
 
 .progress-bar {
-  position: fixed;
-  top: 62px;
-  left: 0;
-  right: 0;
   height: 3px;
   background: rgba(255, 255, 255, 0.2);
   z-index: 10;
@@ -426,7 +419,7 @@ body {
 .game-layout {
   display: flex;
   gap: 30px;
-  margin-top: 80px;
+  margin-top: 30px;
   padding: 0 20px;
   max-width: 1400px;
   margin-left: auto;
@@ -605,9 +598,13 @@ body {
 }
 
 @media (max-width: 480px) {
+  .game-container {
+    padding: 0 15px;
+  }
+
   .game-layout {
-    margin-top: 80px;
-    padding: 0 12px;
+    margin-top: 30px;
+    padding: 0;
   }
 
   .question-text {
