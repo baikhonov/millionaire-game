@@ -102,6 +102,38 @@ export function useSoundManager() {
     console.log('⏹️ Все эффекты остановлены')
   }
 
+  // Метод для получения длительности звука
+  const getAudioDuration = (url: string): Promise<number> => {
+    return new Promise((resolve) => {
+      const audio = new Audio(url)
+
+      const cleanup = () => {
+        audio.removeEventListener('loadedmetadata', onLoaded)
+        audio.removeEventListener('error', onError)
+        audio.src = ''
+        audio.load()
+      }
+
+      const onLoaded = () => {
+        const duration = audio.duration * 1000 // переводим в миллисекунды
+        console.log(`🎵 Длительность звука ${url}: ${duration}мс`)
+        cleanup()
+        resolve(duration)
+      }
+
+      const onError = () => {
+        console.warn(`⚠️ Не удалось определить длительность: ${url}`)
+        cleanup()
+        resolve(0) // при ошибке возвращаем 0
+      }
+
+      audio.addEventListener('loadedmetadata', onLoaded)
+      audio.addEventListener('error', onError)
+      audio.src = url
+      audio.load()
+    })
+  }
+
   const playVictoryMusic = (difficulty: number, questionNumber: number): void => {
     console.log(`🎵 playVictoryMusic вызван с difficulty = ${difficulty}`)
     console.log(`🎵 isAudioEnabled = ${isAudioEnabled.value}, isMuted = ${isMuted.value}`)
@@ -315,5 +347,6 @@ export function useSoundManager() {
     setSFXVolume,
     toggleMute,
     cleanup,
+    getAudioDuration,
   }
 }

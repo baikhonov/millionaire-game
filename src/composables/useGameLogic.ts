@@ -3,6 +3,7 @@ import { ref, computed, readonly } from 'vue'
 import { useQuestions } from './useQuestions'
 import { useSoundManager } from './useSoundManager'
 import type { Option, UsedHints } from '@/types/game'
+import { BASE_URL } from '@/config'
 
 // Настройки задержек (в миллисекундах)
 const DELAYS = {
@@ -10,6 +11,8 @@ const DELAYS = {
   NEXT_QUESTION: 1500, // пауза перед переходом к следующему вопросу (после подсветки)
   FIRST_OPTION: 800, // пауза перед появлением первого варианта
   OPTION_INTERVAL: 1000, // интервал между появлением вариантов
+  MILESTONE_EXTRA_DELAY: 2000, // запасная задержка, если не удалось определить длительность
+  FINAL_FAIL_EXTRA_DELAY: 3000, // запасная задержка для финального поражения (если не удалось определить длительность)
 }
 
 export function useGameLogic() {
@@ -207,28 +210,42 @@ export function useGameLogic() {
 
     setTimeout(() => {
       if (isCorrect) {
-        handleCorrectAnswer()
+        handleCorrectAnswer().catch((e) => console.error('Ошибка в handleCorrectAnswer:', e))
       } else {
-        handleWrongAnswer()
+        handleWrongAnswer().catch((e) => console.error('Ошибка в handleWrongAnswer:', e))
       }
     }, DELAYS.REVEAL_ANSWER)
   }
 
-  const handleCorrectAnswer = (): void => {
+  const handleCorrectAnswer = async (): Promise<void> => {
     currentWinnings.value = prizeLevels[currentQuestionIndex.value]
 
     if (isLastQuestion(currentQuestionIndex.value)) {
       gameResult.value = 'ПОБЕДА! Вы стали миллионером!'
       finalWinnings.value = 1000000
       gameEnded.value = true
-
-      // Передаём сложность текущего вопроса
-      // const difficulty = currentQuestion.value?.difficulty || 1
-      // soundManager.playVictoryMusic(difficulty)
     } else {
-      setTimeout(() => {
-        nextQuestion()
-      }, DELAYS.NEXT_QUESTION)
+      // Проверяем, является ли вопрос несгораемой суммой (5-й или 10-й)
+      const isMilestone = currentQuestionIndex.value === 4 || currentQuestionIndex.value === 9
+
+      if (isMilestone) {
+        // Получаем длительность звука victory-milestone.mp3
+        const milestoneUrl = `${BASE_URL}sounds/effects/victory-milestone.mp3`
+        const duration = await soundManager.getAudioDuration(milestoneUrl)
+
+        // Используем длительность звука + небольшая пауза для плавности
+        const extraDelay = duration > 0 ? duration : DELAYS.MILESTONE_EXTRA_DELAY
+
+        console.log(`🎵 Milestone: ждём ${extraDelay}мс перед следующим вопросом`)
+
+        setTimeout(() => {
+          nextQuestion()
+        }, extraDelay)
+      } else {
+        setTimeout(() => {
+          nextQuestion()
+        }, DELAYS.NEXT_QUESTION)
+      }
     }
   }
 
@@ -248,7 +265,8 @@ export function useGameLogic() {
     }, 500)
   }
 
-  const handleWrongAnswer = (): void => {
+  const handleWrongAnswer = async (): Promise<void> => {
+    // Определяем гарантированный выигрыш
     if (currentQuestionIndex.value >= 10) {
       finalWinnings.value = prizeLevels[9]
     } else if (currentQuestionIndex.value >= 5) {
@@ -257,12 +275,32 @@ export function useGameLogic() {
       finalWinnings.value = 0
     }
 
-    // Задержка перед завершением игры
-    setTimeout(() => {
-      gameResult.value = `К сожалению, вы ошиблись!`
-      gameEnded.value = true
-      soundManager.playGameOverMusic()
-    }, DELAYS.NEXT_QUESTION)
+    // Проверяем, финальный ли это вопрос (15-й)
+    const isFinalQuestion = isLastQuestion(currentQuestionIndex.value)
+
+    if (isFinalQuestion) {
+      // Получаем длительность звука fail-final.mp3
+      const failFinalUrl = `${BASE_URL}sounds/effects/fail-final.mp3`
+      const duration = await soundManager.getAudioDuration(failFinalUrl)
+
+      // Используем длительность звука + небольшая пауза для плавности
+      const extraDelay = duration > 0 ? duration : DELAYS.FINAL_FAIL_EXTRA_DELAY
+
+      console.log(`🎵 Финальное поражение: ждём ${extraDelay}мс перед показом экрана`)
+
+      setTimeout(() => {
+        gameResult.value = `К сожалению, вы ошиблись!`
+        gameEnded.value = true
+        soundManager.playGameOverMusic()
+      }, extraDelay)
+    } else {
+      // Обычное поражение
+      setTimeout(() => {
+        gameResult.value = `К сожалению, вы ошиблись!`
+        gameEnded.value = true
+        soundManager.playGameOverMusic()
+      }, DELAYS.NEXT_QUESTION)
+    }
   }
 
   const takeMoney = (): void => {
