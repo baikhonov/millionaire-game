@@ -1,3 +1,4 @@
+<!-- src/components/game/OptionsGrid.vue -->
 <template>
   <div class="options-grid">
     <button
@@ -8,24 +9,21 @@
         selected: selectedOption?.id === option.id,
         'correct-revealed': isAnswerRevealed && option.isCorrect,
         'wrong-revealed': isAnswerRevealed && selectedOption?.id === option.id && !option.isCorrect,
-        'fifty-fifty-removed': isFiftyFiftyRemoved(option.id),
+        'fifty-fifty-removed': hiddenOptions?.includes(option.id),
       }"
       :disabled="
         isAnswered ||
         isAnswerRevealed ||
         !isOptionRevealed(option.id) ||
-        isFiftyFiftyRemoved(option.id)
+        hiddenOptions?.includes(option.id)
       "
       @click="handleSelect(option)"
     >
       <span class="option-letter" :class="{ revealed: isOptionRevealed(option.id) }">
         {{ option.id }}
       </span>
-      <span
-        class="option-text"
-        :class="{ revealed: isOptionRevealed(option.id) && !isFiftyFiftyRemoved(option.id) }"
-      >
-        {{ isFiftyFiftyRemoved(option.id) ? '—' : option.text }}
+      <span class="option-text" :class="{ revealed: isOptionRevealed(option.id) }">
+        {{ hiddenOptions?.includes(option.id) ? '—' : option.text }}
       </span>
     </button>
   </div>
@@ -48,22 +46,20 @@ const emit = defineEmits<{
   (e: 'select', option: Option): void
 }>()
 
+// Проверка, появился ли вариант
 const isOptionRevealed = (optionId: string): boolean => {
   if (!props.optionsRevealed) return true
+  // ✅ Разрешаем выбор, как только вариант появился (не ждём остальные)
   return props.optionsRevealed.includes(optionId)
 }
 
-// Проверка, убран ли вариант по 50:50
-const isFiftyFiftyRemoved = (optionId: string): boolean => {
-  return props.hiddenOptions?.includes(optionId) || false
-}
-
 const handleSelect = (option: Option) => {
+  // ✅ Можно выбрать только если вариант уже появился
   if (
     !props.isAnswered &&
     !props.isAnswerRevealed &&
     isOptionRevealed(option.id) &&
-    !isFiftyFiftyRemoved(option.id)
+    !props.hiddenOptions?.includes(option.id)
   ) {
     emit('select', option)
   }

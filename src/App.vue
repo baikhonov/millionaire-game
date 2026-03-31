@@ -1,4 +1,3 @@
-<!-- src/App.vue -->
 <template>
   <div class="millionaire-game">
     <div class="game-background"></div>
@@ -99,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
@@ -138,12 +137,13 @@ const {
   useFiftyFifty,
   useCallHint,
   useAudienceHint,
+  startNewGame, // ✅ добавляем
+  returnUnusedQuestions, // ✅ добавляем
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
 
-const reversedPrizeLevels = computed(() => [...prizeLevels].reverse())
-const totalQuestions = computed(() => prizeLevels.length)
+const totalQuestions = computed(() => game.prizeLevels.length)
 
 const startGame = async () => {
   console.log('🎮 Начинаем игру')
@@ -151,6 +151,7 @@ const startGame = async () => {
   enableAudio()
   await new Promise((resolve) => setTimeout(resolve, 100))
 
+  // Вопросы уже загружены через startNewGame в onMounted
   await initGame()
 
   if (isAudioEnabled.value && !isMuted.value) {
@@ -171,17 +172,29 @@ const revealAnswer = () => {
 const restartGame = async () => {
   console.log('🔄 Перезапуск игры')
 
+  // Возвращаем неиспользованные вопросы в пул
+  returnUnusedQuestions()
+
+  // Генерируем новые вопросы для следующего игрока
+  await startNewGame()
+
   // Сбрасываем состояние игры
   resetGame()
 
-  // Загружаем вопросы и запускаем всё заново
+  // Запускаем игру
   await initGame()
 
-  // Включаем музыку, если звук включён
   if (isAudioEnabled.value && !isMuted.value) {
     playQuestionMusic(1)
   }
 }
+
+// При монтировании — генерируем вопросы для первого игрока
+onMounted(async () => {
+  console.log('🚀 Приложение загружено, генерируем вопросы')
+  await startNewGame()
+  console.log('✅ Вопросы готовы, ждём нажатия "Начать игру"')
+})
 </script>
 
 <style>

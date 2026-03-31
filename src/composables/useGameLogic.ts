@@ -3,20 +3,28 @@ import { ref, computed, readonly } from 'vue'
 import { useQuestions } from './useQuestions'
 import { useSoundManager } from './useSoundManager'
 import type { Option, UsedHints } from '@/types/game'
-import { BASE_URL } from '@/config'
 
-// Настройки задержек (в миллисекундах)
+// Настройки задержек
 const DELAYS = {
-  REVEAL_ANSWER: 1500, // пауза после нажатия "Показать правильный ответ"
-  NEXT_QUESTION: 1500, // пауза перед переходом к следующему вопросу (после подсветки)
-  FIRST_OPTION: 800, // пауза перед появлением первого варианта
-  OPTION_INTERVAL: 1000, // интервал между появлением вариантов
-  MILESTONE_EXTRA_DELAY: 2000, // запасная задержка, если не удалось определить длительность
-  FINAL_FAIL_EXTRA_DELAY: 3000, // запасная задержка для финального поражения (если не удалось определить длительность)
+  REVEAL_ANSWER: 1500,
+  NEXT_QUESTION: 1500,
+  FIRST_OPTION: 800,
+  OPTION_INTERVAL: 1000,
+  MILESTONE_EXTRA_DELAY: 2000,
+  FINAL_FAIL_EXTRA_DELAY: 3000,
 }
 
 export function useGameLogic() {
-  const { loadQuestions, getQuestion, totalQuestions, isLastQuestion } = useQuestions()
+  const {
+    questions,
+    getQuestion,
+    totalQuestions,
+    isLastQuestion,
+    startNewGame, // ✅ вместо loadQuestions
+    returnUnusedQuestions,
+    getQuestionsStats,
+  } = useQuestions()
+
   const soundManager = useSoundManager()
 
   // ========== Состояние игры ==========
@@ -33,73 +41,21 @@ export function useGameLogic() {
   const isCheckingAnswer = ref<boolean>(false)
 
   // ========== Подсказки ==========
-  const usedHints = ref<UsedHints>({
+  const usedHints = ref({
     fiftyFifty: false,
     call: false,
     audience: false,
   })
 
-  // Для 50:50 — храним скрытые варианты для ТЕКУЩЕГО вопроса
+  // Для 50:50 — храним скрытые варианты
   const hiddenOptions = ref<string[]>([])
 
-  // Подсказка 50:50 — убираем 2 неверных варианта
-  const useFiftyFifty = (): void => {
-    // Проверяем: можно использовать только 1 раз за игру и пока ответ не выбран
-    if (usedHints.value.fiftyFifty || isAnswered.value || isAnswerRevealed.value) {
-      return
-    }
-
-    usedHints.value.fiftyFifty = true // навсегда блокируем кнопку
-    soundManager.stopMusic()
-    soundManager.playFiftyFifty()
-
-    // Находим два неправильных варианта для скрытия
-    const allOptions = currentQuestion.value?.options || []
-    const incorrectOptions = allOptions.filter((opt) => !opt.isCorrect)
-    const toHide = incorrectOptions.slice(0, 2).map((opt) => opt.id)
-
-    hiddenOptions.value = toHide
-    console.log('🔍 50:50 — скрыты варианты:', toHide)
-    console.log('🔍 hiddenOptions.value:', hiddenOptions.value)
-  }
-
-  // Подсказка "Звонок другу"
-  const useCallHint = (): void => {
-    if (usedHints.value.call || isAnswered.value || isAnswerRevealed.value) {
-      return
-    }
-
-    usedHints.value.call = true // навсегда блокируем кнопку
-    soundManager.stopMusic()
-    soundManager.playCall()
-    console.log(`📞 Звонок другу — игрок звонит оффлайн`)
-  }
-
-  // Подсказка "Помощь зала"
-  const useAudienceHint = (): void => {
-    if (usedHints.value.audience || isAnswered.value || isAnswerRevealed.value) {
-      return
-    }
-
-    usedHints.value.audience = true // навсегда блокируем кнопку
-    soundManager.stopMusic()
-    soundManager.playAudience()
-    console.log(`👥 Помощь зала — игрок спрашивает зал оффлайн`)
-  }
-
-  // Сброс для нового вопроса (только скрытых вариантов)
-  const resetHintsForNewQuestion = (): void => {
-    // НЕ сбрасываем usedHints — они на всю игру!
-    hiddenOptions.value = [] // очищаем скрытые варианты для нового вопроса
-  }
-
   // ========== Появление вариантов ==========
-  const optionsRevealed = ref<string[]>([]) // уже показанные варианты (A,B,C,D)
-  const isRevealingOptions = ref(false) // идёт ли анимация появления
-  let revealTimer: number | null = null // таймер появления
-  let currentRevealIndex = 0 // текущий индекс в очереди
-
-  const revealOrder = ref<('A' | 'B' | 'C' | 'D')[]>(['A', 'B', 'C', 'D']) // порядок
+  const optionsRevealed = ref<string[]>([])
+  const isRevealingOptions = ref(false)
+  let revealTimer: number | null = null
+  let currentRevealIndex = 0
+  const revealOrder = ref<('A' | 'B' | 'C' | 'D')[]>(['A', 'B', 'C', 'D'])
 
   // ========== Таблица выигрышей ==========
   const prizeLevels: number[] = [
@@ -124,7 +80,6 @@ export function useGameLogic() {
 
   // ========== Музыка ==========
   const startQuestionMusic = async (): Promise<void> => {
-    // Если у текущего вопроса есть аудио или видео, музыку не включаем
     if (
       currentQuestion.value?.media?.type === 'audio' ||
       currentQuestion.value?.media?.type === 'video'
@@ -139,7 +94,6 @@ export function useGameLogic() {
   // ========== Управление появлением вариантов ==========
   const revealNextOption = (): void => {
     if (currentRevealIndex >= revealOrder.value.length) {
-      // Все варианты показаны
       isRevealingOptions.value = false
       currentRevealIndex = 0
       return
@@ -149,13 +103,11 @@ export function useGameLogic() {
     optionsRevealed.value.push(optionId)
     currentRevealIndex++
 
-    // Если ещё есть варианты – планируем следующий
     if (currentRevealIndex < revealOrder.value.length) {
       revealTimer = window.setTimeout(() => {
         revealNextOption()
       }, DELAYS.OPTION_INTERVAL)
     } else {
-      // Последний вариант показан, завершаем анимацию
       setTimeout(() => {
         isRevealingOptions.value = false
         currentRevealIndex = 0
@@ -169,7 +121,6 @@ export function useGameLogic() {
     optionsRevealed.value = []
     currentRevealIndex = 0
 
-    // Небольшая задержка перед первым вариантом
     revealTimer = window.setTimeout(() => {
       revealNextOption()
     }, DELAYS.FIRST_OPTION)
@@ -192,14 +143,10 @@ export function useGameLogic() {
   // ========== Логика игры ==========
   const initGame = async (): Promise<void> => {
     isLoading.value = true
-    await loadQuestions()
+    // Не загружаем вопросы здесь, они уже загружены через startNewGame
     resetGame()
     isLoading.value = false
 
-    // Загружаем и ждём музыку для первого вопроса
-    await startQuestionMusic()
-
-    // После загрузки музыки запускаем появление вариантов
     setTimeout(() => {
       startRevealOptions()
     }, 500)
@@ -224,18 +171,11 @@ export function useGameLogic() {
     }
 
     hiddenOptions.value = []
-
     resetOptionsReveal()
   }
 
   const selectAnswer = (option: Option): void => {
     if (isAnswered.value || isAnswerRevealed.value || gameEnded.value) return
-
-    // Разрешаем выбрать только те варианты, которые уже появились
-    if (!isOptionRevealed(option.id)) {
-      console.log(`⚠️ Вариант ${option.id} ещё не появился, нельзя выбрать`)
-      return
-    }
 
     selectedOption.value = option
     isAnswered.value = true
@@ -249,31 +189,24 @@ export function useGameLogic() {
   const revealAnswer = (): void => {
     if (!isWaitingForReveal.value || isAnswerRevealed.value) return
 
-    console.log(`🔍 revealAnswer вызван, isCorrect = ${selectedOption.value?.isCorrect}`)
-
     soundManager.stopAllEffects()
     isAnswerRevealed.value = true
 
     const isCorrect = selectedOption.value?.isCorrect || false
     const isFinalQuestion = isLastQuestion(currentQuestionIndex.value)
     const difficulty = currentQuestion.value?.difficulty || 1
-    const currentNumber = currentQuestionIndex.value + 1 // номер вопроса (1-15)
-
-    console.log(`🎮 isCorrect: ${isCorrect}, вопрос: ${currentNumber}, difficulty: ${difficulty}`)
 
     if (isCorrect) {
-      console.log(`🎮 Вызываем playVictoryMusic для вопроса ${currentNumber}`)
-      soundManager.playVictoryMusic(difficulty, currentNumber)
+      soundManager.playVictoryMusic(difficulty, currentQuestionIndex.value + 1)
     } else {
-      console.log(`🎮 Вызываем playFailMusic с isFinalQuestion = ${isFinalQuestion}`)
       soundManager.playFailMusic(isFinalQuestion)
     }
 
-    setTimeout(async () => {
+    setTimeout(() => {
       if (isCorrect) {
-        await handleCorrectAnswer()
+        handleCorrectAnswer()
       } else {
-        await handleWrongAnswer()
+        handleWrongAnswer()
       }
     }, DELAYS.REVEAL_ANSWER)
   }
@@ -286,18 +219,12 @@ export function useGameLogic() {
       finalWinnings.value = 1000000
       gameEnded.value = true
     } else {
-      // Проверяем, является ли вопрос несгораемой суммой (5-й или 10-й)
       const isMilestone = currentQuestionIndex.value === 4 || currentQuestionIndex.value === 9
 
       if (isMilestone) {
-        // Получаем длительность звука victory-milestone.mp3
-        const milestoneUrl = `${BASE_URL}sounds/effects/victory-milestone.mp3`
+        const milestoneUrl = `${import.meta.env.BASE_URL}sounds/effects/victory-milestone.mp3`
         const duration = await soundManager.getAudioDuration(milestoneUrl)
-
-        // Используем длительность звука + небольшая пауза для плавности
-        const extraDelay = duration > 0 ? duration : DELAYS.MILESTONE_EXTRA_DELAY
-
-        console.log(`🎵 Milestone: ждём ${extraDelay}мс перед следующим вопросом`)
+        const extraDelay = duration > 0 ? duration + 200 : DELAYS.MILESTONE_EXTRA_DELAY
 
         setTimeout(async () => {
           await nextQuestion()
@@ -318,20 +245,16 @@ export function useGameLogic() {
     isWaitingForReveal.value = false
 
     resetOptionsReveal()
-
     hiddenOptions.value = []
 
-    // Ждём загрузки музыки для следующего вопроса
     await startQuestionMusic()
 
-    // Запускаем появление вариантов для нового вопроса
     setTimeout(() => {
       startRevealOptions()
     }, 500)
   }
 
   const handleWrongAnswer = async (): Promise<void> => {
-    // Определяем гарантированный выигрыш
     if (currentQuestionIndex.value >= 10) {
       finalWinnings.value = prizeLevels[9]
     } else if (currentQuestionIndex.value >= 5) {
@@ -340,18 +263,12 @@ export function useGameLogic() {
       finalWinnings.value = 0
     }
 
-    // Проверяем, финальный ли это вопрос (15-й)
     const isFinalQuestion = isLastQuestion(currentQuestionIndex.value)
 
     if (isFinalQuestion) {
-      // Получаем длительность звука fail-final.mp3
-      const failFinalUrl = `${BASE_URL}sounds/effects/fail-final.mp3`
+      const failFinalUrl = `${import.meta.env.BASE_URL}sounds/effects/fail-final.mp3`
       const duration = await soundManager.getAudioDuration(failFinalUrl)
-
-      // Используем длительность звука + небольшая пауза для плавности
-      const extraDelay = duration > 0 ? duration : DELAYS.FINAL_FAIL_EXTRA_DELAY
-
-      console.log(`🎵 Финальное поражение: ждём ${extraDelay}мс перед показом экрана`)
+      const extraDelay = duration > 0 ? duration + 200 : DELAYS.FINAL_FAIL_EXTRA_DELAY
 
       setTimeout(() => {
         gameResult.value = `К сожалению, вы ошиблись!`
@@ -359,13 +276,45 @@ export function useGameLogic() {
         soundManager.playGameOverMusic()
       }, extraDelay)
     } else {
-      // Обычное поражение
       setTimeout(() => {
         gameResult.value = `К сожалению, вы ошиблись!`
         gameEnded.value = true
         soundManager.playGameOverMusic()
       }, DELAYS.NEXT_QUESTION)
     }
+  }
+
+  const useFiftyFifty = (): void => {
+    if (usedHints.value.fiftyFifty || isAnswered.value || isAnswerRevealed.value) return
+
+    usedHints.value.fiftyFifty = true
+    soundManager.stopMusic()
+    soundManager.playFiftyFifty()
+
+    const allOptions = currentQuestion.value?.options || []
+    const incorrectOptions = allOptions.filter((opt) => !opt.isCorrect)
+    const toHide = incorrectOptions.slice(0, 2).map((opt) => opt.id)
+
+    hiddenOptions.value = toHide
+    console.log(`🔍 50:50 — скрыты варианты: ${toHide.join(', ')}`)
+  }
+
+  const useCallHint = (): void => {
+    if (usedHints.value.call || isAnswered.value || isAnswerRevealed.value) return
+
+    usedHints.value.call = true
+    soundManager.stopMusic()
+    soundManager.playCall()
+    console.log(`📞 Звонок другу — игрок звонит оффлайн`)
+  }
+
+  const useAudienceHint = (): void => {
+    if (usedHints.value.audience || isAnswered.value || isAnswerRevealed.value) return
+
+    usedHints.value.audience = true
+    soundManager.stopMusic()
+    soundManager.playAudience()
+    console.log(`👥 Помощь зала — игрок спрашивает зал оффлайн`)
   }
 
   const takeMoney = (): void => {
@@ -378,7 +327,6 @@ export function useGameLogic() {
 
   // ========== Возвращаемое API ==========
   return {
-    // Состояние
     currentQuestionIndex: readonly(currentQuestionIndex),
     currentWinnings: readonly(currentWinnings),
     selectedOption: readonly(selectedOption),
@@ -394,19 +342,16 @@ export function useGameLogic() {
     isCheckingAnswer: readonly(isCheckingAnswer),
     questionNumber: readonly(questionNumber),
 
-    // Появление вариантов
     optionsRevealed: readonly(optionsRevealed),
     isRevealingOptions: readonly(isRevealingOptions),
     allOptionsRevealed: readonly(allOptionsRevealed),
     isOptionRevealed,
     startRevealOptions,
 
-    // Вычисляемые
     currentQuestion,
     progress,
     prizeLevels,
 
-    // Методы
     formatMoney,
     initGame,
     resetGame,
@@ -416,5 +361,10 @@ export function useGameLogic() {
     useCallHint,
     useAudienceHint,
     takeMoney,
+
+    // Добавляем методы для работы с вопросами
+    startNewGame,
+    returnUnusedQuestions,
+    getQuestionsStats,
   }
 }
