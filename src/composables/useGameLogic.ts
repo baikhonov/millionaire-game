@@ -289,6 +289,7 @@ export function useGameLogic() {
 
     usedHints.value.fiftyFifty = true
     soundManager.stopMusic()
+    soundManager.stopAllEffects()
     soundManager.playFiftyFifty()
 
     const allOptions = currentQuestion.value?.options || []
@@ -304,6 +305,7 @@ export function useGameLogic() {
 
     usedHints.value.call = true
     soundManager.stopMusic()
+    soundManager.stopAllEffects()
     soundManager.playCall()
     console.log(`📞 Звонок другу — игрок звонит оффлайн`)
   }
@@ -313,6 +315,7 @@ export function useGameLogic() {
 
     usedHints.value.audience = true
     soundManager.stopMusic()
+    soundManager.stopAllEffects()
     soundManager.playAudience()
     console.log(`👥 Помощь зала — игрок спрашивает зал оффлайн`)
   }
