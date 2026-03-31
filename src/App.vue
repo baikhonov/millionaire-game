@@ -13,7 +13,7 @@
 
         <!-- Кнопка сброса прогресса -->
         <button class="reset-progress-button" @click="resetProgress">
-          🔄 Сбросить прогресс вопросов
+          🔄 Сбросить пул вопросов
         </button>
       </div>
     </div>
