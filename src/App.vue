@@ -671,7 +671,7 @@ body {
   .current-winnings {
     display: flex;
     flex-direction: column;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .question-counter {
