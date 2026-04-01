@@ -498,6 +498,7 @@ body {
 .question-counter {
   font-size: 18px;
   color: #fff;
+  white-space: nowrap;
 }
 
 .progress-bar {
@@ -663,10 +664,13 @@ body {
   }
 
   .top-bar {
-    padding: 15px 20px;
+    padding: 15px;
+    gap: 10px;
   }
 
   .current-winnings {
+    display: flex;
+    flex-direction: column;
     font-size: 18px;
   }
 

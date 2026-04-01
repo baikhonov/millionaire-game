@@ -77,7 +77,7 @@ export function useGameLogic() {
 
   const allOptionsRevealed = computed(() => optionsRevealed.value.length === 4)
 
-  const formatMoney = (amount: number, currency = 'бачатакоикнов'): string => {
+  const formatMoney = (amount: number, currency = 'бачатакоинов'): string => {
     return new Intl.NumberFormat('ru-RU').format(amount) + ' ' + currency
   }
 
