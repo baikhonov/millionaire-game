@@ -25,6 +25,7 @@ export function useGameLogic() {
     resetAllProgress,
     allSetsUsed,
     currentSetName,
+    markAllSetsUsed,
   } = useQuestions()
 
   const soundManager = useSoundManager()
@@ -175,8 +176,17 @@ export function useGameLogic() {
     resetOptionsReveal()
   }
 
+  const stopAllMedia = () => {
+    document.querySelectorAll('audio, video').forEach((media) => {
+      media.pause()
+      media.currentTime = 0
+    })
+  }
+
   const selectAnswer = (option: Option): void => {
     if (isAnswered.value || isAnswerRevealed.value || gameEnded.value) return
+
+    stopAllMedia()
 
     selectedOption.value = option
     isWaitingForReveal.value = true
@@ -188,6 +198,8 @@ export function useGameLogic() {
 
   const revealAnswer = (): void => {
     if (!isWaitingForReveal.value || isAnswerRevealed.value) return
+
+    stopAllMedia()
 
     soundManager.stopAllEffects()
     isAnswerRevealed.value = true
@@ -218,6 +230,7 @@ export function useGameLogic() {
       gameResult.value = 'ПОБЕДА! Вы стали миллионером!'
       finalWinnings.value = 1000000
       gameEnded.value = true
+      markAllSetsUsed()
     } else {
       const isMilestone = currentQuestionIndex.value === 4 || currentQuestionIndex.value === 9
 
@@ -274,12 +287,14 @@ export function useGameLogic() {
         gameResult.value = `К сожалению, вы ошиблись!`
         gameEnded.value = true
         soundManager.playGameOverMusic()
+        markAllSetsUsed()
       }, extraDelay)
     } else {
       setTimeout(() => {
         gameResult.value = `К сожалению, вы ошиблись!`
         gameEnded.value = true
         soundManager.playGameOverMusic()
+        markAllSetsUsed()
       }, DELAYS.NEXT_QUESTION)
     }
   }
@@ -372,5 +387,6 @@ export function useGameLogic() {
     allSetsUsed,
     currentSetName,
     totalQuestions,
+    markAllSetsUsed,
   }
 }

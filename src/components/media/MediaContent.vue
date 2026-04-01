@@ -18,14 +18,26 @@
 
     <!-- Аудио -->
     <div v-else-if="media.type === 'audio'" class="media-audio">
-      <audio controls :src="getFullUrl(media.url)" @error="handleAudioError" class="audio-player">
+      <audio
+        controls
+        :src="getFullUrl(media.url)"
+        @play="onMediaPlay"
+        @error="handleAudioError"
+        class="audio-player"
+      >
         Ваш браузер не поддерживает аудио
       </audio>
     </div>
 
     <!-- Видео -->
     <div v-else-if="media.type === 'video'" class="media-video">
-      <video controls :src="getFullUrl(media.url)" @error="handleVideoError" class="video-player">
+      <video
+        controls
+        :src="getFullUrl(media.url)"
+        @play="onMediaPlay"
+        @error="handleVideoError"
+        class="video-player"
+      >
         Ваш браузер не поддерживает видео
       </video>
     </div>
@@ -40,12 +52,23 @@ import type { MediaContent } from '@/types/game'
 import { ref } from 'vue'
 import { BASE_URL } from '@/config'
 import VueEasyLightbox from 'vue-easy-lightbox'
+import { useSoundManager } from '@/composables/useSoundManager'
 
 const props = defineProps<{
   media: MediaContent
 }>()
 
 const showLightbox = ref(false)
+const soundManager = useSoundManager()
+
+// Функция, вызываемая при начале воспроизведения медиа
+const onMediaPlay = () => {
+  console.log('🎵 Медиа начало воспроизведение, останавливаем все звуки игры')
+  // Останавливаем фоновую музыку
+  soundManager.stopMusic()
+  // Останавливаем все звуковые эффекты (подсказки, выбор ответа и т.д.)
+  soundManager.stopAllEffects()
+}
 
 // Функция для корректного формирования URL с учётом BASE_URL
 const getFullUrl = (url: string): string => {

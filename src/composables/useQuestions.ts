@@ -180,7 +180,9 @@ export function useQuestions() {
       localStorage.setItem('usedSets', JSON.stringify(usedSetIds.value))
 
       const remaining = setsList.value.length - usedSetIds.value.length
-      allSetsUsed.value = remaining === 0 && usedSetIds.value.length > 0
+      // ✅ allSetsUsed = true ТОЛЬКО если нет сетов для следующей игры
+      // НЕ устанавливаем allSetsUsed = true при загрузке последнего сета
+      allSetsUsed.value = false // всегда false при старте игры
 
       console.log(
         `✅ Игра готова! Сет "${nextSet.name}" загружен. Вопросов в сете: ${questions.value.length}`,
@@ -206,6 +208,13 @@ export function useQuestions() {
       questions.value = []
     } finally {
       isLoading.value = false
+    }
+  }
+
+  const markAllSetsUsed = (): void => {
+    if (usedSetIds.value.length >= setsList.value.length && setsList.value.length > 0) {
+      allSetsUsed.value = true
+      console.log('🏁 Все сеты использованы! Нажмите "Сбросить пул вопросов" для продолжения.')
     }
   }
 
@@ -245,5 +254,6 @@ export function useQuestions() {
     getQuestion,
     totalQuestions,
     isLastQuestion,
+    markAllSetsUsed,
   }
 }
