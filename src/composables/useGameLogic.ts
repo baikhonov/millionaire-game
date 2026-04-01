@@ -20,9 +20,11 @@ export function useGameLogic() {
     totalQuestions,
     isLastQuestion,
     startNewGame,
-    returnUnusedQuestions,
+    returnCurrentSet,
     getQuestionsStats,
     resetAllProgress,
+    allSetsUsed,
+    currentSetName,
   } = useQuestions()
 
   const soundManager = useSoundManager()
@@ -74,7 +76,7 @@ export function useGameLogic() {
 
   const allOptionsRevealed = computed(() => optionsRevealed.value.length === 4)
 
-  const formatMoney = (amount: number, currency = 'бачатакоинов'): string => {
+  const formatMoney = (amount: number, currency = 'бачатакоикнов'): string => {
     return new Intl.NumberFormat('ru-RU').format(amount) + ' ' + currency
   }
 
@@ -143,7 +145,6 @@ export function useGameLogic() {
   // ========== Логика игры ==========
   const initGame = async (): Promise<void> => {
     isLoading.value = true
-    // Не загружаем вопросы здесь, они уже загружены через startNewGame
     resetGame()
     isLoading.value = false
 
@@ -364,10 +365,12 @@ export function useGameLogic() {
     useAudienceHint,
     takeMoney,
 
-    // Добавляем методы для работы с вопросами
     startNewGame,
-    returnUnusedQuestions,
+    returnCurrentSet,
     getQuestionsStats,
     resetAllProgress,
+    allSetsUsed,
+    currentSetName,
+    totalQuestions,
   }
 }

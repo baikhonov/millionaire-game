@@ -9,9 +9,13 @@
           <img src="/images/logo-bm.webp" width="250px" alt="Лого Бачатамания" />
           <img src="/images/logo-game.webp" width="250px" alt="Лого игры" />
         </div>
-        <button class="start-button" @click="startGame">Начать игру</button>
 
-        <!-- Кнопка сброса прогресса -->
+        <div v-if="allSetsUsed" class="warning-message">
+          ⚠️ Все сеты вопросов использованы! Нажмите "Сбросить пул вопросов" чтобы продолжить.
+        </div>
+
+        <button class="start-button" @click="startGame" :disabled="allSetsUsed">Начать игру</button>
+
         <button class="reset-progress-button" @click="resetProgress">
           🔄 Сбросить пул вопросов
         </button>
@@ -28,10 +32,11 @@
     <div v-else-if="!gameEnded">
       <div class="top-bar">
         <div class="current-winnings">
+          <span class="current-winnings-label">Ваш выигрыш: </span>
           {{ formatMoney(currentWinnings) }}
         </div>
         <div class="question-counter" v-if="currentQuestion">
-          Вопрос {{ currentQuestionIndex + 1 }} из {{ totalQuestions }}
+          Вопрос {{ currentQuestionIndex + 1 }} из {{ totalQuestions() }}
         </div>
       </div>
 
@@ -69,7 +74,6 @@
             </div>
           </div>
           <div class="game-sidebar">
-            <!-- Подсказки -->
             <HintsPanel
               :used-hints="usedHints"
               :disabled="isAnswered || isAnswerRevealed"
@@ -97,7 +101,6 @@
       </div>
     </div>
 
-    <!-- Кнопка звука -->
     <button v-if="gameStarted && !gameEnded" class="sound-button" @click.stop="toggleMute">
       {{ isMuted ? '🔇' : '🔊' }}
     </button>
@@ -145,22 +148,33 @@ const {
   useFiftyFifty,
   useCallHint,
   useAudienceHint,
-  startNewGame, // ✅ добавляем
-  returnUnusedQuestions, // ✅ добавляем
+  startNewGame,
   resetAllProgress,
+  returnCurrentSet,
+  allSetsUsed,
+  currentSetName,
+  totalQuestions,
+  getQuestionsStats,
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
 
-const totalQuestions = computed(() => game.prizeLevels.length)
-
 const startGame = async () => {
   console.log('🎮 Начинаем игру')
+
+  if (allSetsUsed.value) {
+    alert('Все сеты вопросов использованы. Пожалуйста, сбросьте пул вопросов.')
+    return
+  }
+
+  if (totalQuestions() === 0) {
+    alert('Нет загруженных вопросов. Попробуйте перезагрузить страницу.')
+    return
+  }
 
   enableAudio()
   await new Promise((resolve) => setTimeout(resolve, 100))
 
-  // Вопросы уже загружены через startNewGame в onMounted
   await initGame()
 
   if (isAudioEnabled.value && !isMuted.value) {
@@ -181,16 +195,25 @@ const revealAnswer = () => {
 const restartGame = async () => {
   console.log('🔄 Перезапуск игры')
 
-  // Возвращаем неиспользованные вопросы в пул
-  returnUnusedQuestions()
+  // Получаем статистику
+  const stats = getQuestionsStats()
+  const hasRemainingSets = stats.remaining > 0
 
-  // Генерируем новые вопросы для следующего игрока
+  console.log('📊 Осталось сетов:', stats.remaining)
+  console.log('📊 Все сеты использованы?', !hasRemainingSets)
+
+  if (!hasRemainingSets) {
+    // Все сеты использованы — возвращаемся на стартовый экран
+    console.log('⚠️ Все сеты использованы, возврат на стартовый экран')
+    gameStarted.value = false
+    return
+  }
+
+  // Есть ещё сеты — загружаем следующий
+  console.log('🎮 Загружаем следующий сет')
+  returnCurrentSet()
   await startNewGame()
-
-  // Сбрасываем состояние игры
   resetGame()
-
-  // Запускаем игру
   await initGame()
 
   if (isAudioEnabled.value && !isMuted.value) {
@@ -198,25 +221,26 @@ const restartGame = async () => {
   }
 }
 
-// При монтировании — генерируем вопросы для первого игрока
 onMounted(async () => {
   console.log('🚀 Приложение загружено, генерируем вопросы')
   await startNewGame()
   console.log('✅ Вопросы готовы, ждём нажатия "Начать игру"')
 })
 
-const resetProgress = () => {
+const resetProgress = async () => {
   const confirmed = confirm(
-    'Вы уверены, что хотите сбросить прогресс? Все вопросы снова станут доступны.',
+    'Вы уверены, что хотите сбросить сеты вопросов? Все сеты вопросов снова станут доступны.',
   )
   if (!confirmed) return
 
-  console.log('🗑️ Сброс прогресса вопросов')
-
-  // Сбрасываем историю использованных вопросов
+  console.log('🗑️ Сброс сетов вопросов')
   resetAllProgress()
-
-  alert('Прогресс вопросов сброшен! Для новой игры нажмите "Начать игру".')
+  resetGame()
+  await startNewGame()
+  if (!gameStarted.value) {
+    gameStarted.value = false
+  }
+  alert('Пул сброшен! Теперь доступны все сеты вопросов.')
 }
 
 watch([gameEnded, gameResult], ([ended, result]) => {
@@ -225,9 +249,7 @@ watch([gameEnded, gameResult], ([ended, result]) => {
   }
 })
 
-// Функция запуска конфетти
 const launchConfetti = () => {
-  // Основной взрыв
   confetti({
     particleCount: 200,
     spread: 100,
@@ -236,7 +258,6 @@ const launchConfetti = () => {
     colors: ['#ffd700', '#ffed4e', '#ffaa00', '#ff6b6b', '#4caf50'],
   })
 
-  // Дополнительные волны
   setTimeout(() => {
     confetti({
       particleCount: 100,
@@ -264,7 +285,6 @@ const launchConfetti = () => {
     })
   }, 800)
 
-  // Долгий финальный салют
   setTimeout(() => {
     const duration = 2000
     const animationEnd = Date.now() + duration
@@ -272,11 +292,9 @@ const launchConfetti = () => {
 
     const interval: any = setInterval(() => {
       const timeLeft = animationEnd - Date.now()
-
       if (timeLeft <= 0) {
         return clearInterval(interval)
       }
-
       const particleCount = 50 * (timeLeft / duration)
       confetti({
         ...defaults,
@@ -287,6 +305,10 @@ const launchConfetti = () => {
   }, 1500)
 }
 </script>
+
+<style>
+/* Все стили остаются без изменений, как у вас */
+</style>
 
 <style>
 * {
@@ -381,6 +403,7 @@ body {
 .start-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: linear-gradient(135deg, #1a1f2e 0%, #0f1420 100%);
   border: 2px solid #ffd700;
   border-radius: 20px;
@@ -708,5 +731,28 @@ body {
 .reset-progress-button:hover {
   transform: scale(1.05);
   background: linear-gradient(135deg, #888, #666);
+}
+
+/* Добавляем стили для предупреждения */
+.warning-message {
+  background: rgba(255, 100, 100, 0.2);
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.start-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.start-button:disabled:hover {
+  transform: none;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 </style>

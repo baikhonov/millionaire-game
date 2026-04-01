@@ -1,40 +1,18 @@
+// src/composables/useQuestions.ts
 import { ref, readonly } from 'vue'
-import type { Question } from '@/types/game'
+import type { Question, Option } from '@/types/game'
 import { BASE_URL } from '@/config'
 
 export function useQuestions() {
   const questions = ref<Question[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
+  const setsList = ref<{ id: number; name: string; file: string }[]>([])
+  const usedSetIds = ref<number[]>([])
+  const allSetsUsed = ref(false)
+  const currentSetName = ref<string>('')
 
-  const questionPool = ref<Question[]>([])
-  const usedGlobally = ref<number[]>([]) // все использованные вопросы, сохраняются в localStorage
-  const usedInCurrentGame: number[] = [] // текущая игра
-
-  // ========== Загрузка пула вопросов ==========
-  const loadQuestionPool = async (): Promise<void> => {
-    try {
-      const response = await fetch(`${BASE_URL}data/questions-pool.json`)
-      if (!response.ok) throw new Error('Failed to load question pool')
-      const data = await response.json()
-      questionPool.value = data
-
-      const savedUsed = localStorage.getItem('usedQuestions')
-      if (savedUsed) {
-        usedGlobally.value = JSON.parse(savedUsed)
-        console.log(
-          `📜 Загружена история: использовано ${usedGlobally.value.length} вопросов из пула`,
-        )
-      }
-
-      console.log(`📚 Загружен пул вопросов: ${questionPool.value.length} вопросов`)
-    } catch (err) {
-      console.error('Ошибка загрузки пула вопросов:', err)
-      error.value = err instanceof Error ? err.message : 'Ошибка загрузки'
-    }
-  }
-
-  // Функция для случайного перемешивания массива (алгоритм Фишера-Йетса)
+  // Функция для случайного перемешивания массива
   const shuffleArray = <T>(array: T[]): T[] => {
     const shuffled = [...array]
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -44,7 +22,7 @@ export function useQuestions() {
     return shuffled
   }
 
-  // Функция для перемешивания вариантов ответа с сохранением правильного
+  // Функция для перемешивания вариантов ответа
   const shuffleOptions = (options: Option[]): Option[] => {
     const shuffled = shuffleArray(options)
     const newIds: ('A' | 'B' | 'C' | 'D')[] = ['A', 'B', 'C', 'D']
@@ -54,180 +32,214 @@ export function useQuestions() {
     }))
   }
 
-  // ========== Получение случайного вопроса нужной сложности ==========
-  const getRandomQuestionByDifficulty = (
-    difficulty: number,
-    excludeFromCurrentGame: number[] = [],
-  ): Question | null => {
-    const excludeIds = [...usedGlobally.value, ...excludeFromCurrentGame]
+  // Загрузка списка сетов
+  const loadSetsList = async (): Promise<void> => {
+    try {
+      const url = `${BASE_URL}data/sets.json`
+      console.log(`📥 Загружаем список сетов: ${url}`)
+      const response = await fetch(url)
 
-    const available = questionPool.value.filter(
-      (q) => q.difficulty === difficulty && !excludeIds.includes(q.id),
-    )
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: не удалось загрузить список сетов`)
+      }
 
-    if (available.length === 0) return null
+      const data = await response.json()
 
-    const randomIndex = Math.floor(Math.random() * available.length)
-    return available[randomIndex]
+      if (!data.sets || !Array.isArray(data.sets)) {
+        throw new Error('Неверный формат файла sets.json')
+      }
+
+      setsList.value = data.sets
+      console.log(`📚 Загружено сетов: ${setsList.value.length}`)
+
+      const savedUsedSets = localStorage.getItem('usedSets')
+      if (savedUsedSets) {
+        usedSetIds.value = JSON.parse(savedUsedSets)
+        console.log(`📜 Загружена история: использовано ${usedSetIds.value.length} сетов`)
+      }
+
+      allSetsUsed.value =
+        usedSetIds.value.length >= setsList.value.length && setsList.value.length > 0
+
+      if (allSetsUsed.value) {
+        console.log('🏁 Все сеты использованы! Нажмите "Сбросить пул вопросов" для продолжения.')
+      } else if (usedSetIds.value.length > 0) {
+        const nextSet = setsList.value.find((s) => !usedSetIds.value.includes(s.id))
+        console.log(`🎯 Следующий сет: ${nextSet?.name || 'не определён'}`)
+      }
+    } catch (err) {
+      console.error('❌ Ошибка загрузки списка сетов:', err)
+      error.value = err instanceof Error ? err.message : 'Ошибка загрузки списка сетов'
+      setsList.value = []
+    }
   }
 
-  // ========== Генерация вопросов для одной игры ==========
-  const generateGameQuestions = (): Question[] => {
-    const gameQuestions: Question[] = []
-    usedInCurrentGame.length = 0 // очищаем текущую игру
-
-    const difficultyMap = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5] // 15 вопросов
-
-    for (let i = 0; i < difficultyMap.length; i++) {
-      const difficulty = difficultyMap[i]
-
-      // Пытаемся найти новый вопрос
-      let question = getRandomQuestionByDifficulty(difficulty, usedInCurrentGame)
-
-      // Если нет новых вопросов этой сложности, ищем среди всех (включая использованные)
-      if (!question) {
-        console.warn(`⚠️ Нет новых вопросов сложности ${difficulty}, ищем среди всех`)
-        const allWithDifficulty = questionPool.value.filter(
-          (q) => q.difficulty === difficulty && !usedInCurrentGame.includes(q.id),
-        )
-        if (allWithDifficulty.length > 0) {
-          const randomIndex = Math.floor(Math.random() * allWithDifficulty.length)
-          question = allWithDifficulty[randomIndex]
-        }
-      }
-
-      // Если всё равно нет вопросов этой сложности, берём любой доступный вопрос
-      if (!question) {
-        console.warn(`⚠️ Нет вопросов сложности ${difficulty}, берём любой доступный`)
-        const anyAvailable = questionPool.value.filter((q) => !usedInCurrentGame.includes(q.id))
-        if (anyAvailable.length > 0) {
-          const randomIndex = Math.floor(Math.random() * anyAvailable.length)
-          question = anyAvailable[randomIndex]
-          console.log(`📌 Взяли вопрос сложности ${question.difficulty} вместо ${difficulty}`)
-        }
-      }
-
-      // Если совсем нет вопросов, выходим с тем, что есть
-      if (!question) {
-        console.error(
-          `❌ Нет доступных вопросов для позиции ${i + 1}, формируем из ${gameQuestions.length} вопросов`,
-        )
-        break
-      }
-
-      usedInCurrentGame.push(question.id)
-
-      // Перемешиваем варианты ответов
-      const shuffledOptions = shuffleOptions(question.options)
-
-      gameQuestions.push({
-        ...question,
-        options: shuffledOptions,
-        displayId: i + 1,
-      })
+  // Загрузка конкретного сета
+  const loadSet = async (setId: number): Promise<Question[]> => {
+    const setInfo = setsList.value.find((s) => s.id === setId)
+    if (!setInfo) {
+      throw new Error(`Сет с ID ${setId} не найден в списке`)
     }
 
-    // Если получилось меньше 15 вопросов, выводим предупреждение
-    if (gameQuestions.length < 15) {
-      console.warn(`⚠️ Сгенерировано только ${gameQuestions.length} вопросов из 15`)
-    } else {
-      // добавляем в глобальную историю только если получили полный набор
-      usedGlobally.value.push(...usedInCurrentGame)
-      localStorage.setItem('usedQuestions', JSON.stringify(usedGlobally.value))
+    const filePath = setInfo.file.startsWith('/') ? setInfo.file.slice(1) : setInfo.file
+    const fullUrl = `${BASE_URL}${filePath}`
+    console.log(`📥 Загружаем сет "${setInfo.name}": ${fullUrl}`)
+
+    const response = await fetch(fullUrl)
+
+    if (!response.ok) {
+      throw new Error(
+        `Сет "${setInfo.name}" не найден (HTTP ${response.status}). Файл: ${filePath}`,
+      )
     }
 
-    return gameQuestions
+    const text = await response.text()
+
+    try {
+      const data = JSON.parse(text)
+
+      if (!Array.isArray(data)) {
+        throw new Error('Файл сета должен содержать массив вопросов')
+      }
+
+      if (data.length === 0) {
+        throw new Error('Сет не содержит вопросов')
+      }
+
+      console.log(`✅ Загружено ${data.length} вопросов из сета "${setInfo.name}"`)
+
+      return data.map((q: Question, index: number) => ({
+        ...q,
+        options: shuffleOptions(q.options),
+      }))
+    } catch (e) {
+      console.error(`❌ Ошибка парсинга JSON для сета "${setInfo.name}":`, e)
+      throw new Error(`Сет "${setInfo.name}" имеет неверный формат. Ожидался массив вопросов.`)
+    }
   }
 
-  // ========== Проверка возможности сгенерировать полную игру ==========
-  const canGenerateFullGame = (): boolean => {
-    const neededByDifficulty = { 1: 5, 2: 4, 3: 4, 4: 1, 5: 1 }
+  // Получение следующего неиспользованного сета
+  const getNextUnusedSet = (): { id: number; name: string; file: string } | null => {
+    if (setsList.value.length === 0) {
+      console.warn('⚠️ Список сетов пуст')
+      return null
+    }
 
-    return Object.entries(neededByDifficulty).every(([diff, needed]) => {
-      const available = questionPool.value.filter(
-        (q) => q.difficulty === Number(diff) && !usedGlobally.value.includes(q.id),
-      ).length
-      return available >= needed
-    })
+    const availableSets = setsList.value.filter((s) => !usedSetIds.value.includes(s.id))
+
+    if (availableSets.length === 0) {
+      console.log('⚠️ Все сеты уже использованы в этой сессии')
+      allSetsUsed.value = true
+      return null
+    }
+
+    allSetsUsed.value = false
+    return availableSets[0]
   }
 
-  // ========== Старт новой игры ==========
+  const canStartNewGame = (): boolean => {
+    // Если есть неиспользованные сеты
+    const availableSets = setsList.value.filter((s) => !usedSetIds.value.includes(s.id))
+    return availableSets.length > 0
+  }
+
+  // Старт новой игры
   const startNewGame = async (): Promise<void> => {
     isLoading.value = true
     error.value = null
 
     try {
-      if (questionPool.value.length === 0) {
-        await loadQuestionPool()
+      if (setsList.value.length === 0) {
+        await loadSetsList()
       }
 
-      if (!canGenerateFullGame()) {
-        alert('📚 Все вопросы из пула использованы. История сброшена.')
-        usedGlobally.value = []
-        localStorage.removeItem('usedQuestions')
+      if (setsList.value.length === 0) {
+        throw new Error('Нет доступных сетов вопросов. Проверьте файл data/sets.json')
       }
 
-      let newQuestions = generateGameQuestions()
-      let attempts = 0
-      const maxAttempts = 5
-
-      while (newQuestions.length === 0 && attempts < maxAttempts) {
-        console.log(`🔄 Повторная попытка генерации (${attempts + 1}/${maxAttempts})`)
-        newQuestions = generateGameQuestions()
-        attempts++
+      const nextSet = getNextUnusedSet()
+      if (!nextSet) {
+        error.value =
+          'Все сеты вопросов использованы. Нажмите "Сбросить пул вопросов" чтобы продолжить.'
+        allSetsUsed.value = true
+        isLoading.value = false
+        return
       }
 
-      if (newQuestions.length === 0) {
-        throw new Error('Не удалось сгенерировать вопросы')
-      }
+      currentSetName.value = nextSet.name
+      console.log(`🎮 Загружаем сет: ${nextSet.name} (ID: ${nextSet.id})`)
 
-      questions.value = newQuestions
+      const loadedQuestions = await loadSet(nextSet.id)
 
-      const remaining = questionPool.value.length - usedGlobally.value.length
-      console.log(`✅ Новая игра! Сгенерировано ${questions.value.length} вопросов.`)
+      questions.value = loadedQuestions.map((q, index) => ({
+        ...q,
+        displayId: index + 1,
+      }))
+
+      usedSetIds.value.push(nextSet.id)
+      localStorage.setItem('usedSets', JSON.stringify(usedSetIds.value))
+
+      const remaining = setsList.value.length - usedSetIds.value.length
+      allSetsUsed.value = remaining === 0 && usedSetIds.value.length > 0
+
       console.log(
-        `📊 Прогресс: ${usedGlobally.value.length}/${questionPool.value.length} вопросов использовано. Осталось: ${remaining}`,
+        `✅ Игра готова! Сет "${nextSet.name}" загружен. Вопросов в сете: ${questions.value.length}`,
       )
+      console.log(
+        `📊 Прогресс: ${usedSetIds.value.length}/${setsList.value.length} сетов использовано`,
+      )
+
+      if (questions.value.length < 15) {
+        console.log(
+          `ℹ️ Внимание! В сете только ${questions.value.length} вопросов. Игра будет короче.`,
+        )
+      }
+
+      if (remaining === 0) {
+        console.log(
+          'ℹ️ После этой игры все сеты будут использованы. Для следующей игры нажмите "Сбросить пул вопросов".',
+        )
+      }
     } catch (err) {
-      error.value = err instanceof Error ? err.message : 'Ошибка загрузки'
-      console.error('Ошибка загрузки вопросов:', err)
+      error.value = err instanceof Error ? err.message : 'Ошибка загрузки вопросов'
+      console.error('❌ Ошибка загрузки вопросов:', err)
+      questions.value = []
     } finally {
       isLoading.value = false
     }
   }
 
-  // ========== Возврат вопросов в пул (редко нужно) ==========
-  const returnUnusedQuestions = (): void => {
-    if (questions.value.length === 0) return
-    const currentGameIds = questions.value.map((q) => q.id)
-    usedGlobally.value = usedGlobally.value.filter((id) => !currentGameIds.includes(id))
-    localStorage.setItem('usedQuestions', JSON.stringify(usedGlobally.value))
-    console.log(
-      `🔄 Возвращено ${currentGameIds.length} вопросов в пул. Осталось использовано: ${usedGlobally.value.length}`,
-    )
+  // Возврат текущего сета (не используется)
+  const returnCurrentSet = (): void => {
+    console.log('🔄 Возврат текущего сета в пул (не требуется)')
   }
 
+  // Сброс всего прогресса
   const resetAllProgress = (): void => {
-    usedGlobally.value = []
-    localStorage.removeItem('usedQuestions')
-    console.log('🗑️ Весь прогресс сброшен')
+    console.log('🔧 resetAllProgress: сброс usedSetIds')
+    usedSetIds.value = []
+    allSetsUsed.value = false
+    localStorage.removeItem('usedSets')
+    console.log('🗑️ Весь прогресс сброшен. Все сеты снова доступны.')
   }
 
   const getQuestion = (index: number): Question | null => questions.value[index] || null
   const totalQuestions = (): number => questions.value.length
   const isLastQuestion = (index: number): boolean => index === questions.value.length - 1
   const getQuestionsStats = (): { used: number; total: number; remaining: number } => ({
-    used: usedGlobally.value.length,
-    total: questionPool.value.length,
-    remaining: questionPool.value.length - usedGlobally.value.length,
+    used: usedSetIds.value.length,
+    total: setsList.value.length,
+    remaining: setsList.value.length - usedSetIds.value.length,
   })
 
   return {
     questions: readonly(questions),
     isLoading: readonly(isLoading),
     error: readonly(error),
+    allSetsUsed: readonly(allSetsUsed),
+    currentSetName: readonly(currentSetName),
     startNewGame,
-    returnUnusedQuestions,
+    returnCurrentSet,
     resetAllProgress,
     getQuestionsStats,
     getQuestion,

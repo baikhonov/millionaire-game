@@ -11,6 +11,8 @@
         milestone: isMilestone(getOriginalIndex(reverseIndex)),
       }"
     >
+      {{ getOriginalIndex(reverseIndex) + 1 }}
+      <span style="font-size: 0.7em; color: yellow">⬥</span>
       {{ formatMoney(prize) }}
     </div>
   </div>
