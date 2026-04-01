@@ -10,6 +10,11 @@
       "id": 2,
       "name": "Сет 2",
       "file": "data/set-2.json"
+    },
+    {
+      "id": 3,
+      "name": "Сет 3",
+      "file": "data/set-3.json"
     }
   ]
 }

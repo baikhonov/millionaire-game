@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "text": "Какой цвет получается при смешивании красного и жёлтого?",
+        "text": "Какой фрукт является символом Нью-Йорка?",
         "options": [
             {
                 "id": "A",
-                "text": "Зелёный",
+                "text": "Апельсин",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фиолетовый",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Оранжевый",
+                "text": "Яблоко",
                 "isCorrect": true
             },
             {
+                "id": "C",
+                "text": "Груша",
+                "isCorrect": false
+            },
+            {
                 "id": "D",
-                "text": "Коричневый",
+                "text": "Персик",
                 "isCorrect": false
             }
         ],
@@ -28,26 +28,26 @@
     },
     {
         "id": 2,
-        "text": "Какая планета самая близкая к Солнцу?",
+        "text": "Какая страна известна как 'Страна восходящего солнца'?",
         "options": [
             {
                 "id": "A",
-                "text": "Венера",
+                "text": "Китай",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Меркурий",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Марс",
+                "text": "Корея",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Япония",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Земля",
+                "text": "Таиланд",
                 "isCorrect": false
             }
         ],
@@ -55,26 +55,26 @@
     },
     {
         "id": 3,
-        "text": "Кто написал роман 'Преступление и наказание'?",
+        "text": "Кто написал сказку 'Маленький принц'?",
         "options": [
             {
                 "id": "A",
-                "text": "Лев Толстой",
+                "text": "Шарль Перро",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фёдор Достоевский",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Антон Чехов",
+                "text": "Ганс Христиан Андерсен",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Антуан де Сент-Экзюпери",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Иван Тургенев",
+                "text": "Братья Гримм",
                 "isCorrect": false
             }
         ],
@@ -82,26 +82,26 @@
     },
     {
         "id": 4,
-        "text": "Сколько лет длилась Столетняя война?",
+        "text": "Сколько цветов в радуге?",
         "options": [
             {
                 "id": "A",
-                "text": "100 лет",
+                "text": "5",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "116 лет",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "89 лет",
+                "text": "6",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "7",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "133 года",
+                "text": "8",
                 "isCorrect": false
             }
         ],
@@ -109,26 +109,26 @@
     },
     {
         "id": 5,
-        "text": "Какое химическое соединение имеет формулу H₂O?",
+        "text": "Какой газ выделяют растения при фотосинтезе?",
         "options": [
             {
                 "id": "A",
-                "text": "Перекись водорода",
+                "text": "Углекислый газ",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Вода",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Соляная кислота",
+                "text": "Азот",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Кислород",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Аммиак",
+                "text": "Водород",
                 "isCorrect": false
             }
         ],
@@ -136,26 +136,26 @@
     },
     {
         "id": 6,
-        "text": "Кто открыл теорию относительности?",
+        "text": "Кто изобрёл интернет?",
         "options": [
             {
                 "id": "A",
-                "text": "Исаак Ньютон",
+                "text": "Билл Гейтс",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Никола Тесла",
+                "text": "Стив Джобс",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Альберт Эйнштейн",
+                "text": "Тим Бернерс-Ли",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Макс Планк",
+                "text": "Марк Цукерберг",
                 "isCorrect": false
             }
         ],
@@ -163,26 +163,26 @@
     },
     {
         "id": 7,
-        "text": "Какая страна является родиной танго?",
+        "text": "Какое озеро является самым глубоким в мире?",
         "options": [
             {
                 "id": "A",
-                "text": "Испания",
-                "isCorrect": false
+                "text": "Байкал",
+                "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Бразилия",
+                "text": "Виктория",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Аргентина",
-                "isCorrect": true
+                "text": "Танганьика",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Португалия",
+                "text": "Верхнее",
                 "isCorrect": false
             }
         ],
@@ -190,26 +190,26 @@
     },
     {
         "id": 8,
-        "text": "Кто изобрёл книгопечатание?",
+        "text": "Какая страна выиграла чемпионат мира по футболу в 2018 году?",
         "options": [
             {
                 "id": "A",
-                "text": "Леонардо да Винчи",
+                "text": "Бразилия",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Иоганн Гутенберг",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Микеланджело",
+                "text": "Германия",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Франция",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Николай Коперник",
+                "text": "Аргентина",
                 "isCorrect": false
             }
         ],
@@ -220,27 +220,27 @@
         "text": "Кто поёт в этой песне?",
         "media": {
             "type": "audio",
-            "url": "/sounds/questions/chris_paradise.mp3"
+            "url": "/sounds/questions/tutto_duran.mp3"
         },
         "options": [
             {
                 "id": "A",
-                "text": "Chris Paradise",
-                "isCorrect": true
+                "text": "Marco Puma",
+                "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Montelier",
+                "text": "Jalil Lopez",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Esme",
-                "isCorrect": false
+                "text": "Tutto Duran",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Dani J",
+                "text": "Mr. Don",
                 "isCorrect": false
             }
         ],
@@ -248,61 +248,61 @@
     },
     {
         "id": 10,
-        "text": "Кто написал оперу 'Кармен'?",
+        "text": "Кто написал музыку к балету 'Лебединое озеро'?",
         "options": [
             {
                 "id": "A",
-                "text": "Джузеппе Верди",
+                "text": "Игорь Стравинский",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Вольфганг Моцарт",
+                "text": "Сергей Прокофьев",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Жорж Бизе",
+                "text": "Пётр Чайковский",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Пётр Чайковский",
+                "text": "Дмитрий Шостакович",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 4
     },
     {
         "id": 11,
-        "text": "Какая битва положила начало концу Наполеоновских войн?",
+        "text": "В каком году распался Советский Союз?",
         "options": [
             {
                 "id": "A",
-                "text": "Бородинское сражение",
+                "text": "1989",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Битва при Ватерлоо",
-                "isCorrect": true
+                "text": "1990",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Битва при Аустерлице",
-                "isCorrect": false
+                "text": "1991",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Лейпцигская битва",
+                "text": "1992",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 4
     },
     {
         "id": 12,
-        "text": "Какой элемент имеет атомный номер 79?",
+        "text": "Какой элемент обозначается символом 'Fe'?",
         "options": [
             {
                 "id": "A",
@@ -311,17 +311,17 @@
             },
             {
                 "id": "B",
-                "text": "Платина",
+                "text": "Медь",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Золото",
+                "text": "Железо",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Ртуть",
+                "text": "Олово",
                 "isCorrect": false
             }
         ],
@@ -329,80 +329,80 @@
     },
     {
         "id": 13,
-        "text": "Какое животное изображено на гербе Австралии?",
+        "text": "Какое животное является символом мудрости в греческой мифологии?",
         "options": [
             {
                 "id": "A",
-                "text": "Кенгуру и страус эму",
-                "isCorrect": true
+                "text": "Лиса",
+                "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Лев и единорог",
+                "text": "Змея",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Орёл и змея",
-                "isCorrect": false
+                "text": "Сова",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Медведь и орёл",
+                "text": "Ворон",
                 "isCorrect": false
             }
         ],
-        "difficulty": 4
+        "difficulty": 5
     },
     {
         "id": 14,
-        "text": "Кто написал знаменитый трактат 'Государь'?",
+        "text": "Кто был первым человеком, ступившим на Луну?",
         "options": [
             {
                 "id": "A",
-                "text": "Томас Мор",
+                "text": "Юрий Гагарин",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Никколо Макиавелли",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Джон Локк",
+                "text": "Базз Олдрин",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Нил Армстронг",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Вольтер",
+                "text": "Майкл Коллинз",
                 "isCorrect": false
             }
         ],
-        "difficulty": 4
+        "difficulty": 5
     },
     {
         "id": 15,
-        "text": "Какая частица была открыта в ЦЕРН в 2012 году и подтвердила Стандартную модель?",
+        "text": "Какое уравнение описывает связь массы и энергии?",
         "options": [
             {
                 "id": "A",
-                "text": "Кварк",
+                "text": "F = ma",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Бозон Хиггса",
+                "text": "E = mc²",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Нейтрино",
+                "text": "PV = nRT",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Глюон",
+                "text": "a² + b² = c²",
                 "isCorrect": false
             }
         ],

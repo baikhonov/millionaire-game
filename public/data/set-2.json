@@ -1,53 +1,53 @@
 [
     {
         "id": 1,
-        "text": "Как зовут лучшего преподавателя бачаты в Орске?",
+        "text": "Какой океан является самым большим на Земле?",
         "options": [
             {
                 "id": "A",
-                "text": "Тимур",
+                "text": "Атлантический",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Татьяна",
-                "isCorrect": true
+                "text": "Индийский",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Максим",
+                "text": "Северный Ледовитый",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Вагис",
-                "isCorrect": false
+                "text": "Тихий",
+                "isCorrect": true
             }
         ],
         "difficulty": 1
     },
     {
         "id": 2,
-        "text": "Какая планета самая близкая к Солнцу?",
+        "text": "Какая страна подарила миру пиццу?",
         "options": [
             {
                 "id": "A",
-                "text": "Венера",
+                "text": "Франция",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Меркурий",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Марс",
+                "text": "Испания",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Италия",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Земля",
+                "text": "Греция",
                 "isCorrect": false
             }
         ],
@@ -55,26 +55,26 @@
     },
     {
         "id": 3,
-        "text": "Кто написал роман 'Преступление и наказание'?",
+        "text": "Кто написал 'Гамлета'?",
         "options": [
             {
                 "id": "A",
-                "text": "Лев Толстой",
+                "text": "Чарльз Диккенс",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фёдор Достоевский",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Антон Чехов",
+                "text": "Марк Твен",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Уильям Шекспир",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Иван Тургенев",
+                "text": "Оскар Уайльд",
                 "isCorrect": false
             }
         ],
@@ -82,26 +82,26 @@
     },
     {
         "id": 4,
-        "text": "Сколько лет длилась Столетняя война?",
+        "text": "Сколько дней в високосном году?",
         "options": [
             {
                 "id": "A",
-                "text": "100 лет",
+                "text": "365",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "116 лет",
+                "text": "366",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "89 лет",
+                "text": "364",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "133 года",
+                "text": "367",
                 "isCorrect": false
             }
         ],
@@ -109,26 +109,26 @@
     },
     {
         "id": 5,
-        "text": "Какое химическое соединение имеет формулу H₂O?",
+        "text": "Какой металл является самым лёгким?",
         "options": [
             {
                 "id": "A",
-                "text": "Перекись водорода",
+                "text": "Алюминий",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Вода",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Соляная кислота",
+                "text": "Магний",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Литий",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Аммиак",
+                "text": "Титан",
                 "isCorrect": false
             }
         ],
@@ -136,26 +136,26 @@
     },
     {
         "id": 6,
-        "text": "Кто открыл теорию относительности?",
+        "text": "Кто изобрёл телефон?",
         "options": [
             {
                 "id": "A",
-                "text": "Исаак Ньютон",
+                "text": "Томас Эдисон",
                 "isCorrect": false
             },
             {
                 "id": "B",
+                "text": "Александр Белл",
+                "isCorrect": true
+            },
+            {
+                "id": "C",
                 "text": "Никола Тесла",
                 "isCorrect": false
             },
             {
-                "id": "C",
-                "text": "Альберт Эйнштейн",
-                "isCorrect": true
-            },
-            {
                 "id": "D",
-                "text": "Макс Планк",
+                "text": "Гульельмо Маркони",
                 "isCorrect": false
             }
         ],
@@ -163,11 +163,38 @@
     },
     {
         "id": 7,
-        "text": "Какая страна является родиной танго?",
+        "text": "Какая пустыня является самой большой в мире?",
         "options": [
             {
                 "id": "A",
-                "text": "Испания",
+                "text": "Сахара",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "Гоби",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Атакама",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Калахари",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 3
+    },
+    {
+        "id": 8,
+        "text": "Какая страна является родиной джаза?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Франция",
                 "isCorrect": false
             },
             {
@@ -177,39 +204,12 @@
             },
             {
                 "id": "C",
-                "text": "Аргентина",
+                "text": "США",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Португалия",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
-        "id": 8,
-        "text": "Кто изобрёл книгопечатание?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Леонардо да Винчи",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Иоганн Гутенберг",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Микеланджело",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Николай Коперник",
+                "text": "Куба",
                 "isCorrect": false
             }
         ],
@@ -217,53 +217,57 @@
     },
     {
         "id": 9,
-        "text": "Какая река является самой длинной в Европе?",
+        "text": "Кто поёт в этой песне?",
+        "media": {
+            "type": "audio",
+            "url": "/sounds/questions/pinto_picasso.mp3"
+        },
         "options": [
             {
                 "id": "A",
-                "text": "Дунай",
+                "text": "Jiory",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Рейн",
+                "text": "Sebas Garreta",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Волга",
-                "isCorrect": true
+                "text": "Mario Baro",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Эльба",
-                "isCorrect": false
+                "text": "Pinto Picasso",
+                "isCorrect": true
             }
         ],
         "difficulty": 3
     },
     {
         "id": 10,
-        "text": "Кто написал оперу 'Кармен'?",
+        "text": "Кто нарисовал картину 'Звёздная ночь'?",
         "options": [
             {
                 "id": "A",
-                "text": "Джузеппе Верди",
+                "text": "Пабло Пикассо",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Вольфганг Моцарт",
+                "text": "Клод Моне",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Жорж Бизе",
+                "text": "Винсент Ван Гог",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Пётр Чайковский",
+                "text": "Сальвадор Дали",
                 "isCorrect": false
             }
         ],
@@ -271,26 +275,26 @@
     },
     {
         "id": 11,
-        "text": "Какая битва положила начало концу Наполеоновских войн?",
+        "text": "Какое событие произошло в 1961 году?",
         "options": [
             {
                 "id": "A",
-                "text": "Бородинское сражение",
+                "text": "Высадка на Луну",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Битва при Ватерлоо",
+                "text": "Первый полёт человека в космос",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Битва при Аустерлице",
+                "text": "Открытие Америки",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Лейпцигская битва",
+                "text": "Начало Второй мировой войны",
                 "isCorrect": false
             }
         ],
@@ -298,7 +302,7 @@
     },
     {
         "id": 12,
-        "text": "Какой элемент имеет атомный номер 79?",
+        "text": "Какой элемент обозначается символом 'Au'?",
         "options": [
             {
                 "id": "A",
@@ -307,7 +311,7 @@
             },
             {
                 "id": "B",
-                "text": "Платина",
+                "text": "Медь",
                 "isCorrect": false
             },
             {
@@ -317,7 +321,7 @@
             },
             {
                 "id": "D",
-                "text": "Ртуть",
+                "text": "Алюминий",
                 "isCorrect": false
             }
         ],
@@ -325,80 +329,80 @@
     },
     {
         "id": 13,
-        "text": "Какое животное изображено на гербе Австралии?",
+        "text": "Какое животное является национальным символом Китая?",
         "options": [
             {
                 "id": "A",
-                "text": "Кенгуру и страус эму",
-                "isCorrect": true
-            },
-            {
-                "id": "B",
-                "text": "Лев и единорог",
+                "text": "Тигр",
                 "isCorrect": false
             },
             {
+                "id": "B",
+                "text": "Дракон",
+                "isCorrect": true
+            },
+            {
                 "id": "C",
-                "text": "Орёл и змея",
+                "text": "Панда",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Медведь и орёл",
+                "text": "Феникс",
                 "isCorrect": false
             }
         ],
-        "difficulty": 5
+        "difficulty": 4
     },
     {
         "id": 14,
-        "text": "Кто написал знаменитый трактат 'Государь'?",
+        "text": "Кто был первым президентом США?",
         "options": [
             {
                 "id": "A",
-                "text": "Томас Мор",
+                "text": "Томас Джефферсон",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Никколо Макиавелли",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Джон Локк",
+                "text": "Авраам Линкольн",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Джордж Вашингтон",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Вольтер",
+                "text": "Джон Адамс",
                 "isCorrect": false
             }
         ],
-        "difficulty": 5
+        "difficulty": 4
     },
     {
         "id": 15,
-        "text": "Какая частица была открыта в ЦЕРН в 2012 году и подтвердила Стандартную модель?",
+        "text": "Какая теорема является основой геометрии?",
         "options": [
             {
                 "id": "A",
-                "text": "Кварк",
+                "text": "Теорема Ферма",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Бозон Хиггса",
+                "text": "Теорема Пифагора",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Нейтрино",
+                "text": "Теорема Эйлера",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Глюон",
+                "text": "Теорема Гаусса",
                 "isCorrect": false
             }
         ],
