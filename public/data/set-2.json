@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "text": "На каком этаже находится зал студии БачатаМания?",
+        "text": "Бачата это...",
         "options": [
             {
                 "id": "A",
-                "text": "На первом",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "На втором",
+                "text": "Социальный танец",
                 "isCorrect": true
             },
             {
+                "id": "B",
+                "text": "Компьютерная игра",
+                "isCorrect": false
+            },
+            {
                 "id": "C",
-                "text": "На третьем",
+                "text": "Мексиканская закуска",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "На четвёртом",
+                "text": "Город в Испании",
                 "isCorrect": false
             }
         ],
@@ -28,26 +28,26 @@
     },
     {
         "id": 2,
-        "text": "Как зовут бачата диджея в Орске?",
+        "text": "С какой ноги партнёр вступает «в раз»?",
         "options": [
             {
                 "id": "A",
-                "text": "Аваз",
+                "text": "С правой",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Ренат",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Самрат",
+                "text": "С левой",
                 "isCorrect": true
             },
             {
+                "id": "C",
+                "text": "Со свободной",
+                "isCorrect": false
+            },
+            {
                 "id": "D",
-                "text": "Эдгар",
+                "text": "С любой",
                 "isCorrect": false
             }
         ],
@@ -55,53 +55,53 @@
     },
     {
         "id": 3,
-        "text": "Какой волны нет в бачате?",
+        "text": "Из скольки счетов состоит музыкальный квадрат?",
         "options": [
             {
                 "id": "A",
-                "text": "Прямой",
+                "text": "10",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Обратной",
-                "isCorrect": false
+                "text": "8",
+                "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Фронтальной",
+                "text": "12",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Морской",
-                "isCorrect": true
+                "text": "6",
+                "isCorrect": false
             }
         ],
         "difficulty": 1
     },
     {
         "id": 4,
-        "text": "Назовите исполнителя которого нет в бачате",
+        "text": "Что такое тэп?",
         "options": [
             {
                 "id": "A",
-                "text": "Dama",
+                "text": "Шаг",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Shama",
+                "text": "Удар бедром",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Puma",
+                "text": "Остановка",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Lama",
+                "text": "Точка",
                 "isCorrect": true
             }
         ],
@@ -109,26 +109,26 @@
     },
     {
         "id": 5,
-        "text": "Как называется работа ног в бачате?",
+        "text": "Назовите адрес студии БачатаМания",
         "options": [
             {
                 "id": "A",
-                "text": "Foodwork",
-                "isCorrect": false
+                "text": "Новотроицкое шоссе, 10",
+                "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Football",
+                "text": "Ленина, 42",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Footwork",
-                "isCorrect": true
+                "text": "Макаренко, 13",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Foodcourt",
+                "text": "Васнецова, 16",
                 "isCorrect": false
             }
         ],
@@ -136,53 +136,53 @@
     },
     {
         "id": 6,
-        "text": "Кто из них исполнитель бачаты?",
+        "text": "Какой ученик студии БачатаМания не живёт на ОЗТП?",
         "options": [
             {
                 "id": "A",
-                "text": "JR",
-                "isCorrect": true
+                "text": "Андрей Лапин",
+                "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "QR",
+                "text": "Ксения Сотникова",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "PR",
+                "text": "Настя Пушеева",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "IR",
-                "isCorrect": false
+                "text": "Лев Кусь",
+                "isCorrect": true
             }
         ],
         "difficulty": 2
     },
     {
         "id": 7,
-        "text": "Сколько стоит пробное занятие в студии БачатаМания?",
+        "text": "Как зовут преподавателя студии БачатаМания?",
         "options": [
             {
                 "id": "A",
-                "text": "300",
-                "isCorrect": true
+                "text": "Кеулимжай",
+                "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "200",
+                "text": "Кеулемжан",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "400",
-                "isCorrect": false
+                "text": "Кеулемжай",
+                "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "299",
+                "text": "Коулемжан",
                 "isCorrect": false
             }
         ],
@@ -190,26 +190,26 @@
     },
     {
         "id": 8,
-        "text": "Чье логово бачата тусовки находится в Тюмени?",
+        "text": "В какой день недели проходит вечеринка в студии БачатаМания?",
         "options": [
             {
                 "id": "A",
-                "text": "Медведей",
+                "text": "Пятница",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Гиен",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Волков",
+                "text": "Суббота",
                 "isCorrect": true
             },
             {
+                "id": "C",
+                "text": "Воскресенье",
+                "isCorrect": false
+            },
+            {
                 "id": "D",
-                "text": "Шакалов",
+                "text": "Понедельник",
                 "isCorrect": false
             }
         ],
@@ -217,26 +217,26 @@
     },
     {
         "id": 9,
-        "text": "Как переводится слово «bachata»?",
+        "text": "Какой вечеринки не было в БачатаМании?",
         "options": [
             {
                 "id": "A",
-                "text": "Веселье",
+                "text": "Хэллоуин",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Праздник",
+                "text": "Арбузная",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Вечеринка",
+                "text": "Восточная",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Радость",
+                "text": "Бомж пати",
                 "isCorrect": false
             }
         ],
@@ -247,54 +247,54 @@
         "text": "Кто поёт в этой песне?",
         "media": {
             "type": "audio",
-            "url": "/sounds/questions/pinto_picasso.mp3"
+            "url": "/sounds/questions/chris_paradise.mp3"
         },
         "options": [
             {
                 "id": "A",
-                "text": "Jiory",
-                "isCorrect": false
+                "text": "Chris Paradise",
+                "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Sebas Garreta",
+                "text": "Montelier",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Mario Baro",
+                "text": "Esme",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Pinto Picasso",
-                "isCorrect": true
+                "text": "Dani J",
+                "isCorrect": false
             }
         ],
         "difficulty": 3
     },
     {
         "id": 11,
-        "text": "Кто из них исполнитель песен бачаты?",
+        "text": "Какой ритм играет в припеве песен бачаты?",
         "options": [
             {
                 "id": "A",
-                "text": "Prince Charles",
+                "text": "Деречо",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Prince Royce",
+                "text": "Махао",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Prince Luis",
+                "text": "Интро",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Prince Andrew",
+                "text": "Мамбо",
                 "isCorrect": false
             }
         ],
@@ -302,26 +302,26 @@
     },
     {
         "id": 12,
-        "text": "Даниель Дезире это...",
+        "text": "Назовите преподавателя школы Gimmedance в г. Москва",
         "options": [
             {
                 "id": "A",
-                "text": "Фамилия и имя музыканта",
+                "text": "Олейников",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фамилия и имя певца",
+                "text": "Букулова",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Танцевальная пара",
+                "text": "Гамидов",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Танцевальный элемент",
+                "text": "Бакулина",
                 "isCorrect": false
             }
         ],
@@ -329,26 +329,26 @@
     },
     {
         "id": 13,
-        "text": "Когда зародился сеншуал в бачате?",
+        "text": "Кто из этих парней не проводил мастер-класс в БачатаМании?",
         "options": [
             {
                 "id": "A",
-                "text": "2011",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "2012",
+                "text": "Аверин",
                 "isCorrect": true
             },
             {
+                "id": "B",
+                "text": "Валеев",
+                "isCorrect": false
+            },
+            {
                 "id": "C",
-                "text": "2013",
+                "text": "Фионов",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "2014",
+                "text": "Ибраев",
                 "isCorrect": false
             }
         ],
@@ -359,18 +359,18 @@
         "text": "Назовите музыкальный инструмент",
         "media": {
             "type": "image",
-            "url": "/images/bongo.webp"
+            "url": "/images/guira.webp"
         },
         "options": [
             {
                 "id": "A",
                 "text": "Бонго",
-                "isCorrect": true
+                "isCorrect": false
             },
             {
                 "id": "B",
                 "text": "Гуира",
-                "isCorrect": false
+                "isCorrect": true
             },
             {
                 "id": "C",
@@ -387,26 +387,26 @@
     },
     {
         "id": 15,
-        "text": "Когда в Испании проходил Чемпионат Мира по бачате 2025?",
+        "text": "В каком городе Испании проходил Чемпионат Мира по бачате 2025?",
         "options": [
             {
                 "id": "A",
-                "text": "23 октября",
+                "text": "Аликанте",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "24 октября",
+                "text": "Кальпе",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "25 октября",
+                "text": "Дения",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "26 октября",
+                "text": "Альея",
                 "isCorrect": false
             }
         ],
