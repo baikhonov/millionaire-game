@@ -1,4 +1,3 @@
-<!-- src/components/game/QuestionCard.vue -->
 <template>
   <div class="question-card">
     <div class="question-text">

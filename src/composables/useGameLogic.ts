@@ -1,4 +1,3 @@
-// src/composables/useGameLogic.ts
 import { ref, computed, readonly } from 'vue'
 import { useQuestions } from './useQuestions'
 import { useSoundManager } from './useSoundManager'
@@ -20,7 +19,6 @@ export function useGameLogic() {
     totalQuestions,
     isLastQuestion,
     startNewGame,
-    returnCurrentSet,
     getQuestionsStats,
     resetAllProgress,
     allSetsUsed,
@@ -87,7 +85,6 @@ export function useGameLogic() {
       currentQuestion.value?.media?.type === 'audio' ||
       currentQuestion.value?.media?.type === 'video'
     ) {
-      console.log('🎵 Музыка отключена из-за медиа-контента')
       return
     }
     const level = questionNumber.value
@@ -303,8 +300,6 @@ export function useGameLogic() {
     if (usedHints.value.fiftyFifty || isAnswered.value || isAnswerRevealed.value) return
 
     usedHints.value.fiftyFifty = true
-    // soundManager.stopMusic()
-    // soundManager.stopAllEffects()
     soundManager.playFiftyFifty()
 
     const allOptions = currentQuestion.value?.options || []
@@ -312,7 +307,6 @@ export function useGameLogic() {
     const toHide = incorrectOptions.slice(0, 2).map((opt) => opt.id)
 
     hiddenOptions.value = toHide
-    console.log(`🔍 50:50 — скрыты варианты: ${toHide.join(', ')}`)
   }
 
   const useCallHint = (): void => {
@@ -322,7 +316,6 @@ export function useGameLogic() {
     soundManager.stopMusic()
     soundManager.stopAllEffects()
     soundManager.playCall()
-    console.log(`📞 Звонок другу — игрок звонит оффлайн`)
   }
 
   const useAudienceHint = (): void => {
@@ -332,7 +325,6 @@ export function useGameLogic() {
     soundManager.stopMusic()
     soundManager.stopAllEffects()
     soundManager.playAudience()
-    console.log(`👥 Помощь зала — игрок спрашивает зал оффлайн`)
   }
 
   const takeMoney = (): void => {
@@ -382,7 +374,6 @@ export function useGameLogic() {
     takeMoney,
 
     startNewGame,
-    returnCurrentSet,
     getQuestionsStats,
     resetAllProgress,
     allSetsUsed,

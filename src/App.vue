@@ -171,7 +171,6 @@ const {
   useAudienceHint,
   startNewGame,
   resetAllProgress,
-  returnCurrentSet,
   allSetsUsed,
   totalQuestions,
   getQuestionsStats,
@@ -180,8 +179,6 @@ const {
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
 
 const startGame = async () => {
-  console.log('🎮 Начинаем игру')
-
   if (allSetsUsed.value) {
     alert('Все сеты вопросов использованы. Пожалуйста, сбросьте пул вопросов.')
     return
@@ -213,25 +210,14 @@ const revealAnswer = () => {
 }
 
 const restartGame = async () => {
-  console.log('🔄 Перезапуск игры')
-
-  // Получаем статистику
   const stats = getQuestionsStats()
   const hasRemainingSets = stats.remaining > 0
 
-  console.log('📊 Осталось сетов:', stats.remaining)
-  console.log('📊 Все сеты использованы?', !hasRemainingSets)
-
   if (!hasRemainingSets) {
-    // Все сеты использованы — возвращаемся на стартовый экран
-    console.log('⚠️ Все сеты использованы, возврат на стартовый экран')
     gameStarted.value = false
     return
   }
 
-  // Есть ещё сеты — загружаем следующий
-  console.log('🎮 Загружаем следующий сет')
-  returnCurrentSet()
   await startNewGame()
   resetGame()
   await initGame()
@@ -248,16 +234,10 @@ const timerMusicRef = ref<HTMLAudioElement | null>(null)
 const onCallHint = () => {
   useCallHint()
   showTimerButton.value = true
-  console.log('📞 Звонок другу активирован, кнопка таймера появилась')
 }
 
 const startTimer = () => {
-  console.log('⏱️ Кнопка таймера нажата, запускаем таймер')
-
-  if (!timerRef.value) {
-    console.error('❌ TimerDisplay не найден')
-    return
-  }
+  if (!timerRef.value) return
 
   sound.stopMusic()
   sound.stopAllEffects()
@@ -266,9 +246,7 @@ const startTimer = () => {
   timerMusic.loop = false
   timerMusic.volume = 0.5
 
-  // Когда музыка закончится, закрываем таймер
   timerMusic.addEventListener('ended', () => {
-    console.log('🎵 Музыка таймера закончилась, закрываем таймер')
     if (timerRef.value) {
       timerRef.value.closeTimer()
     }
@@ -277,7 +255,7 @@ const startTimer = () => {
     }
   })
 
-  timerMusic.play().catch((e) => console.log('Ошибка воспроизведения музыки таймера:', e))
+  timerMusic.play().catch((e) => console.error('Ошибка воспроизведения музыки таймера:', e))
   timerMusicRef.value = timerMusic
 
   timerRef.value.start()
@@ -285,8 +263,6 @@ const startTimer = () => {
 }
 
 const onTimerComplete = () => {
-  console.log('⏱️ Таймер завершён по времени')
-  // Если музыка ещё играет, останавливаем её
   if (timerMusicRef.value) {
     timerMusicRef.value.pause()
     timerMusicRef.value.currentTime = 0
@@ -295,9 +271,7 @@ const onTimerComplete = () => {
 }
 
 onMounted(async () => {
-  console.log('🚀 Приложение загружено, генерируем вопросы')
   await startNewGame()
-  console.log('✅ Вопросы готовы, ждём нажатия "Начать игру"')
 })
 
 const resetProgress = async () => {
@@ -306,7 +280,6 @@ const resetProgress = async () => {
   )
   if (!confirmed) return
 
-  console.log('🗑️ Сброс сетов вопросов')
   resetAllProgress()
   resetGame()
   await startNewGame()
@@ -392,8 +365,6 @@ const launchConfetti = () => {
 
 const exitGame = () => {
   game.takeMoney()
-
-  console.log(`🚪 Выход из игры. Выигрыш: ${formatMoney(currentWinnings.value)}`)
 }
 </script>
 

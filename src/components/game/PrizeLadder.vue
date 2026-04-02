@@ -1,4 +1,3 @@
-<!-- src/components/game/PrizeLadder.vue -->
 <template>
   <div class="prize-ladder">
     <div

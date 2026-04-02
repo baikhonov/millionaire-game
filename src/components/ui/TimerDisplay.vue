@@ -50,7 +50,6 @@ const progressOffset = computed(() => {
 })
 
 const start = () => {
-  console.log('⏱️ TimerDisplay.start() вызван')
   visible.value = true
   timeLeft.value = 30
 

@@ -1,4 +1,3 @@
-<!-- src/components/game/OptionsGrid.vue -->
 <template>
   <div class="options-grid">
     <button

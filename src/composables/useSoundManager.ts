@@ -18,7 +18,6 @@ export function useSoundManager() {
   const enableAudio = (): void => {
     if (isAudioEnabled.value) return
     isAudioEnabled.value = true
-    console.log('✅ Звук включён')
   }
 
   const loadSound = (url: string): HTMLAudioElement | null => {
@@ -32,10 +31,7 @@ export function useSoundManager() {
   }
 
   const playQuestionMusic = (level: number): void => {
-    if (!isAudioEnabled.value || isMuted.value) {
-      console.log(`🎵 Музыка вопроса не играет (звук выключен или muted)`)
-      return
-    }
+    if (!isAudioEnabled.value || isMuted.value) return
 
     if (currentMusic.value) {
       currentMusic.value.pause()
@@ -61,22 +57,14 @@ export function useSoundManager() {
     }
 
     const audio = loadSound(musicUrl)
-    if (!audio) {
-      console.log(`⚠️ Не найден файл музыки: ${musicUrl}`)
-      return
-    }
+    if (!audio) return
 
     audio.loop = false
     audio.volume = musicVolume.value
 
-    audio
-      .play()
-      .then(() => {
-        console.log(`🎵 Музыка вопроса: ${musicName}`)
-      })
-      .catch((e) => {
-        console.error(`❌ Ошибка воспроизведения музыки вопроса:`, e.message)
-      })
+    audio.play().catch((e) => {
+      console.error(`❌ Ошибка воспроизведения музыки вопроса:`, e.message)
+    })
 
     currentMusic.value = audio
     isMusicPlaying.value = true
@@ -88,7 +76,6 @@ export function useSoundManager() {
       currentMusic.value.currentTime = 0
       currentMusic.value = null
       isMusicPlaying.value = false
-      console.log('⏹️ Музыка остановлена')
     }
   }
 
@@ -99,7 +86,6 @@ export function useSoundManager() {
       audio.currentTime = 0
     })
     activeEffects.clear()
-    console.log('⏹️ Все эффекты остановлены')
   }
 
   const preloadMusic = (level: number): Promise<void> => {
@@ -122,13 +108,11 @@ export function useSoundManager() {
         return
       }
 
-      // Если уже загружено
       if (audio.readyState >= 2) {
         resolve()
         return
       }
 
-      // Ждём загрузки
       audio.addEventListener(
         'canplaythrough',
         () => {
@@ -145,7 +129,6 @@ export function useSoundManager() {
         { once: true },
       )
 
-      // Таймаут на случай долгой загрузки
       setTimeout(() => {
         resolve()
       }, 3000)
@@ -153,18 +136,10 @@ export function useSoundManager() {
   }
 
   const playQuestionMusicWithPreload = async (level: number): Promise<void> => {
-    console.log(`🎵 Предзагружаем музыку для вопроса ${level}...`)
-
-    // Предзагружаем
     await preloadMusic(level)
-
-    console.log(`🎵 Музыка загружена, начинаем воспроизведение`)
-
-    // Воспроизводим
     playQuestionMusic(level)
   }
 
-  // Метод для получения длительности звука
   const getAudioDuration = (url: string): Promise<number> => {
     return new Promise((resolve) => {
       const audio = new Audio(url)
@@ -177,16 +152,14 @@ export function useSoundManager() {
       }
 
       const onLoaded = () => {
-        const duration = audio.duration * 1000 // переводим в миллисекунды
-        console.log(`🎵 Длительность звука ${url}: ${duration}мс`)
+        const duration = audio.duration * 1000
         cleanup()
         resolve(duration)
       }
 
       const onError = () => {
-        console.warn(`⚠️ Не удалось определить длительность: ${url}`)
         cleanup()
-        resolve(0) // при ошибке возвращаем 0
+        resolve(0)
       }
 
       audio.addEventListener('loadedmetadata', onLoaded)
@@ -197,50 +170,30 @@ export function useSoundManager() {
   }
 
   const playVictoryMusic = (difficulty: number, questionNumber: number): void => {
-    console.log(`🎵 playVictoryMusic вызван с difficulty = ${difficulty}`)
-    console.log(`🎵 isAudioEnabled = ${isAudioEnabled.value}, isMuted = ${isMuted.value}`)
-
-    if (!isAudioEnabled.value || isMuted.value) {
-      console.log(`🔇 Звук победы не играет (звук выключен или muted)`)
-      return
-    }
+    if (!isAudioEnabled.value || isMuted.value) return
 
     let musicUrl = ''
     let musicName = ''
 
-    // Финальный вопрос (15)
     if (questionNumber === 15) {
       musicUrl = `${BASE_URL}sounds/effects/victory-final.mp3`
       musicName = 'victory-final'
-    }
-    // Несгораемые суммы (вопросы 5 и 10)
-    else if (questionNumber === 5 || questionNumber === 10) {
+    } else if (questionNumber === 5 || questionNumber === 10) {
       musicUrl = `${BASE_URL}sounds/effects/victory-milestone.mp3`
       musicName = 'victory-milestone'
-    }
-    // Все остальные вопросы
-    else {
+    } else {
       musicUrl = `${BASE_URL}sounds/effects/victory.mp3`
       musicName = 'victory'
     }
-
-    console.log(`🎵 Загружаем звук: ${musicUrl}`)
 
     const audio = new Audio(musicUrl)
     audio.volume = sfxVolume.value
 
     activeEffects.add(audio)
 
-    audio
-      .play()
-      .then(() => {
-        console.log(
-          `✅ Звук победы: ${musicName} (вопрос ${questionNumber} - сложность ${difficulty})`,
-        )
-      })
-      .catch((e) => {
-        console.error(`❌ Ошибка воспроизведения победы (${musicName}):`, e.message)
-      })
+    audio.play().catch((e) => {
+      console.error(`❌ Ошибка воспроизведения победы (${musicName}):`, e.message)
+    })
 
     audio.onended = () => {
       activeEffects.delete(audio)
@@ -249,10 +202,7 @@ export function useSoundManager() {
   }
 
   const playFailMusic = (isFinalQuestion: boolean): void => {
-    if (!isAudioEnabled.value || isMuted.value) {
-      console.log(`🔇 Звук поражения не играет (звук выключен или muted)`)
-      return
-    }
+    if (!isAudioEnabled.value || isMuted.value) return
 
     const musicUrl = isFinalQuestion
       ? `${BASE_URL}sounds/effects/fail-final.mp3`
@@ -264,14 +214,9 @@ export function useSoundManager() {
 
     activeEffects.add(audio)
 
-    audio
-      .play()
-      .then(() => {
-        console.log(`✅ Звук поражения: ${musicName}${isFinalQuestion ? ' (финал)' : ''}`)
-      })
-      .catch((e) => {
-        console.error(`❌ Ошибка воспроизведения поражения (${musicName}):`, e.message)
-      })
+    audio.play().catch((e) => {
+      console.error(`❌ Ошибка воспроизведения поражения (${musicName}):`, e.message)
+    })
 
     audio.onended = () => {
       activeEffects.delete(audio)
@@ -283,10 +228,7 @@ export function useSoundManager() {
     stopMusic()
     stopAllEffects()
 
-    if (!isAudioEnabled.value || isMuted.value) {
-      console.log(`🎵 Game Over музыка не играет (звук выключен или muted)`)
-      return
-    }
+    if (!isAudioEnabled.value || isMuted.value) return
 
     const audio = loadSound(`${BASE_URL}sounds/music/game-over.mp3`)
     if (!audio) return
@@ -294,23 +236,15 @@ export function useSoundManager() {
     audio.loop = false
     audio.volume = musicVolume.value
 
-    audio
-      .play()
-      .then(() => {
-        console.log(`🎵 Game Over музыка`)
-      })
-      .catch((e) => {
-        console.error(`❌ Ошибка воспроизведения Game Over музыки:`, e.message)
-      })
+    audio.play().catch((e) => {
+      console.error(`❌ Ошибка воспроизведения Game Over музыки:`, e.message)
+    })
 
     currentMusic.value = audio
   }
 
   const playEffect = (effectName: string): void => {
-    if (!isAudioEnabled.value || isMuted.value) {
-      console.log(`🔇 Эффект ${effectName} не играет (звук выключен или muted)`)
-      return
-    }
+    if (!isAudioEnabled.value || isMuted.value) return
 
     const effectUrls: Record<string, string> = {
       correct: `${BASE_URL}sounds/effects/correct.mp3`,
@@ -322,24 +256,16 @@ export function useSoundManager() {
     }
 
     const url = effectUrls[effectName]
-    if (!url) {
-      console.log(`⚠️ Неизвестный эффект: ${effectName}`)
-      return
-    }
+    if (!url) return
 
     const audio = new Audio(url)
     audio.volume = sfxVolume.value
 
     activeEffects.add(audio)
 
-    audio
-      .play()
-      .then(() => {
-        console.log(`✅ Эффект: ${effectName}`)
-      })
-      .catch((e) => {
-        console.error(`❌ Ошибка воспроизведения эффекта ${effectName}:`, e.message)
-      })
+    audio.play().catch((e) => {
+      console.error(`❌ Ошибка воспроизведения эффекта ${effectName}:`, e.message)
+    })
 
     audio.onended = () => {
       activeEffects.delete(audio)
