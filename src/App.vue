@@ -77,8 +77,10 @@
             <HintsPanel
               :used-hints="usedHints"
               :disabled="isAnswered || isAnswerRevealed"
+              :show-timer-button="showTimerButton"
               @fifty-fifty="useFiftyFifty"
-              @call="useCallHint"
+              @call="onCallHint"
+              @start-timer="startTimer"
               @audience="useAudienceHint"
             />
 
@@ -87,6 +89,9 @@
               :current-index="currentQuestionIndex"
               :format-money="formatMoney"
             />
+
+            <!-- Таймер звонка -->
+            <TimerDisplay ref="timerRef" @complete="onTimerComplete" />
           </div>
         </div>
       </div>
@@ -129,6 +134,7 @@ import PrizeLadder from './components/game/PrizeLadder.vue'
 import HintsPanel from './components/game/HintsPanel.vue'
 import confetti from 'canvas-confetti'
 import MilestoneNotification from './components/ui/MilestoneNotification.vue'
+import TimerDisplay from './components/ui/TimerDisplay.vue'
 
 const game = useGameLogic()
 const sound = useSoundManager()
@@ -231,6 +237,59 @@ const restartGame = async () => {
 
   if (isAudioEnabled.value && !isMuted.value) {
     playQuestionMusic(1)
+  }
+}
+
+const showTimerButton = ref(false)
+const timerRef = ref<InstanceType<typeof TimerDisplay> | null>(null)
+const timerMusicRef = ref<HTMLAudioElement | null>(null)
+
+const onCallHint = () => {
+  useCallHint()
+  showTimerButton.value = true
+  console.log('📞 Звонок другу активирован, кнопка таймера появилась')
+}
+
+const startTimer = () => {
+  console.log('⏱️ Кнопка таймера нажата, запускаем таймер')
+
+  if (!timerRef.value) {
+    console.error('❌ TimerDisplay не найден')
+    return
+  }
+
+  sound.stopMusic()
+  sound.stopAllEffects()
+
+  const timerMusic = new Audio('/sounds/music/timer-call.mp3')
+  timerMusic.loop = false
+  timerMusic.volume = 0.5
+
+  // Когда музыка закончится, закрываем таймер
+  timerMusic.addEventListener('ended', () => {
+    console.log('🎵 Музыка таймера закончилась, закрываем таймер')
+    if (timerRef.value) {
+      timerRef.value.closeTimer()
+    }
+    if (timerMusicRef.value) {
+      timerMusicRef.value = null
+    }
+  })
+
+  timerMusic.play().catch((e) => console.log('Ошибка воспроизведения музыки таймера:', e))
+  timerMusicRef.value = timerMusic
+
+  timerRef.value.start()
+  showTimerButton.value = false
+}
+
+const onTimerComplete = () => {
+  console.log('⏱️ Таймер завершён по времени')
+  // Если музыка ещё играет, останавливаем её
+  if (timerMusicRef.value) {
+    timerMusicRef.value.pause()
+    timerMusicRef.value.currentTime = 0
+    timerMusicRef.value = null
   }
 }
 

@@ -11,6 +11,7 @@
     </button>
 
     <button
+      v-if="!showTimerButton"
       class="hint-btn hint-call"
       :class="{ used: usedHints.call }"
       :disabled="usedHints.call || disabled"
@@ -18,6 +19,12 @@
     >
       <span class="hint-icon">📞</span>
       <span class="hint-text">Звонок другу</span>
+    </button>
+
+    <!-- Кнопка таймера (вместо звонка) -->
+    <button v-else class="hint-btn hint-timer" @click="$emit('startTimer')">
+      <span class="hint-icon">⏱️</span>
+      <span class="hint-text">Таймер</span>
     </button>
 
     <button
@@ -40,17 +47,21 @@ defineProps<{
     audience: boolean
   }
   disabled: boolean
+  showTimerButton: boolean
 }>()
 
 defineEmits<{
   (e: 'fiftyFifty'): void
   (e: 'call'): void
   (e: 'audience'): void
+  (e: 'startTimer'): void
 }>()
 </script>
 
 <style scoped>
 .hints-panel {
+  position: relative;
+
   display: flex;
   gap: 8px;
   background: rgba(0, 0, 0, 0.4);
@@ -96,6 +107,15 @@ defineEmits<{
   background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
   border-color: #666;
   transform: none;
+}
+
+.hint-timer {
+  background: linear-gradient(135deg, #2a5f3e, #1a3f2e);
+  border-color: #4caf50;
+}
+
+.hint-timer:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3a7f4e, #2a5f3e);
 }
 
 /* Адаптивность */
