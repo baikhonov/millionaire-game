@@ -125,7 +125,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, watch } from 'vue'
+import { BASE_URL } from '@/config'
+import { ref, onMounted, watch } from 'vue'
 import { useGameLogic } from './composables/useGameLogic'
 import { useSoundManager } from './composables/useSoundManager'
 import OptionsGrid from './components/game/OptionsGrid.vue'
@@ -261,7 +262,7 @@ const startTimer = () => {
   sound.stopMusic()
   sound.stopAllEffects()
 
-  const timerMusic = new Audio('/sounds/music/timer-call.mp3')
+  const timerMusic = new Audio(`${BASE_URL}sounds/music/timer-call.mp3`)
   timerMusic.loop = false
   timerMusic.volume = 0.5
 
@@ -887,7 +888,6 @@ body {
   .exit-button {
     bottom: 15px;
     left: 15px;
-    width: 40px;
     height: 40px;
     font-size: 20px;
   }

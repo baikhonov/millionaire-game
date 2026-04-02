@@ -221,7 +221,7 @@ defineExpose({ start, stopTimer, closeTimer })
 
 @media (max-width: 768px) {
   .timer-container {
-    top: 100px;
+    top: 94px;
     right: 10px;
   }
 
