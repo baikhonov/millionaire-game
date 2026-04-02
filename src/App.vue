@@ -278,7 +278,7 @@ const launchConfetti = () => {
 
   setTimeout(() => {
     confetti({
-      particleCount: 300,
+      particleCount: 800,
       spread: 120,
       origin: { y: 0.4 },
       startVelocity: 30,

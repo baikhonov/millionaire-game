@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "text": "На каком этаже находится зал студии БачатаМании?",
+        "text": "На каком этаже находится зал студии БачатаМания?",
         "options": [
             {
                 "id": "A",
@@ -55,33 +55,6 @@
     },
     {
         "id": 3,
-        "text": "Назовите исполнителя которого нет в бачате",
-        "options": [
-            {
-                "id": "A",
-                "text": "Dama",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Shama",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Puma",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Lama",
-                "isCorrect": true
-            }
-        ],
-        "difficulty": 1
-    },
-    {
-        "id": 4,
         "text": "Какой волны нет в бачате?",
         "options": [
             {
@@ -102,6 +75,33 @@
             {
                 "id": "D",
                 "text": "Морской",
+                "isCorrect": true
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 4,
+        "text": "Назовите исполнителя которого нет в бачате",
+        "options": [
+            {
+                "id": "A",
+                "text": "Dama",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Shama",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Puma",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "Lama",
                 "isCorrect": true
             }
         ],
@@ -136,7 +136,7 @@
     },
     {
         "id": 6,
-        "text": "Кто из них исполнитель бачаты",
+        "text": "Кто из них исполнитель бачаты?",
         "options": [
             {
                 "id": "A",

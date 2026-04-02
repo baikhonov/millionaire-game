@@ -7,8 +7,8 @@ import type { Option, UsedHints } from '@/types/game'
 // Настройки задержек
 const DELAYS = {
   REVEAL_ANSWER: 1500,
-  NEXT_QUESTION: 1500,
-  FIRST_OPTION: 800,
+  NEXT_QUESTION: 1200,
+  FIRST_OPTION: 1200,
   OPTION_INTERVAL: 1000,
   MILESTONE_EXTRA_DELAY: 2000,
   FINAL_FAIL_EXTRA_DELAY: 3000,
@@ -303,8 +303,8 @@ export function useGameLogic() {
     if (usedHints.value.fiftyFifty || isAnswered.value || isAnswerRevealed.value) return
 
     usedHints.value.fiftyFifty = true
-    soundManager.stopMusic()
-    soundManager.stopAllEffects()
+    // soundManager.stopMusic()
+    // soundManager.stopAllEffects()
     soundManager.playFiftyFifty()
 
     const allOptions = currentQuestion.value?.options || []
