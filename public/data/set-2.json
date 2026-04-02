@@ -1,53 +1,53 @@
 [
     {
         "id": 1,
-        "text": "Какой океан является самым большим на Земле?",
+        "text": "На каком этаже находится зал студии БачатаМании?",
         "options": [
             {
                 "id": "A",
-                "text": "Атлантический",
+                "text": "На первом",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Индийский",
-                "isCorrect": false
+                "text": "На втором",
+                "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Северный Ледовитый",
+                "text": "На третьем",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Тихий",
-                "isCorrect": true
+                "text": "На четвёртом",
+                "isCorrect": false
             }
         ],
         "difficulty": 1
     },
     {
         "id": 2,
-        "text": "Какая страна подарила миру пиццу?",
+        "text": "Как зовут бачата диджея в Орске?",
         "options": [
             {
                 "id": "A",
-                "text": "Франция",
+                "text": "Аваз",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Испания",
+                "text": "Ренат",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Италия",
+                "text": "Самрат",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Греция",
+                "text": "Эдгар",
                 "isCorrect": false
             }
         ],
@@ -55,111 +55,111 @@
     },
     {
         "id": 3,
-        "text": "Кто написал 'Гамлета'?",
+        "text": "Назовите исполнителя которого нет в бачате",
         "options": [
             {
                 "id": "A",
-                "text": "Чарльз Диккенс",
+                "text": "Dama",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Марк Твен",
+                "text": "Shama",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Уильям Шекспир",
-                "isCorrect": true
+                "text": "Puma",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Оскар Уайльд",
-                "isCorrect": false
+                "text": "Lama",
+                "isCorrect": true
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 4,
-        "text": "Сколько дней в високосном году?",
+        "text": "Какой волны нет в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "365",
+                "text": "Прямой",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "366",
-                "isCorrect": true
+                "text": "Обратной",
+                "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "364",
+                "text": "Фронтальной",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "367",
-                "isCorrect": false
+                "text": "Морской",
+                "isCorrect": true
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 5,
-        "text": "Какой металл является самым лёгким?",
+        "text": "Как называется работа ног в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "Алюминий",
+                "text": "Foodwork",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Магний",
+                "text": "Football",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Литий",
+                "text": "Footwork",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Титан",
+                "text": "Foodcourt",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 1
+    },
+    {
+        "id": 6,
+        "text": "Кто из них исполнитель бачаты",
+        "options": [
+            {
+                "id": "A",
+                "text": "JR",
+                "isCorrect": true
+            },
+            {
+                "id": "B",
+                "text": "QR",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "PR",
+                "isCorrect": false
+            },
+            {
+                "id": "D",
+                "text": "IR",
                 "isCorrect": false
             }
         ],
         "difficulty": 2
-    },
-    {
-        "id": 6,
-        "text": "Кто изобрёл телефон?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Томас Эдисон",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Александр Белл",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Никола Тесла",
-                "isCorrect": false
-            },
-            {
-                "id": "D",
-                "text": "Гульельмо Маркони",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
     },
     {
         "id": 7,

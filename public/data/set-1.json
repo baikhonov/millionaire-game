@@ -1,53 +1,53 @@
 [
     {
         "id": 1,
-        "text": "Какой цвет получается при смешивании красного и жёлтого?",
+        "text": "Что такое тэп?",
         "options": [
             {
                 "id": "A",
-                "text": "Зелёный",
+                "text": "Шаг",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фиолетовый",
+                "text": "Удар бедром",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Оранжевый",
-                "isCorrect": true
+                "text": "Остановка",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Коричневый",
-                "isCorrect": false
+                "text": "Точка",
+                "isCorrect": true
             }
         ],
         "difficulty": 1
     },
     {
         "id": 2,
-        "text": "Какая планета самая близкая к Солнцу?",
+        "text": "С какой ноги партнёр вступает «в раз»?",
         "options": [
             {
                 "id": "A",
-                "text": "Венера",
+                "text": "С правой",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Меркурий",
+                "text": "С левой",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Марс",
+                "text": "Со свободной",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Земля",
+                "text": "С любой",
                 "isCorrect": false
             }
         ],
@@ -55,84 +55,84 @@
     },
     {
         "id": 3,
-        "text": "Кто написал роман 'Преступление и наказание'?",
+        "text": "Из скольки счетов состоит музыкальный квадрат?",
         "options": [
             {
                 "id": "A",
-                "text": "Лев Толстой",
+                "text": "10",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Фёдор Достоевский",
+                "text": "8",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Антон Чехов",
+                "text": "12",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Иван Тургенев",
+                "text": "6",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 4,
-        "text": "Сколько лет длилась Столетняя война?",
+        "text": "Бачата это...",
         "options": [
             {
                 "id": "A",
-                "text": "100 лет",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "116 лет",
+                "text": "Социальный танец",
                 "isCorrect": true
             },
             {
+                "id": "B",
+                "text": "Компьютерная игра",
+                "isCorrect": false
+            },
+            {
                 "id": "C",
-                "text": "89 лет",
+                "text": "Мексиканская закуска",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "133 года",
+                "text": "Город в Испании",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 5,
-        "text": "Какое химическое соединение имеет формулу H₂O?",
+        "text": "Назовите адрес студии БачатаМания",
         "options": [
             {
                 "id": "A",
-                "text": "Перекись водорода",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Вода",
+                "text": "Новотроицкое шоссе, 10",
                 "isCorrect": true
             },
             {
+                "id": "B",
+                "text": "Ленина, 42",
+                "isCorrect": false
+            },
+            {
                 "id": "C",
-                "text": "Соляная кислота",
+                "text": "Макаренко, 13",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Аммиак",
+                "text": "Васнецова, 16",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 6,
@@ -159,7 +159,7 @@
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
         "id": 7,

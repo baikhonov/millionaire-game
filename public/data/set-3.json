@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "text": "Какой фрукт является символом Нью-Йорка?",
+        "text": "Что такое кулито в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "Апельсин",
+                "text": "Вращение головой",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Яблоко",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "Груша",
+                "text": "Вращение плечом",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "Вращение тазом",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "Персик",
+                "text": "Вращение лопаткой",
                 "isCorrect": false
             }
         ],
@@ -28,26 +28,26 @@
     },
     {
         "id": 2,
-        "text": "Какая страна известна как 'Страна восходящего солнца'?",
+        "text": "Как называется украшение кистями рук в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "Китай",
+                "text": "Стрекоза",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Корея",
+                "text": "Моль",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Япония",
+                "text": "Бабочка",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Таиланд",
+                "text": "Пчела",
                 "isCorrect": false
             }
         ],
@@ -55,84 +55,88 @@
     },
     {
         "id": 3,
-        "text": "Кто написал сказку 'Маленький принц'?",
+        "text": "Как называется конкурс парной импровизации в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "Шарль Перро",
+                "text": "Jam and Dream",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Ганс Христиан Андерсен",
+                "text": "Jack and Drill",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Антуан де Сент-Экзюпери",
+                "text": "Jack and Jill",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Братья Гримм",
+                "text": "John and Jill",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 4,
-        "text": "Сколько цветов в радуге?",
+        "text": "Как зовут этого бачатеро?",
+        "media": {
+            "type": "image",
+            "url": "/images/kuzmin.webp"
+        },
         "options": [
             {
                 "id": "A",
-                "text": "5",
+                "text": "Даниель Торьенто",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "6",
+                "text": "Дмитрий Вагис",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "7",
+                "text": "Сергей Кузьмин",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "8",
+                "text": "Руслан Сагинбаев",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 5,
-        "text": "Какой газ выделяют растения при фотосинтезе?",
+        "text": "Какой из этих исполнителей считается «королем бачаты» (El Rey de la Bachata) и одним из главных популяризаторов жанра во всем мире?",
         "options": [
             {
                 "id": "A",
-                "text": "Углекислый газ",
+                "text": "Энрике Эглесиас",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Азот",
+                "text": "Василий Пупкин",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Кислород",
+                "text": "Ромео Сантос",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Водород",
+                "text": "Михаил Шуфутинский",
                 "isCorrect": false
             }
         ],
-        "difficulty": 2
+        "difficulty": 1
     },
     {
         "id": 6,
