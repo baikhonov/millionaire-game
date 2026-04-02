@@ -101,6 +101,15 @@
       </div>
     </div>
 
+    <!-- Кнопка выхода из игры -->
+    <button
+      v-if="gameStarted && !gameEnded && currentWinnings > 0"
+      class="exit-button"
+      @click.stop="exitGame"
+    >
+      🚪 Выйти
+    </button>
+
     <button v-if="gameStarted && !gameEnded" class="sound-button" @click.stop="toggleMute">
       {{ isMuted ? '🔇' : '🔊' }}
     </button>
@@ -152,7 +161,6 @@ const {
   resetAllProgress,
   returnCurrentSet,
   allSetsUsed,
-  currentSetName,
   totalQuestions,
   getQuestionsStats,
 } = game
@@ -303,6 +311,12 @@ const launchConfetti = () => {
       })
     }, 250)
   }, 1500)
+}
+
+const exitGame = () => {
+  game.takeMoney()
+
+  console.log(`🚪 Выход из игры. Выигрыш: ${formatMoney(currentWinnings.value)}`)
 }
 </script>
 
@@ -764,5 +778,50 @@ body {
 .start-button:disabled:hover {
   transform: none;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Кнопка выхода */
+.exit-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  height: 50px;
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exit-button:hover {
+  transform: scale(1.1);
+  background: rgba(255, 215, 0, 0.2);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .exit-button {
+    bottom: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .sound-button {
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
 }
 </style>

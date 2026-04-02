@@ -341,6 +341,7 @@ export function useGameLogic() {
     gameEnded.value = true
     soundManager.stopMusic()
     soundManager.stopAllEffects()
+    soundManager.playGameOverMusic()
   }
 
   // ========== Возвращаемое API ==========
