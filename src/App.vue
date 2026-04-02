@@ -10,13 +10,13 @@
           <img src="/images/logo-game.webp" width="250px" alt="Лого игры" />
         </div>
 
+        <button class="start-button" @click="startGame" :disabled="allSetsUsed">Начать игру</button>
+
         <div v-if="allSetsUsed" class="warning-message">
           ⚠️ Все сеты вопросов использованы! Нажмите "Сбросить пул вопросов" чтобы продолжить.
         </div>
 
-        <button class="start-button" @click="startGame" :disabled="allSetsUsed">Начать игру</button>
-
-        <button class="reset-progress-button" @click="resetProgress">
+        <button v-if="allSetsUsed" class="reset-progress-button" @click="resetProgress">
           🔄 Сбросить пул вопросов
         </button>
       </div>
@@ -420,6 +420,12 @@ body {
   margin-bottom: 50px;
 }
 
+@media (max-width: 768px) {
+  .logo {
+    margin-bottom: 30px;
+  }
+}
+
 .start-card h1 {
   color: #ffd700;
   font-size: 32px;
@@ -743,7 +749,7 @@ body {
   border: 1px solid #ff6b6b;
   border-radius: 8px;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   color: #ff6b6b;
   font-size: 14px;
   text-align: center;
