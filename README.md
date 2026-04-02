@@ -51,35 +51,34 @@ npm run lint
 
 ```js
 {
-"id": 1,
-"text": "Что это за сооружение'?",
-"media": {
-"type": "image",
-"url": "/images/eiffel-tower.webp"
+    "id": 1,
+    "text": "что это за сооружение'?",
+    "media": {
+        "type": "image",
+        "url": "/images/eiffel-tower.webp"
+    },
+    "options": [
+        {
+            "id": "a",
+            "text": "пизанская башня",
+            "iscorrect": false
+        },
+        {
+            "id": "b",
+            "text": "эйфелева башня",
+            "iscorrect": true
+        },
+        {
+            "id": "c",
+            "text": "башня белен",
+            "iscorrect": false
+        },
+        {
+            "id": "d",
+            "text": "венсенская башня",
+            "iscorrect": false
+        }
+    ],
+    "difficulty": 1
 },
-"options": [
-{
-"id": "A",
-"text": "Пизанская башня",
-"isCorrect": false
-},
-{
-"id": "B",
-"text": "Эйфелева башня",
-"isCorrect": true
-},
-{
-"id": "C",
-"text": "Башня Белен",
-"isCorrect": false
-},
-{
-"id": "D",
-"text": "Венсенская башня",
-"isCorrect": false
-}
-],
-"difficulty": 1
-},
-npm run lint
 ```
