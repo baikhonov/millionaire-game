@@ -163,60 +163,87 @@
     },
     {
         "id": 7,
-        "text": "Какая пустыня является самой большой в мире?",
+        "text": "Сколько стоит пробное занятие в студии БачатаМания?",
         "options": [
             {
                 "id": "A",
-                "text": "Сахара",
+                "text": "300",
                 "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Гоби",
+                "text": "200",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Атакама",
+                "text": "400",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Калахари",
+                "text": "299",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
         "id": 8,
-        "text": "Какая страна является родиной джаза?",
+        "text": "Чье логово бачата тусовки находится в Тюмени?",
         "options": [
             {
                 "id": "A",
-                "text": "Франция",
+                "text": "Медведей",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Бразилия",
+                "text": "Гиен",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "США",
+                "text": "Волков",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Куба",
+                "text": "Шакалов",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 9,
+        "text": "Как переводится слово «bachata»?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Веселье",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Праздник",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Вечеринка",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Радость",
                 "isCorrect": false
             }
         ],
         "difficulty": 3
     },
     {
-        "id": 9,
+        "id": 10,
         "text": "Кто поёт в этой песне?",
         "media": {
             "type": "audio",
@@ -247,81 +274,54 @@
         "difficulty": 3
     },
     {
-        "id": 10,
-        "text": "Кто нарисовал картину 'Звёздная ночь'?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Пабло Пикассо",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Клод Моне",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Винсент Ван Гог",
-                "isCorrect": true
-            },
-            {
-                "id": "D",
-                "text": "Сальвадор Дали",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
         "id": 11,
-        "text": "Какое событие произошло в 1961 году?",
+        "text": "Кто из них исполнитель песен бачаты?",
         "options": [
             {
                 "id": "A",
-                "text": "Высадка на Луну",
+                "text": "Prince Charles",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Первый полёт человека в космос",
+                "text": "Prince Royce",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Открытие Америки",
+                "text": "Prince Luis",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Начало Второй мировой войны",
+                "text": "Prince Andrew",
                 "isCorrect": false
             }
         ],
-        "difficulty": 4
+        "difficulty": 3
     },
     {
         "id": 12,
-        "text": "Какой элемент обозначается символом 'Au'?",
+        "text": "Даниель Дезире это...",
         "options": [
             {
                 "id": "A",
-                "text": "Серебро",
+                "text": "Фамилия и имя музыканта",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Медь",
+                "text": "Фамилия и имя певца",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Золото",
+                "text": "Танцевальная пара",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Алюминий",
+                "text": "Танцевальный элемент",
                 "isCorrect": false
             }
         ],
@@ -329,26 +329,26 @@
     },
     {
         "id": 13,
-        "text": "Какое животное является национальным символом Китая?",
+        "text": "Когда зародился сеншуал в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "Тигр",
+                "text": "2011",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Дракон",
+                "text": "2012",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Панда",
+                "text": "2013",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Феникс",
+                "text": "2014",
                 "isCorrect": false
             }
         ],
@@ -356,26 +356,30 @@
     },
     {
         "id": 14,
-        "text": "Кто был первым президентом США?",
+        "text": "Назовите музыкальный инструмент",
+        "media": {
+            "type": "image",
+            "url": "/images/bongo.webp"
+        },
         "options": [
             {
                 "id": "A",
-                "text": "Томас Джефферсон",
-                "isCorrect": false
+                "text": "Бонго",
+                "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Авраам Линкольн",
+                "text": "Гуира",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Джордж Вашингтон",
-                "isCorrect": true
+                "text": "Рекинто",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Джон Адамс",
+                "text": "Сегунда",
                 "isCorrect": false
             }
         ],
@@ -383,26 +387,26 @@
     },
     {
         "id": 15,
-        "text": "Какая теорема является основой геометрии?",
+        "text": "Когда в Испании проходил Чемпионат Мира по бачате 2025?",
         "options": [
             {
                 "id": "A",
-                "text": "Теорема Ферма",
+                "text": "23 октября",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Теорема Пифагора",
+                "text": "24 октября",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Теорема Эйлера",
+                "text": "25 октября",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Теорема Гаусса",
+                "text": "26 октября",
                 "isCorrect": false
             }
         ],

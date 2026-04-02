@@ -1,27 +1,27 @@
 [
     {
         "id": 1,
-        "text": "Что такое тэп?",
+        "text": "Бачата это...",
         "options": [
             {
                 "id": "A",
-                "text": "Шаг",
-                "isCorrect": false
+                "text": "Социальный танец",
+                "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Удар бедром",
+                "text": "Компьютерная игра",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Остановка",
+                "text": "Мексиканская закуска",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Точка",
-                "isCorrect": true
+                "text": "Город в Испании",
+                "isCorrect": false
             }
         ],
         "difficulty": 1
@@ -82,27 +82,27 @@
     },
     {
         "id": 4,
-        "text": "Бачата это...",
+        "text": "Что такое тэп?",
         "options": [
             {
                 "id": "A",
-                "text": "Социальный танец",
-                "isCorrect": true
+                "text": "Шаг",
+                "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Компьютерная игра",
+                "text": "Удар бедром",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Мексиканская закуска",
+                "text": "Остановка",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Город в Испании",
-                "isCorrect": false
+                "text": "Точка",
+                "isCorrect": true
             }
         ],
         "difficulty": 1
@@ -136,87 +136,114 @@
     },
     {
         "id": 6,
-        "text": "Кто открыл теорию относительности?",
+        "text": "Какой ученик студии бачатамания не живёт на ОЗТП?",
         "options": [
             {
                 "id": "A",
-                "text": "Исаак Ньютон",
+                "text": "Андрей Лапин",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Никола Тесла",
+                "text": "Сотникова Ксения",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Альберт Эйнштейн",
-                "isCorrect": true
+                "text": "Настя Пушеева",
+                "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Макс Планк",
-                "isCorrect": false
+                "text": "Лев Кусь",
+                "isCorrect": true
             }
         ],
         "difficulty": 2
     },
     {
         "id": 7,
-        "text": "Какая страна является родиной танго?",
+        "text": "Как зовут преподавателя студии БачатаМания?",
         "options": [
             {
                 "id": "A",
-                "text": "Испания",
+                "text": "Кеулимжай",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Бразилия",
+                "text": "Кеулемжан",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Аргентина",
+                "text": "Кеулемжай",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Португалия",
+                "text": "Коулемжан",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
         "id": 8,
-        "text": "Кто изобрёл книгопечатание?",
+        "text": "В какой день недели проходит вечеринка в студии БачатаМания?",
         "options": [
             {
                 "id": "A",
-                "text": "Леонардо да Винчи",
+                "text": "Пятница",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Иоганн Гутенберг",
+                "text": "Суббота",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Микеланджело",
+                "text": "Воскресенье",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Николай Коперник",
+                "text": "Понедельник",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 9,
+        "text": "Какой вечеринки не было в БачатаМании?",
+        "options": [
+            {
+                "id": "A",
+                "text": "Хэллоуин",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Арбузная",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Восточная",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Бомж пати",
                 "isCorrect": false
             }
         ],
         "difficulty": 3
     },
     {
-        "id": 9,
+        "id": 10,
         "text": "Кто поёт в этой песне?",
         "media": {
             "type": "audio",
@@ -247,54 +274,27 @@
         "difficulty": 3
     },
     {
-        "id": 10,
-        "text": "Кто написал оперу 'Кармен'?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Джузеппе Верди",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Вольфганг Моцарт",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Жорж Бизе",
-                "isCorrect": true
-            },
-            {
-                "id": "D",
-                "text": "Пётр Чайковский",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 3
-    },
-    {
         "id": 11,
-        "text": "Какая битва положила начало концу Наполеоновских войн?",
+        "text": "Какой ритм играет в припеве песен бачаты?",
         "options": [
             {
                 "id": "A",
-                "text": "Бородинское сражение",
+                "text": "Деречо",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Битва при Ватерлоо",
+                "text": "Махао",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Битва при Аустерлице",
+                "text": "Интро",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Лейпцигская битва",
+                "text": "Мамбо",
                 "isCorrect": false
             }
         ],
@@ -302,26 +302,26 @@
     },
     {
         "id": 12,
-        "text": "Какой элемент имеет атомный номер 79?",
+        "text": "Назовите преподавателя школы Gimmedance в г.Москва",
         "options": [
             {
                 "id": "A",
-                "text": "Серебро",
+                "text": "Олейников",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Платина",
+                "text": "Букулова",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Золото",
+                "text": "Гамидов",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Ртуть",
+                "text": "Бакулина",
                 "isCorrect": false
             }
         ],
@@ -329,26 +329,26 @@
     },
     {
         "id": 13,
-        "text": "Какое животное изображено на гербе Австралии?",
+        "text": "Кто из этих парней не проводил мастер-класс в БачатаМании?",
         "options": [
             {
                 "id": "A",
-                "text": "Кенгуру и страус эму",
+                "text": "Аверин",
                 "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Лев и единорог",
+                "text": "Валеев",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Орёл и змея",
+                "text": "Фионов",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Медведь и орёл",
+                "text": "Ибраев",
                 "isCorrect": false
             }
         ],
@@ -356,26 +356,30 @@
     },
     {
         "id": 14,
-        "text": "Кто написал знаменитый трактат 'Государь'?",
+        "text": "Назовите музыкальный инструмент",
+        "media": {
+            "type": "image",
+            "url": "/images/guira.webp"
+        },
         "options": [
             {
                 "id": "A",
-                "text": "Томас Мор",
+                "text": "Бонго",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Никколо Макиавелли",
+                "text": "Гуира",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Джон Локк",
+                "text": "Рекинто",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Вольтер",
+                "text": "Сегунда",
                 "isCorrect": false
             }
         ],
@@ -383,26 +387,26 @@
     },
     {
         "id": 15,
-        "text": "Какая частица была открыта в ЦЕРН в 2012 году и подтвердила Стандартную модель?",
+        "text": "В каком городе Испании проходил Чемпионат Мира по бачате 2025?",
         "options": [
             {
                 "id": "A",
-                "text": "Кварк",
+                "text": "Аликанте",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Бозон Хиггса",
+                "text": "Кальпе",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "Нейтрино",
+                "text": "Дения",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Глюон",
+                "text": "Альея",
                 "isCorrect": false
             }
         ],

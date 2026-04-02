@@ -140,87 +140,118 @@
     },
     {
         "id": 6,
-        "text": "Кто изобрёл интернет?",
+        "text": "Что такое препарейшн?",
         "options": [
             {
                 "id": "A",
-                "text": "Билл Гейтс",
+                "text": "Поворот",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Стив Джобс",
+                "text": "Удержание баланса",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Тим Бернерс-Ли",
+                "text": "Подготовка к движению",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Марк Цукерберг",
+                "text": "Наклон вперёд",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
         "id": 7,
-        "text": "Какое озеро является самым глубоким в мире?",
+        "text": "Какого диджея нет в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "Байкал",
+                "text": "DJ Smash",
                 "isCorrect": true
             },
             {
                 "id": "B",
-                "text": "Виктория",
+                "text": "DJ Husky",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Танганьика",
+                "text": "DJ Ramon",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "Верхнее",
+                "text": "DJ Tronky",
                 "isCorrect": false
             }
         ],
-        "difficulty": 3
+        "difficulty": 2
     },
     {
         "id": 8,
-        "text": "Какая страна выиграла чемпионат мира по футболу в 2018 году?",
+        "text": "В какой стране зародилась бачата как музыкальный и танцевальный жанр?",
         "options": [
             {
                 "id": "A",
-                "text": "Бразилия",
+                "text": "Куба",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Германия",
+                "text": "Пуэрто-Рико",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Франция",
+                "text": "Доминиканская Республика",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Аргентина",
+                "text": "Колумбия",
+                "isCorrect": false
+            }
+        ],
+        "difficulty": 2
+    },
+    {
+        "id": 9,
+        "text": "Кто это танцевальная пара?",
+        "media": {
+            "type": "image",
+            "url": "/images/marco_sara.webp"
+        },
+        "options": [
+            {
+                "id": "A",
+                "text": "Gero & Migel",
+                "isCorrect": false
+            },
+            {
+                "id": "B",
+                "text": "Cornel & Rithika",
+                "isCorrect": false
+            },
+            {
+                "id": "C",
+                "text": "Marco & Sara",
+                "isCorrect": true
+            },
+            {
+                "id": "D",
+                "text": "Melvin & Gatica",
                 "isCorrect": false
             }
         ],
         "difficulty": 3
     },
     {
-        "id": 9,
+        "id": 10,
         "text": "Кто поёт в этой песне?",
         "media": {
             "type": "audio",
@@ -251,81 +282,54 @@
         "difficulty": 3
     },
     {
-        "id": 10,
-        "text": "Кто написал музыку к балету 'Лебединое озеро'?",
-        "options": [
-            {
-                "id": "A",
-                "text": "Игорь Стравинский",
-                "isCorrect": false
-            },
-            {
-                "id": "B",
-                "text": "Сергей Прокофьев",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Пётр Чайковский",
-                "isCorrect": true
-            },
-            {
-                "id": "D",
-                "text": "Дмитрий Шостакович",
-                "isCorrect": false
-            }
-        ],
-        "difficulty": 4
-    },
-    {
         "id": 11,
-        "text": "В каком году распался Советский Союз?",
+        "text": "Какого степа нет в бачате?",
         "options": [
             {
                 "id": "A",
-                "text": "1989",
+                "text": "Box step",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "1990",
+                "text": "Corner step",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "1991",
+                "text": "Alemana step",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "1992",
+                "text": "Madrid step",
                 "isCorrect": false
             }
         ],
-        "difficulty": 4
+        "difficulty": 3
     },
     {
         "id": 12,
-        "text": "Какой элемент обозначается символом 'Fe'?",
+        "text": "Международный день Бачаты празднуют",
         "options": [
             {
                 "id": "A",
-                "text": "Серебро",
+                "text": "29 мая",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Медь",
+                "text": "30 апреля",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Железо",
+                "text": "30 мая",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Олово",
+                "text": "31 апреля",
                 "isCorrect": false
             }
         ],
@@ -333,80 +337,84 @@
     },
     {
         "id": 13,
-        "text": "Какое животное является символом мудрости в греческой мифологии?",
+        "text": "Как переводится 'Un Beso'?",
         "options": [
             {
                 "id": "A",
-                "text": "Лиса",
+                "text": "Вина",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Змея",
-                "isCorrect": false
-            },
-            {
-                "id": "C",
-                "text": "Сова",
+                "text": "Поцелуй",
                 "isCorrect": true
             },
             {
+                "id": "C",
+                "text": "Душа",
+                "isCorrect": false
+            },
+            {
                 "id": "D",
-                "text": "Ворон",
+                "text": "Безумие",
                 "isCorrect": false
             }
         ],
-        "difficulty": 5
+        "difficulty": 4
     },
     {
         "id": 14,
-        "text": "Кто был первым человеком, ступившим на Луну?",
+        "text": "Назовите музыкальный инструмент",
+        "media": {
+            "type": "image",
+            "url": "/images/rekinto.webp"
+        },
         "options": [
             {
                 "id": "A",
-                "text": "Юрий Гагарин",
+                "text": "Бонго",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "Базз Олдрин",
+                "text": "Гуира",
                 "isCorrect": false
             },
             {
                 "id": "C",
-                "text": "Нил Армстронг",
+                "text": "Рекинто",
                 "isCorrect": true
             },
             {
                 "id": "D",
-                "text": "Майкл Коллинз",
+                "text": "Сегунда",
                 "isCorrect": false
             }
         ],
-        "difficulty": 5
+        "difficulty": 4
     },
     {
         "id": 15,
-        "text": "Какое уравнение описывает связь массы и энергии?",
+        "text": "В каком году была записана первая официальная песня в стиле бачата «Borracho de amor»?",
         "options": [
             {
                 "id": "A",
-                "text": "F = ma",
+                "text": "1960",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "E = mc²",
-                "isCorrect": true
-            },
-            {
-                "id": "C",
-                "text": "PV = nRT",
+                "text": "1961",
                 "isCorrect": false
             },
             {
+                "id": "C",
+                "text": "1962",
+                "isCorrect": true
+            },
+            {
                 "id": "D",
-                "text": "a² + b² = c²",
+                "text": "1963",
                 "isCorrect": false
             }
         ],
