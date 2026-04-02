@@ -101,6 +101,9 @@
       </div>
     </div>
 
+    <!-- Уведомление о несгораемой сумме -->
+    <MilestoneNotification ref="milestoneRef" :format-money="formatMoney" />
+
     <!-- Кнопка выхода из игры -->
     <button
       v-if="gameStarted && !gameEnded && currentWinnings > 0"
@@ -125,9 +128,11 @@ import QuestionCard from './components/game/QuestionCard.vue'
 import PrizeLadder from './components/game/PrizeLadder.vue'
 import HintsPanel from './components/game/HintsPanel.vue'
 import confetti from 'canvas-confetti'
+import MilestoneNotification from './components/ui/MilestoneNotification.vue'
 
 const game = useGameLogic()
 const sound = useSoundManager()
+const milestoneRef = ref<InstanceType<typeof MilestoneNotification> | null>(null)
 
 const gameStarted = ref(false)
 
@@ -257,6 +262,18 @@ watch([gameEnded, gameResult], ([ended, result]) => {
   }
 })
 
+// Отдельный watch для отслеживания правильных ответов на milestone
+watch(currentWinnings, (newWinnings, oldWinnings) => {
+  // Если выигрыш увеличился и это одна из milestone сумм
+  const milestoneAmounts = [1000, 32000]
+
+  if (milestoneAmounts.includes(newWinnings) && newWinnings !== oldWinnings) {
+    // Показываем уведомление с задержкой, чтобы подсветка ответа успела завершиться
+    setTimeout(() => {
+      milestoneRef.value?.show(newWinnings)
+    }, 800)
+  }
+})
 const launchConfetti = () => {
   confetti({
     particleCount: 200,
@@ -823,5 +840,9 @@ body {
     height: 40px;
     font-size: 20px;
   }
+}
+
+.vel-modal {
+  background: rgba(0, 0, 0, 0.9) !important;
 }
 </style>

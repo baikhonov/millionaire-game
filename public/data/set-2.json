@@ -59,22 +59,22 @@
         "options": [
             {
                 "id": "A",
-                "text": "10",
+                "text": "6",
                 "isCorrect": false
             },
             {
                 "id": "B",
-                "text": "8",
+                "text": "32",
                 "isCorrect": true
             },
             {
                 "id": "C",
-                "text": "12",
+                "text": "44",
                 "isCorrect": false
             },
             {
                 "id": "D",
-                "text": "6",
+                "text": "208",
                 "isCorrect": false
             }
         ],
