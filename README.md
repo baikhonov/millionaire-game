@@ -1,84 +1,110 @@
-# millionaire-game
+# 🎮 Кто хочет стать миллионером — БачатаМания Edition
 
-This template should help get you started developing with Vue 3 in Vite.
+Интерактивная викторина "Кто хочет стать миллионером", адаптированная для мероприятий клуба "БачатаМания". Игра с полным звуковым сопровождением, тремя подсказками и динамической системой вопросов.
 
-## Recommended IDE Setup
+![Игра](screenshots/game.png)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🌐 Демо
 
-## Recommended Browser Setup
+[Играть онлайн](https://baikhonov.github.io/millionaire-game/)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## ✨ Особенности
 
-## Type Support for `.vue` Imports in TS
+- 🎵 **Полное звуковое сопровождение** — фоновая музыка, звуки выбора ответа, победы и поражения, подсказки
+- 📚 **Система сетов** — несколько наборов по 15 вопросов, автоматическое переключение после каждой игры
+- 💡 **Три подсказки**:
+  - 50:50 — удаляет два неверных варианта
+  - Звонок другу — таймер на 30 секунд для обсуждения
+  - Помощь зала — интерактивное голосование зрителей
+- 🏆 **Несгораемые суммы** — уведомления при достижении 1000₽ и 32000₽
+- 📱 **Адаптивный дизайн** — корректно работает на ПК, планшетах и смартфонах
+- 🎨 **Аутентичный интерфейс** — стилизация под классическую игру "Кто хочет стать миллионером"
+- 🚪 **Кнопка выхода** — фиксирует текущий выигрыш и завершает игру
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 🛠️ Технологии
 
-## Customize configuration
+- **Vue 3** — современный фреймворк с Composition API
+- **TypeScript** — типизация компонентов и данных
+- **Vite** — быстрая сборка и разработка
+- **GitHub Pages** — хостинг и автодеплой через GitHub Actions
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 🎮 Как играть
 
-## Project Setup
+1. Нажмите **"Начать игру"** на стартовом экране
+2. Варианты ответов появляются по очереди (A → B → C → D)
+3. Выберите вариант (можно передумать до нажатия кнопки)
+4. Нажмите **"Показать правильный ответ"**, чтобы узнать результат
+5. При правильном ответе — переход к следующему вопросу
+6. При неправильном — игра завершается с фиксацией выигрыша
 
-```sh
+### Подсказки
+
+- **50:50** — убирает два неверных варианта (1 раз за игру)
+- **Звонок другу** — запускает таймер на 30 секунд (1 раз за игру)
+- **Помощь зала** — игроки кидают бумажки со своими вариантами (1 раз за игру)
+
+## 📁 Структура проекта
+
+```
+📁 src/
+├── 📁 assets/ # Стили и статические файлы
+├── 📁 components/ # Vue компоненты
+│ ├── 📁 game/ # Игровые компоненты
+│ ├── 📁 media/ # Аудио/видео плееры
+│ └── 📁 ui/ # UI компоненты (модалки, таймер)
+├── 📁 composables/ # Composition API логика
+├── 📁 types/ # TypeScript интерфейсы
+└── 📁 config/ # Конфигурация валюты и путей
+```
+
+## 🚀 Установка и запуск
+
+# Клонирование репозитория
+
+```bash
+git clone https://github.com/baikhonov/millionaire-game.git
+cd millionaire-game
+```
+
+# Установка зависимостей
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+# Запуск в режиме разработки
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+# Сборка для продакшена
 
-```sh
+```bash
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+# Предпросмотр собранного проекта
 
-```sh
-npm run lint
+```bash
+npm run preview
 ```
 
-### Example of question
+## 📦 Автоматический деплой
 
-```js
-{
-    "id": 1,
-    "text": "что это за сооружение'?",
-    "media": {
-        "type": "image",
-        "url": "/images/eiffel-tower.webp"
-    },
-    "options": [
-        {
-            "id": "a",
-            "text": "пизанская башня",
-            "iscorrect": false
-        },
-        {
-            "id": "b",
-            "text": "эйфелева башня",
-            "iscorrect": true
-        },
-        {
-            "id": "c",
-            "text": "башня белен",
-            "iscorrect": false
-        },
-        {
-            "id": "d",
-            "text": "венсенская башня",
-            "iscorrect": false
-        }
-    ],
-    "difficulty": 1
-},
-```
+При пуше в ветку main запускается GitHub Actions, который:
+
+Устанавливает зависимости
+
+Собирает проект
+
+Деплоит на GitHub Pages
+
+Сайт доступен по адресу: https://baikhonov.github.io/millionaire-game/
+
+## 🙏 Благодарности
+
+Вдохновлено классической телевизионной игрой "Кто хочет стать миллионером"
+
+Клуб "БачатаМания" за идею интеграции тематических вопросов
+https://vk.com/bachatamania_56
