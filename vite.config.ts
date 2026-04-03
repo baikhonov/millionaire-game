@@ -13,4 +13,9 @@ export default defineConfig({
     },
   },
   base: process.env.NODE_ENV === 'production' ? '/millionaire-game/' : '/',
+  server: {
+    host: '0.0.0.0', // Слушаем все сетевые интерфейсы
+    port: 5173,
+    strictPort: true, // Не использовать другой порт, если 5173 занят
+  },
 })
