@@ -311,6 +311,33 @@ export function useSoundManager() {
     soundCache.clear()
   }
 
+  const preloadAllMusic = async (): Promise<void> => {
+    const musicUrls = [
+      `${BASE_URL}sounds/music/level-1.mp3`,
+      `${BASE_URL}sounds/music/level-2.mp3`,
+      `${BASE_URL}sounds/music/level-3.mp3`,
+      `${BASE_URL}sounds/music/final.mp3`,
+      `${BASE_URL}sounds/music/game-over.mp3`,
+    ]
+
+    console.log('🎵 Предзагрузка музыки...')
+
+    const promises = musicUrls.map((url) => {
+      return new Promise<void>((resolve) => {
+        const audio = new Audio()
+        audio.preload = 'auto'
+        audio.src = url
+        audio.load()
+        // Не ждём полной загрузки, достаточно начала
+        audio.addEventListener('canplaythrough', () => resolve(), { once: true })
+        setTimeout(() => resolve(), 3000) // таймаут на всякий случай
+      })
+    })
+
+    await Promise.all(promises)
+    console.log('🎵 Музыка предзагружена')
+  }
+
   return {
     isMuted: readonly(isMuted),
     musicVolume: readonly(musicVolume),
@@ -338,5 +365,6 @@ export function useSoundManager() {
     getAudioDuration,
     preloadMusic,
     playQuestionMusicWithPreload,
+    preloadAllMusic,
   }
 }

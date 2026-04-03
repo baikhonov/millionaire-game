@@ -271,6 +271,8 @@ const onTimerComplete = () => {
 }
 
 onMounted(async () => {
+  await sound.preloadAllMusic()
+
   await startNewGame()
 })
 
