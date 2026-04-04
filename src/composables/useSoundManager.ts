@@ -313,6 +313,7 @@ export function useSoundManager() {
 
   const preloadAllMusic = async (): Promise<void> => {
     const musicUrls = [
+      `${BASE_URL}sounds/music/waiting.mp3`,
       `${BASE_URL}sounds/music/level-1.mp3`,
       `${BASE_URL}sounds/music/level-2.mp3`,
       `${BASE_URL}sounds/music/level-3.mp3`,
@@ -336,6 +337,40 @@ export function useSoundManager() {
 
     await Promise.all(promises)
     console.log('🎵 Музыка предзагружена')
+  }
+
+  const playWaitingMusic = (): void => {
+    if (!isAudioEnabled.value || isMuted.value) return
+
+    if (currentMusic.value) {
+      currentMusic.value.pause()
+      currentMusic.value.currentTime = 0
+      currentMusic.value = null
+    }
+
+    const musicUrl = `${BASE_URL}sounds/music/waiting.mp3`
+    const audio = loadSound(musicUrl)
+    if (!audio) {
+      console.warn(`⚠️ Не найден файл музыки ожидания: ${musicUrl}`)
+      return
+    }
+
+    audio.loop = true // зацикливаем, пока ждём
+    audio.volume = musicVolume.value
+
+    audio.play().catch((e) => {
+      console.error(`❌ Ошибка воспроизведения музыки ожидания:`, e.message)
+    })
+
+    currentMusic.value = audio
+    isMusicPlaying.value = true
+    console.log('🎵 Музыка ожидания (экран "Вперёд")')
+  }
+
+  // Добавляем метод для остановки музыки ожидания и запуска музыки вопроса
+  const stopWaitingAndStartQuestionMusic = async (level: number): Promise<void> => {
+    stopMusic()
+    await playQuestionMusicWithPreload(level)
   }
 
   return {
@@ -366,5 +401,7 @@ export function useSoundManager() {
     preloadMusic,
     playQuestionMusicWithPreload,
     preloadAllMusic,
+    playWaitingMusic,
+    stopWaitingAndStartQuestionMusic,
   }
 }

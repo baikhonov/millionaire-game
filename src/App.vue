@@ -47,29 +47,39 @@
       <div class="game-container">
         <div class="game-layout">
           <div class="game-main">
-            <div v-if="currentQuestion" class="question-section">
-              <QuestionCard :question="currentQuestion" />
+            <!-- Кнопка "Вперёд" перед первым вопросом -->
+            <div v-if="!showFirstQuestion" class="forward-screen">
+              <div class="forward-card">
+                <button class="forward-button" @click="showFirstQuestionHandler">Вперёд →</button>
+              </div>
+            </div>
 
-              <OptionsGrid
-                :key="currentQuestionIndex"
-                :options="currentQuestion.options"
-                :selected-option="selectedOption"
-                :is-answered="isAnswered"
-                :is-answer-revealed="isAnswerRevealed"
-                :is-revealing="isRevealingOptions"
-                :options-revealed="optionsRevealed"
-                :hidden-options="hiddenOptions"
-                @select="selectAnswer"
-              />
+            <!-- Вопрос и варианты (показываем только после нажатия) -->
+            <div v-else>
+              <div v-if="currentQuestion" class="question-section">
+                <QuestionCard :question="currentQuestion" />
 
-              <div class="reveal-button-container">
-                <button
-                  v-if="isWaitingForReveal && !isAnswerRevealed"
-                  class="reveal-button"
-                  @click="revealAnswer"
-                >
-                  🔍 Показать правильный ответ
-                </button>
+                <OptionsGrid
+                  :key="currentQuestionIndex"
+                  :options="currentQuestion.options"
+                  :selected-option="selectedOption"
+                  :is-answered="isAnswered"
+                  :is-answer-revealed="isAnswerRevealed"
+                  :is-revealing="isRevealingOptions"
+                  :options-revealed="optionsRevealed"
+                  :hidden-options="hiddenOptions"
+                  @select="selectAnswer"
+                />
+
+                <div class="reveal-button-container">
+                  <button
+                    v-if="isWaitingForReveal && !isAnswerRevealed"
+                    class="reveal-button"
+                    @click="revealAnswer"
+                  >
+                    🔍 Показать правильный ответ
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -137,6 +147,7 @@ import confetti from 'canvas-confetti'
 import MilestoneNotification from './components/ui/MilestoneNotification.vue'
 import TimerDisplay from './components/ui/TimerDisplay.vue'
 
+const showFirstQuestion = ref(false)
 const game = useGameLogic()
 const sound = useSoundManager()
 const milestoneRef = ref<InstanceType<typeof MilestoneNotification> | null>(null)
@@ -171,9 +182,11 @@ const {
   useAudienceHint,
   startNewGame,
   resetAllProgress,
+  returnCurrentSet,
   allSetsUsed,
   totalQuestions,
   getQuestionsStats,
+  startRevealOptions,
 } = game
 
 const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
@@ -195,10 +208,22 @@ const startGame = async () => {
   await initGame()
 
   if (isAudioEnabled.value && !isMuted.value) {
-    playQuestionMusic(1)
+    sound.playWaitingMusic()
   }
 
   gameStarted.value = true
+
+  showFirstQuestion.value = false
+}
+
+const showFirstQuestionHandler = async () => {
+  showFirstQuestion.value = true
+
+  // ✅ Останавливаем музыку ожидания и запускаем музыку первого вопроса
+  if (isAudioEnabled.value && !isMuted.value) {
+    await sound.stopWaitingAndStartQuestionMusic(1)
+  }
+  startRevealOptions()
 }
 
 const selectAnswer = (option: any) => {
@@ -215,16 +240,24 @@ const restartGame = async () => {
 
   if (!hasRemainingSets) {
     gameStarted.value = false
+    showFirstQuestion.value = false
     return
   }
+
+  // ✅ Сначала останавливаем всю музыку
+  sound.stopMusic()
+  sound.stopAllEffects()
 
   await startNewGame()
   resetGame()
   await initGame()
 
   if (isAudioEnabled.value && !isMuted.value) {
-    playQuestionMusic(1)
+    sound.playWaitingMusic()
   }
+
+  gameStarted.value = true
+  showFirstQuestion.value = false
 }
 
 const showTimerButton = ref(false)
@@ -876,5 +909,76 @@ body {
 
 .vel-modal {
   background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Стили для экрана "Вперёд" */
+.forward-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.forward-card {
+  background: linear-gradient(135deg, #1a1f2e, #0f1420);
+  border: 2px solid #ffd700;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
+.forward-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.forward-card h2 {
+  color: #ffd700;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.forward-card p {
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.forward-button {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #0a0f1e;
+  border: none;
+  border-radius: 40px;
+  padding: 12px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.forward-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .forward-card {
+    padding: 30px 20px;
+  }
+
+  .forward-card h2 {
+    font-size: 20px;
+  }
+
+  .forward-button {
+    padding: 10px 30px;
+    font-size: 18px;
+  }
 }
 </style>

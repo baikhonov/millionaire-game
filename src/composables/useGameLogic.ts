@@ -145,10 +145,6 @@ export function useGameLogic() {
     isLoading.value = true
     resetGame()
     isLoading.value = false
-
-    setTimeout(() => {
-      startRevealOptions()
-    }, 500)
   }
 
   const resetGame = (): void => {
