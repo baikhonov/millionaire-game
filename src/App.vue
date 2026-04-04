@@ -49,9 +49,7 @@
           <div class="game-main">
             <!-- Кнопка "Вперёд" перед первым вопросом -->
             <div v-if="!showFirstQuestion" class="forward-screen">
-              <div class="forward-card">
-                <button class="forward-button" @click="showFirstQuestionHandler">Вперёд →</button>
-              </div>
+              <button class="forward-button" @click="showFirstQuestionHandler">Вперёд →</button>
             </div>
 
             <!-- Вопрос и варианты (показываем только после нажатия) -->
@@ -182,14 +180,13 @@ const {
   useAudienceHint,
   startNewGame,
   resetAllProgress,
-  returnCurrentSet,
   allSetsUsed,
   totalQuestions,
   getQuestionsStats,
   startRevealOptions,
 } = game
 
-const { isMuted, isAudioEnabled, enableAudio, toggleMute, playQuestionMusic } = sound
+const { isMuted, isAudioEnabled, enableAudio, toggleMute } = sound
 
 const startGame = async () => {
   if (allSetsUsed.value) {
@@ -402,10 +399,6 @@ const exitGame = () => {
   game.takeMoney()
 }
 </script>
-
-<style>
-/* Все стили остаются без изменений, как у вас */
-</style>
 
 <style>
 * {
@@ -916,7 +909,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
+  height: 100%;
   padding: 20px;
 }
 
