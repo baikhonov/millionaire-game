@@ -93,11 +93,13 @@ const handleSelect = (option: Option) => {
   display: flex;
   align-items: center;
   text-align: left;
-  font-size: 20px;
+  font-size: 28px;
 
   @media (max-width: 768px) {
     min-height: 48px;
     padding: 10px 15px;
+
+    font-size: 18px;
   }
 }
 

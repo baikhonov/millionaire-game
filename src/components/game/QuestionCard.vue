@@ -29,7 +29,7 @@ defineProps<{
 }
 
 .question-text {
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   line-height: 1.4;
