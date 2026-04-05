@@ -12,6 +12,9 @@
 
         <button class="start-button" @click="startGame" :disabled="allSetsUsed">Начать игру</button>
 
+        <!-- Кнопка "Игроки" — показываем только если есть победители -->
+        <button class="winners-button" @click="showWinnersModal = true">🏆 Игроки</button>
+
         <div v-if="allSetsUsed" class="warning-message">
           ⚠️ Все сеты вопросов использованы! Нажмите "Сбросить пул вопросов" чтобы продолжить.
         </div>
@@ -130,6 +133,9 @@
       {{ isMuted ? '🔇' : '🔊' }}
     </button>
   </div>
+
+  <!-- Модалка победителей -->
+  <WinnersGallery v-if="showWinnersModal" @close="showWinnersModal = false" />
 </template>
 
 <script setup lang="ts">
@@ -144,11 +150,13 @@ import HintsPanel from './components/game/HintsPanel.vue'
 import confetti from 'canvas-confetti'
 import MilestoneNotification from './components/ui/MilestoneNotification.vue'
 import TimerDisplay from './components/ui/TimerDisplay.vue'
+import WinnersGallery from './components/ui/WinnersGallery.vue'
 
 const showFirstQuestion = ref(false)
 const game = useGameLogic()
 const sound = useSoundManager()
 const milestoneRef = ref<InstanceType<typeof MilestoneNotification> | null>(null)
+const showWinnersModal = ref(false)
 
 const gameStarted = ref(false)
 
@@ -973,5 +981,25 @@ body {
     padding: 10px 30px;
     font-size: 18px;
   }
+}
+
+.winners-button {
+  display: none;
+  margin-top: 15px;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #4a2f1e, #2a1a0e);
+  color: #ffd700;
+  border: 1px solid #ffd700;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.winners-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #5a3f2e, #3a2a1e);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 </style>
